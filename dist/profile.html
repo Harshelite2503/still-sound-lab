@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172720">
+<meta name="description" content="Build a personal sound comfort profile: a safe reference level, a per-frequency comfort contour, and a comfort sound learned from simple A/B choices.">
+<title>Comfort profile · Still</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="index.html">Sound lab</a><a href="library.html">Sound dataset</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<main>
+<section class="intro">
+  <div>
+    <p class="eyebrow">YOUR COMFORT PROFILE</p>
+    <h1>Your brain,<br>your <em>quiet.</em></h1>
+    <p class="lede">One person’s calm is another person’s noise. Spend a few minutes on a good day<br class="desktop"> teaching Still what feels gentle to you. On hard days, it is ready.</p>
+  </div>
+  <aside class="intro-aside diversity" aria-label="Why personal">
+    <strong>1.2</strong>
+    <p>points of disagreement, on a 1–5 scale</p>
+    <span>Typical spread (standard deviation) when listeners rated how pleasant each of 168 simple synthetic sounds felt. For 9 in 10 sounds it was 1 point or more. <a href="library.html">EmoSynth dataset ↗</a></span>
+  </aside>
+</section>
+
+<div class="care-note"><span aria-hidden="true">◉</span><p>Build your profile on a calmer day, with your device volume low. Every sound fades in, and hold-to-play sounds stop as soon as you let go. Still is for comfort and self-knowledge. It does not diagnose, treat or prevent migraine. Seek care for a new, sudden or different headache.</p></div>
+
+<section class="mode-bar panel" aria-labelledby="mode-heading">
+  <div><p class="eyebrow" id="mode-heading">HOW ARE YOU RIGHT NOW?</p><p class="micro" id="mode-note">Normal day: sounds play at your saved level.</p></div>
+  <div class="segmented" role="radiogroup" aria-label="Current state">
+    <label><input type="radio" name="mode" value="normal" checked><span>Normal day</span></label>
+    <label><input type="radio" name="mode" value="warning"><span>Warning signs</span></label>
+    <label><input type="radio" name="mode" value="attack"><span>During an attack</span></label>
+    <label><input type="radio" name="mode" value="recovering"><span>Recovering</span></label>
+  </div>
+</section>
+
+<div id="status" class="status" role="status" aria-live="polite">Start with the questions, or jump to any step. Nothing plays until you press a button.</div>
+
+<section class="attack-panel panel" id="attack-panel" hidden>
+  <p class="eyebrow">QUIET MODE</p>
+  <h2>Only what you asked for.</h2>
+  <p class="muted">Your comfort sound plays about 14 dB quieter than usual, with a softer top end, almost no swell and a slow fade-in of 6 seconds or more. Silence is always fine.</p>
+  <div class="attack-actions"><button id="attack-play" class="primary big" type="button">▶ Play my comfort sound</button><button id="attack-stop" class="outline big" type="button">■ Fade to silence</button></div>
+  <p class="micro" id="attack-detail"></p>
+</section>
+
+<div class="profile-steps" id="profile-steps">
+<article class="panel" id="step-questions">
+  <div class="step"><span>01</span> A FEW QUESTIONS · 30 SECONDS</div>
+  <h2>What tends to bother you?</h2>
+  <p class="muted">Your answers choose a gentle first sound. This is not a test or a diagnosis, and there are no right answers.</p>
+  <div id="questions" class="questions"></div>
+  <label class="device-label">How do you usually listen?<select id="device"><option value="headphones">Headphones or earbuds</option><option value="speakers">Speakers</option><option value="unsure">Not sure</option></select></label>
+</article>
+
+<article class="panel" id="step-reference">
+  <div class="step"><span>02</span> A QUIET REFERENCE · 30 SECONDS</div>
+  <h2>Set your starting volume</h2>
+  <p class="muted"><strong>Before you press play, turn your device volume down to about a quarter.</strong> Then play a soft, steady hush and adjust your <strong>device</strong> volume until it is quiet but clear: easy to hear, and nowhere near loud. Still measures every later sound relative to this point, because a browser cannot know the actual loudness at your ears.</p>
+  <div class="button-row"><button id="ref-play" class="outline" type="button">▶ Play reference</button><button id="ref-save" class="primary" type="button" disabled>This is quiet but clear ✓</button></div>
+  <p class="micro" id="ref-note">Not set yet.</p>
+</article>
+
+<article class="panel" id="step-headphones">
+  <div class="step"><span>03</span> HEADPHONE CHECK · OPTIONAL · 1 MINUTE</div>
+  <h2>Can you hear the hidden tone?</h2>
+  <p class="muted">You will hear three short hisses. Over headphones, one of them contains a faint tone. Over speakers it mostly disappears. Six rounds; five correct confirms headphones. Stereo experiments in the sound lab rely on this.</p>
+  <div class="hp-trial" id="hp-trial" hidden><p class="micro" id="hp-round">Round 1 of 6</p><div class="button-row"><button class="outline hp-answer" type="button" data-answer="0">1</button><button class="outline hp-answer" type="button" data-answer="1">2</button><button class="outline hp-answer" type="button" data-answer="2">3</button></div><button id="hp-replay" class="text-button" type="button">Play again</button></div>
+  <div class="button-row"><button id="hp-start" class="outline" type="button">Start headphone check</button></div>
+  <p class="micro" id="hp-note">Not checked.</p>
+</article>
+
+<article class="panel wide" id="step-contour">
+  <div class="step"><span>04</span> YOUR COMFORT CONTOUR · 2 MINUTES</div>
+  <div class="heading-row"><h2>Where is your ear most sensitive?</h2><span class="pill" id="contour-pill">0 OF 7 BANDS</span></div>
+  <p class="muted">For each band, press and <strong>hold</strong>. The sound starts very quietly and rises slowly. Let go as soon as it stops feeling gentle. The sound stops the moment you let go, and it never goes above a fixed safe cap. Still then turns down the bands you mark lower, in every sound it makes for you.</p>
+  <div class="contour-grid">
+    <div id="bands" class="bands"></div>
+    <figure class="contour-figure"><svg id="contour-chart" viewBox="0 0 420 220" role="img" aria-label="Comfort contour chart"></svg><figcaption class="micro">Each point shows how loud that band could get, relative to your quiet reference, before it stopped feeling gentle. Lower points mean more sensitive. Bands are matched with a standard loudness weighting, so these are personal comparisons, not hearing-test results.</figcaption></figure>
+  </div>
+</article>
+
+<article class="panel wide" id="step-tuner">
+  <div class="step"><span>05</span> FIND YOUR COMFORT SOUND · 3–5 MINUTES</div>
+  <div class="heading-row"><h2>Which one feels calmer?</h2><span class="pill" id="tuner-pill">ROUND 0</span></div>
+  <p class="muted">Each round plays two six-second sounds, A then B, at the same loudness. Pick the one that feels calmer. Still learns your preferences from these choices and moves the next pair toward what works for you. About 10–16 rounds is usually enough. Stop whenever you like.</p>
+  <div class="tuner">
+    <div class="ab-cards"><div class="ab-card" id="card-a"><span>A</span><small id="desc-a">—</small></div><div class="ab-card" id="card-b"><span>B</span><small id="desc-b">—</small></div></div>
+    <div class="button-row"><button id="ab-play" class="primary" type="button">▶ Play A then B</button><button id="ab-replay-a" class="outline" type="button" disabled>Replay A</button><button id="ab-replay-b" class="outline" type="button" disabled>Replay B</button><button id="ab-stop" class="outline" type="button">■ Stop</button></div>
+    <div class="choice-row" role="group" aria-label="Your choice"><button class="choice" type="button" data-choice="a" disabled>A felt calmer</button><button class="choice" type="button" data-choice="b" disabled>B felt calmer</button><button class="choice" type="button" data-choice="same" disabled>About the same</button><button class="choice warn" id="choice-neither" type="button" data-choice="neither" disabled>Both unpleasant</button></div>
+    <div class="confidence"><span>How settled your favourite is</span><div class="meter"><i id="confidence-bar"></i></div><small id="confidence-note">Learning starts after your first choice.</small></div>
+  </div>
+</article>
+
+<article class="panel wide fingerprint" id="step-fingerprint">
+  <div class="step"><span>06</span> YOUR SOUND FINGERPRINT</div>
+  <div class="heading-row"><h2 id="fp-title">Not built yet</h2><span class="pill" id="fp-pill">PERSONAL · STORED ON THIS DEVICE</span></div>
+  <div class="fp-grid">
+    <ul class="fp-list" id="fp-list"><li>Answer a few comparisons to see your sound fingerprint.</li></ul>
+    <div class="fp-player">
+      <label class="range-label">Listening level <output id="level-value">0 dB</output><input id="level" type="range" min="-30" max="6" step="1" value="0" aria-label="Listening level relative to your quiet reference"></label>
+      <p class="micro" id="level-note">Relative to your quiet reference. The cap follows your comfort contour.</p>
+      <label>Fade out after<select id="timer"><option value="0">No timer</option><option value="10">10 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option></select></label>
+      <div class="button-row"><button id="fp-play" class="primary" type="button" disabled>▶ Play my comfort sound</button><button id="fp-stop" class="outline" type="button">■ Fade to silence</button></div>
+      <button id="fp-worse" class="text-button" type="button">This is making it worse</button>
+    </div>
+  </div>
+  <div class="button-row data-row"><button id="export" class="text-button" type="button">Export profile ↓</button><label class="text-button import-label" for="import">Import profile ↑</label><input id="import" class="sr-only" type="file" accept="application/json"><button id="clear" class="text-button" type="button">Clear profile</button></div>
+</article>
+</div>
+
+<section class="how panel">
+  <p class="eyebrow">HOW THIS WORKS, AND ITS LIMITS</p>
+  <div class="how-grid">
+    <div><h3>Comparisons, not scores</h3><p class="micro">“Which is calmer?” is easier to answer consistently than “rate this 1–10”. A Gaussian-process preference model (Chu &amp; Ghahramani, 2005) learns from your choices and picks each new pair where it expects to learn the most. A similar approach has tuned hearing aids from 10–20 comparisons.</p></div>
+    <div><h3>Four things that differ between people</h3><p class="micro">How dark or bright the sound is (spectral tilt), noise versus a soft hum, how steady it is, and how soft the top end is. Annoyance research ranks loudness and sharpness first, and slow, regular changes are gentler than fast flutter.</p></div>
+    <div><h3>States, not one setting</h3><p class="micro">In lab studies, people with migraine found sound aversive at lower levels than controls, and at lower levels still during attacks. Still keeps one profile and adjusts it for your current state. The offsets are cautious starting points, not measurements of you.</p></div>
+    <div><h3>What it cannot tell you</h3><p class="micro">Preferring a sound is not the same as it reducing pain. Before-and-after pain changes also reflect time, medication and expectation. Your profile describes comfort, on your device, today. <a href="research.html#profile-evidence">Evidence and sources ↗</a></p></div>
+  </div>
+</section>
+
+<footer><div><a class="brand" href="index.html">≋ still</a><p>A comfort exploration prototype. No accounts. Nothing leaves this browser.</p></div><div><a href="research.html">Read the evidence &amp; product plan ↗</a><p>No universal healing frequency is established.</p></div></footer>
+</main>
+<script type="module" src="profile.js"></script>
+</body>
+</html>

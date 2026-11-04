@@ -3,7 +3,7 @@ const TAU = 2 * Math.PI;
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 const finite = (v, fallback) => Number.isFinite(Number(v)) ? Number(v) : fallback;
 
-function fft(re, im) {
+export function fft(re, im) {
   const n = re.length;
   for (let i = 1, j = 0; i < n; i++) {
     let bit = n >> 1;

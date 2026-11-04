@@ -8,6 +8,21 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 **No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
+## Your comfort profile (new)
+
+People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
+
+1. **Four questions.** Sudden, hissy, rumbling and pulsing sounds. The answers pick a gentle first sound and longer fades. They are not a diagnosis.
+2. **A quiet reference.** You set your device volume against a soft hush. All later levels are relative to it, because a browser cannot measure loudness at your ears.
+3. **Headphone check (optional).** A Huggins-pitch test (Milne et al., 2021) confirms headphones before stereo experiments.
+4. **Comfort contour.** Press and hold for each of seven bands (125 Hz–8 kHz). The sound rises slowly from very quiet, stops when you let go, and never passes a safe cap. Bands you mark lower are turned down in every sound, by at most 12 dB.
+5. **Find your comfort sound.** Six-second A/B pairs at matched loudness: "which felt calmer?". A Gaussian-process preference model learns across four dimensions: darkness (spectral tilt), noise versus hum, slow swell, and softness of the top end. Each new pair is chosen where the model expects to learn most.
+6. **Your sound fingerprint.** A plain-language summary and a seamless loop of your comfort sound, with a sleep timer and a "this is making it worse" button.
+
+A state selector (normal day, warning signs, during an attack, recovering) adjusts playback across Still. During an attack the screen dims, only play and fade-to-silence remain, sounds play 14 dB quieter with a softer top end, and binaural sketches are hidden. The offsets are cautious starting points drawn from group studies, not measurements of you.
+
+The [research page](dist/research.html#profile-evidence) lists the evidence behind each design choice. [docs/product-strategy.md](docs/product-strategy.md) is the full fact-checked strategy and roadmap, including myths to avoid. Its claims were checked against original sources by an independent review pass.
+
 ## What is a “sweet frequency zone”?
 
 A zone means a **range of frequencies**. A personal sweet zone would be a range you repeatedly rate as comforting under similar conditions. An audio file alone cannot reveal a universal best range.
@@ -55,10 +70,10 @@ Open [localhost:4173](http://127.0.0.1:4173). Microphone access needs localhost 
 
 | Folder | Contents |
 | --- | --- |
-| [dist/](dist/) | Complete website and audio engine |
+| [dist/](dist/) | Complete website, audio engine, comfort engine (`comfort-engine.js`) and preference learner (`preference-model.js`) |
 | [analysis/](analysis/) | Scripts that reproduce the measurements and figures |
 | [samples/](samples/) / [data/](data/) | Reference excerpts, measurements, and sampled public comments |
 | [figures/](figures/) | PDF, PNG, SVG, CSV, and JSON exports |
-| [tests/](tests/) | Audio and feedback-map checks |
+| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner and claims-linter checks |
 
 See [methods](docs/methods.md) and [prototype details](docs/prototype-notes.md) for research and technical explanations. Comments generate hypotheses, not evidence of effectiveness. Source material belongs to its creators. This prototype explores comfort, not migraine treatment effects.
