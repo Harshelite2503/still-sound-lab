@@ -14,6 +14,21 @@ Retrieved on 4 November 2026 with yt-dlp 2026.10.26:
 
 All three are stereo AAC excerpts decoded locally to 44.1 kHz PCM. The analysis is limited to these 30-second samples. Encoding and requested cut boundaries limit precision; results should not be extrapolated to the whole recordings.
 
+## Reproduce the measurements and figures
+
+Run from the repository root. Python 3.13 was used for the supplied exports:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r analysis/requirements.txt
+.venv/bin/python analysis/analyze_references.py
+.venv/bin/python analysis/build_graphs.py --audio-dir samples --output-dir figures
+```
+
+The three bounded excerpts are already in `samples/`. To retrieve them again, run `.venv/bin/python analysis/fetch_references.py`; this needs internet access and source availability. A later comment retrieval may return different comments.
+
+After rebuilding, copy `figures/chart-data.json` to `dist/data/chart-data.json`, `figures/reference-audio-overview.pdf` to `dist/downloads/reference-overview.pdf`, and `figures/stereo-tone-pairs.pdf` to `dist/downloads/stereo-tone-pairs.pdf` to update the website.
+
 ## Plots
 
 The mean spectra use Hann-windowed, overlapping FFT power estimates. Both channels use the same per-recording reference for relative dB, preserving inter-channel differences. Upper-frequency display bins are pooled for a compact interactive file; detailed low-frequency bins and CSVs are retained. Spectrograms use shorter windows to reveal changes over time. The chart JSON records the actual FFT settings, frame axes, normalization and floors used.

@@ -1,75 +1,62 @@
-# Still — personal sound lab
+# Still — find sounds that feel comforting
 
-A private, research-informed prototype for exploring comforting sound. It combines a local audio analyzer and sound generator with measured reference recordings, interactive graphs, and a personal feedback notebook.
+Still helps you explore comforting sounds and frequency zones. Bring a sound you like, explore its frequencies, try a generated sound, and save how it felt.
 
-**Live private prototype:** https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site  
-**Interactive graphs:** https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site/graphs.html
+[Open the private app](https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site) · [Explore the graphs](https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site/graphs.html)
 
-The app uses no paid AI API, API key, or neural music model. Its browser code performs the audio work locally. ChatGPT sign-in gates access to the hosted site.
+**No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
-## What the graphs mean
+## What is a “sweet frequency zone”?
 
-- **Frequency spectra:** frequency energy in the left and right channels, including a low-frequency close-up. A spectral peak is a component of a sound, not a measurement of brain activity.
-- **Spectrograms:** how that energy changes during each measured 30-second excerpt.
-- **RMS envelopes:** digital signal level over time, in dBFS; these are not calibrated sound-pressure levels at the ear.
-- **Stereo pair close-ups:** the first reference has approximately 171.5/168.5 Hz and 82.5/82.0 Hz ear-separated tones. Their differences are about 3.0 and 0.5 Hz. These measurements do not establish pain relief or entrainment.
-- **Personal comfort map:** observed ratings from the listener's own Still notebook. Untested combinations remain empty; cells show raw counts and means, with context filters. No simulated outcomes, smoothing, or population optimum is inserted.
+A zone means a **range of frequencies**. A personal sweet zone would be a range you repeatedly rate as comforting under similar conditions. An audio file alone cannot reveal a universal best range.
 
-We do not have EEG measurements, a verified population response dataset, or a clinical trial. A universal “brain sweet spot” cannot be inferred from these recordings or YouTube comments. The testable product hypothesis is that acoustic features plus the person's feedback and current context can improve comfort recommendations.
+Two different numbers matter for stereo tones:
 
-## Run locally
+| Measurement | Meaning | Example from our first reference clip |
+| --- | --- | --- |
+| Sound frequency | The tone sent to each ear | About 82.5 Hz left and 82 Hz right |
+| Beat difference | The gap between those tones | 0.5 Hz |
 
-No JavaScript dependency installation is needed. From the repository root:
+The clip also contains tones near 171.5 and 168.5 Hz, a 3 Hz difference. These are **measured sound components**, not proven comfort zones or brain measurements. The current controls cover 100–600 Hz tones and 0–12 Hz differences in 1 Hz steps, so they cannot recreate the ~82 Hz pair or its 0.5 Hz spacing.
+
+The personal map groups stereo sessions into 50 Hz sound-frequency bands and 1 Hz beat-difference bands, with zero kept separate. Cells show ratings and counts; untested cells stay empty. Grouping widths are display choices, not medical categories.
+
+## How it works
+
+1. **Bring a sound.** Try the demo, choose an audio file, or record up to 10 seconds of humming or nearby audio. Files can be up to 20 MB and two minutes; analysis uses the first 30 seconds.
+2. **Measure it.** A Fourier transform splits the sound into frequency components. The app measures prominent tones, brightness, texture, and low/mid/high energy. A spectrogram shows how frequencies change over time.
+3. **Try a sound sketch.** Simple rules create three options: warm harmonic tones, rainlike filtered noise, and separate left/right tones. These are procedural sounds, not AI-generated songs or Shazam matches. Stereo headphones are needed for the binaural experiment.
+4. **Save your response.** Choose uncomfortable, neutral, or comforting, alongside your mood and environment. Start quietly; nothing autoplays.
+5. **Compare your observations.** The graphs show patterns in your saved ratings. Suggestions are reordered using an acoustic score plus `0.65 × average comfort rating` for that sound type in the same mood/environment. This currently learns a preference for a **sound type**, not an optimal frequency zone.
+
+## How it is built
+
+- **Website:** plain HTML, CSS, and JavaScript; no framework or build step.
+- **Audio:** the browser's Web Audio API, a JavaScript Fourier transform, and local sound synthesis.
+- **Graphs:** Canvas charts, measured JSON data, and your local ratings.
+- **Reference analysis:** Python, NumPy, Matplotlib, FFmpeg, and yt-dlp for three 30-second source excerpts.
+- **Storage:** browser `localStorage` for explicitly saved check-ins. Audio stays in memory; audio, notes, and ratings are not uploaded by the app.
+
+The private hosted version uses ChatGPT sign-in. Personal listening logs are not included in this repository.
+
+## Run it locally
+
+From the repository folder, with Python 3 installed:
 
 ```sh
 python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 ```
 
-Open http://127.0.0.1:4173 and choose **Try a demo**, an audio clip, or a short microphone recording. Open `/graphs.html` to explore the measured references. Localhost or HTTPS is needed for microphone permissions. A direct `file://` launch may block modules or data loading.
+Open [localhost:4173](http://127.0.0.1:4173). Microphone access needs localhost or HTTPS. Run `npm test` with Node.js installed. No JavaScript dependencies are needed.
 
-The original app analyzes the first 30 seconds of files no longer than two minutes and no larger than 20 MB. Sound generation is procedural: harmonic tones, filtered noise, or stereo carrier tones. Its 6 Hz default is an illustrative setting, not a medical prescription. No sound starts automatically.
+## Where things live
 
-## Reproduce the analysis and figures
-
-Python 3.13 was used for the supplied exports. Create an isolated environment:
-
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r analysis/requirements.txt
-.venv/bin/python analysis/analyze_references.py
-.venv/bin/python analysis/build_graphs.py --audio-dir samples --output-dir figures
-```
-
-The three bounded source excerpts are in `samples/`. `analysis/fetch_references.py` can retrieve them again with yt-dlp; retrieval requires internet access and source availability. Re-running a comment sample later may return a different set of comments.
-
-After rebuilding, copy `figures/chart-data.json` to `dist/data/chart-data.json` and the figure PDFs to `dist/downloads/` to update the website's graphs and downloads. The exact processing choices and normalization are recorded in the chart data and `docs/methods.md`.
-
-## Checks
-
-```sh
-npm test
-```
-
-DSP checks exercise stereo carrier recovery, anti-phase preservation, silence, synthesis bounds, WAV encoding, zero-beat equality, and analysis duration limits. Comfort-map tests exercise malformed/known-app-muted record rejection, deduplication, context filtering, boundary bins, and the distinction between an unobserved cell and a neutral observation. The graph builder includes numerical and synthetic-signal checks.
-
-## Repository contents
-
-| Path | Contents |
+| Folder | Contents |
 | --- | --- |
-| `dist/` | Complete buildless website and interactive graphs |
-| `analysis/` | Reproducible decoding, spectral analysis, figure generation, and retrieval scripts |
-| `samples/` | Three attributed 30-second YouTube audio excerpts |
-| `data/` | Measurements, public metadata, qualitative findings, and author-profile-free public comment sample |
-| `figures/` | PNG/SVG/PDF scientific figures, plotted CSVs, and chart JSON |
-| `docs/` | Methods, source provenance, and study boundaries |
-| `tests/` | Signal-processing and personal-feedback tests |
+| [dist/](dist/) | Complete website and audio engine |
+| [analysis/](analysis/) | Scripts that reproduce the measurements and figures |
+| [samples/](samples/) / [data/](data/) | Reference excerpts, measurements, and sampled public comments |
+| [figures/](figures/) | PDF, PNG, SVG, CSV, and JSON exports |
+| [tests/](tests/) | Audio and feedback-map checks |
 
-## Data boundaries
-
-The comment sample contains 100 top and 100 recent top-level rows per source: 600 rows, 557 distinct comment IDs. Comment IDs are not verified unique people; repeated text, promotional posts, selection bias, and unverified outcomes remain. The qualitative review records hypotheses and counterexamples, not treatment labels or a success rate. Public comment text may contain personal disclosures, so this repository should remain private.
-
-Personal listening ratings and notes are saved only in the user's browser when they choose Save. The graph page can read that local notebook or import the user's JSON export into page memory. Those personal records are not in this repository and are never uploaded by the app. Credentials, signed download URLs, runtime logs, temporary environments, and the separate Sites deployment identity are also excluded.
-
-Source recordings and comments remain attributed to their original creators. This repository does not relicense third-party material. Only derived measurements and paraphrased findings are hosted on the private site.
-
-Comfort, pain relief, brain response, and migraine prevention are different outcomes. This prototype explores comfort alongside usual care; it makes no treatment claim.
+See [methods](docs/methods.md) and [prototype details](docs/prototype-notes.md) for research and technical explanations. Comments generate hypotheses, not evidence of effectiveness. Source material belongs to its creators. This prototype explores comfort, not migraine treatment effects.

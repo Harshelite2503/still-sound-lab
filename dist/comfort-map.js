@@ -33,8 +33,8 @@ if (root) {
       @media(max-width:600px){#comfort-section h2{font-size:27px}#comfort-section .comfort-controls>*{flex:1}#comfort-section .comfort-type{grid-template-columns:110px 1fr;gap:8px}#comfort-section .comfort-type small{grid-column:2}#comfort-section select{font-size:16px}}
     </style>
     <p class="eyebrow">YOUR EXPERIENCE · OBSERVATIONS ONLY</p>
-    <h2>Where does comfort repeat for you?</h2>
-    <p class="comfort-intro">This map uses your own saved listening ratings. It shows which combinations you have tried and how they felt. We have no EEG measurements or population response dataset, so a brain “sweet spot” cannot be located from these recordings.</p>
+    <h2>Which frequency zones feel good to you?</h2>
+    <p class="comfort-intro">This map uses your own saved listening ratings to explore your sweet frequency zones: nearby settings that repeatedly feel comforting. Read each zone together with its session count and mood or surroundings. A few positive ratings are a starting clue, not a confirmed preference or treatment effect.</p>
     <div class="comfort-controls">
       <label>Mood<select id="comfort-mood"><option value="all">All recorded moods</option><option value="low">Low / sad</option><option value="tense">Tense</option><option value="neutral">Neutral</option><option value="calm">Calm</option><option value="unknown">Not recorded</option></select></label>
       <label>Surroundings<select id="comfort-environment"><option value="all">All surroundings</option><option value="quiet">Quiet</option><option value="noisy">Noisy</option><option value="bedtime">Bedtime</option><option value="unknown">Not recorded</option></select></label>
@@ -48,7 +48,7 @@ if (root) {
     <h3>Observed comfort by sound type</h3>
     <div class="comfort-legend"><span><i style="background:#bb6d66"></i>Uncomfortable (−1)</span><span><i style="background:#a9ac9e"></i>Neutral (0)</span><span><i style="background:#668c67"></i>Comforting (+1)</span></div>
     <div id="comfort-types" aria-label="Counts of ratings by sound type"></div>
-    <h3>Stereo tone map: base tone × ear-to-ear difference</h3>
+    <h3>Your frequency-zone map: base tone × beat difference</h3>
     <p class="comfort-caption">Columns group the left-ear carrier into 50 Hz bands. Rows group the right-minus-left difference into 1 Hz bands, with 0 Hz kept separate. Each tested cell shows the mean comfort rating and the number of sessions. Binning is a display choice, not a treatment range.</p>
     <div class="comfort-scroll"><table id="comfort-grid" aria-label="Observed mean comfort by carrier frequency and binaural difference"></table></div>
     <div id="comfort-readout" class="comfort-readout" role="status">Select a tested cell to see its raw rating counts. Hatched cells have no observations.</div>
