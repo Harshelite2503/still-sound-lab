@@ -1,0 +1,750 @@
+{
+  "method": "30-second stereo excerpts; local FFT analysis; not a clinical analysis",
+  "validation": {
+    "status": "passed",
+    "separate_carrier_estimates_hz": [
+      219.997,
+      225.995
+    ],
+    "same_signal_stereo_correlation": 1.0,
+    "same_signal_side_fraction": 0.0
+  },
+  "references": [
+    {
+      "video_id": "fyGmSFUPo8o",
+      "label": "Migraine / binaural-beat reference",
+      "requested_start_seconds": 1968,
+      "requested_end_seconds": 1998,
+      "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&t=1968s",
+      "source_file": "fyGmSFUPo8o-1968-1998.m4a",
+      "decoder_streams": [
+        "Stream #0:0[0x1](eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)",
+        "Stream #0:0(eng): Audio: pcm_f32le, 44100 Hz, stereo, flt, 2822 kb/s (default)"
+      ],
+      "decoded_seconds": 30.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "fft_size": 131072,
+      "window_seconds": 2.9722,
+      "fft_bin_spacing_hz": 0.336456,
+      "window_count": 19,
+      "window": "Hann",
+      "overlap_fraction": 0.5,
+      "rms_dbfs_by_channel": [
+        -15.57,
+        -15.57
+      ],
+      "maximum_absolute_sample": 0.343531,
+      "samples_at_or_above_full_scale": 0,
+      "power_weighted_centroid_hz": 126.14,
+      "energy_fraction_20_to_250hz": 1.0,
+      "energy_fraction_250_to_2000hz": 0.0,
+      "energy_fraction_above_2000hz": 0.0,
+      "left_right_waveform_correlation": -1.5e-05,
+      "left_right_power_spectrum_cosine": 0.090533,
+      "side_energy_fraction": 0.500008,
+      "strongest_peaks_by_channel": [
+        [
+          {
+            "frequency_hz": 171.495,
+            "relative_peak_power_db": 0.0,
+            "bin": 510
+          },
+          {
+            "frequency_hz": 82.53,
+            "relative_peak_power_db": -0.0,
+            "bin": 245
+          }
+        ],
+        [
+          {
+            "frequency_hz": 168.495,
+            "relative_peak_power_db": 0.0,
+            "bin": 501
+          },
+          {
+            "frequency_hz": 82.02,
+            "relative_peak_power_db": -0.04,
+            "bin": 244
+          }
+        ]
+      ],
+      "cross_channel_peak_comparison": [
+        {
+          "frequency_hz": 82.26,
+          "left_relative_to_right_db": 0.0,
+          "relative_peak_power_db": 0.0
+        },
+        {
+          "frequency_hz": 168.495,
+          "left_relative_to_right_db": -51.65,
+          "relative_peak_power_db": -0.36
+        }
+      ],
+      "strongest_peak_trajectory": [
+        {
+          "median_hz": 171.495,
+          "min_hz": 82.53,
+          "max_hz": 171.495,
+          "values_hz": [
+            171.495,
+            171.495,
+            82.53,
+            82.53,
+            82.53,
+            82.53,
+            82.53,
+            171.495,
+            82.53,
+            171.495,
+            171.495,
+            82.53,
+            82.53,
+            82.53,
+            171.495,
+            171.495,
+            171.495,
+            171.495,
+            171.495
+          ]
+        },
+        {
+          "median_hz": 168.495,
+          "min_hz": 168.495,
+          "max_hz": 168.496,
+          "values_hz": [
+            168.495,
+            168.495,
+            168.495,
+            168.496,
+            168.495,
+            168.495,
+            168.495,
+            168.496,
+            168.496,
+            168.495,
+            168.496,
+            168.496,
+            168.496,
+            168.495,
+            168.495,
+            168.496,
+            168.495,
+            168.495,
+            168.495
+          ]
+        }
+      ],
+      "strongest_peak_separation_median_hz": 2.999,
+      "strongest_peak_separation_min_hz": 2.999,
+      "strongest_peak_separation_max_hz": 85.965,
+      "tone_pairs": {
+        "band_specific_pairs": [
+          {
+            "band_hz": [
+              78,
+              86
+            ],
+            "channel_median_hz": [
+              82.5303,
+              82.0201
+            ],
+            "channel_peak_to_peak_range_hz": [
+              0.0004,
+              0.0002
+            ],
+            "separation_median_hz": 0.5102,
+            "separation_min_hz": 0.51,
+            "separation_max_hz": 0.5103
+          },
+          {
+            "band_hz": [
+              164,
+              176
+            ],
+            "channel_median_hz": [
+              171.4946,
+              168.4955
+            ],
+            "channel_peak_to_peak_range_hz": [
+              0.0003,
+              0.0003
+            ],
+            "separation_median_hz": 2.9992,
+            "separation_min_hz": 2.999,
+            "separation_max_hz": 2.9995
+          }
+        ],
+        "full_excerpt_fft_bin_spacing_hz": 0.033333,
+        "full_excerpt_channel_peaks": [
+          [
+            {
+              "frequency_hz": 171.5,
+              "relative_peak_power_db": 0.0,
+              "bin": 5145
+            },
+            {
+              "frequency_hz": 82.524,
+              "relative_peak_power_db": -0.35,
+              "bin": 2476
+            }
+          ],
+          [
+            {
+              "frequency_hz": 168.5,
+              "relative_peak_power_db": 0.0,
+              "bin": 5055
+            },
+            {
+              "frequency_hz": 82.024,
+              "relative_peak_power_db": -0.36,
+              "bin": 2461
+            }
+          ]
+        ],
+        "carrier_channel_separation": [
+          {
+            "carrier_channel": "left",
+            "frequency_hz": 171.5,
+            "own_channel_over_other_db": 69.67
+          },
+          {
+            "carrier_channel": "left",
+            "frequency_hz": 82.524,
+            "own_channel_over_other_db": 70.22
+          },
+          {
+            "carrier_channel": "right",
+            "frequency_hz": 168.5,
+            "own_channel_over_other_db": 68.6
+          },
+          {
+            "carrier_channel": "right",
+            "frequency_hz": 82.024,
+            "own_channel_over_other_db": 67.67
+          }
+        ],
+        "interpretation": "Two stable ear-separated tone pairs are compatible with a binaural-stimulation design. This signal-level description does not demonstrate perception, brain entrainment, pain relief, or a therapeutic frequency."
+      }
+    },
+    {
+      "video_id": "Ttaf1IYt6F4",
+      "label": "Handpan reference",
+      "requested_start_seconds": 60,
+      "requested_end_seconds": 90,
+      "source_url": "https://www.youtube.com/watch?v=Ttaf1IYt6F4&t=60s",
+      "source_file": "Ttaf1IYt6F4-60-90.m4a",
+      "decoder_streams": [
+        "Stream #0:0[0x1](eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)",
+        "Stream #0:0(eng): Audio: pcm_f32le, 44100 Hz, stereo, flt, 2822 kb/s (default)"
+      ],
+      "decoded_seconds": 30.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "fft_size": 131072,
+      "window_seconds": 2.9722,
+      "fft_bin_spacing_hz": 0.336456,
+      "window_count": 19,
+      "window": "Hann",
+      "overlap_fraction": 0.5,
+      "rms_dbfs_by_channel": [
+        -19.45,
+        -20.32
+      ],
+      "maximum_absolute_sample": 0.972213,
+      "samples_at_or_above_full_scale": 0,
+      "power_weighted_centroid_hz": 302.78,
+      "energy_fraction_20_to_250hz": 0.5102,
+      "energy_fraction_250_to_2000hz": 0.4898,
+      "energy_fraction_above_2000hz": 0.0,
+      "left_right_waveform_correlation": 0.888849,
+      "left_right_power_spectrum_cosine": 0.885998,
+      "side_energy_fraction": 0.05781,
+      "strongest_peaks_by_channel": [
+        [
+          {
+            "frequency_hz": 440.481,
+            "relative_peak_power_db": 0.0,
+            "bin": 1309
+          },
+          {
+            "frequency_hz": 174.688,
+            "relative_peak_power_db": -0.21,
+            "bin": 519
+          },
+          {
+            "frequency_hz": 131.821,
+            "relative_peak_power_db": -1.47,
+            "bin": 392
+          },
+          {
+            "frequency_hz": 117.953,
+            "relative_peak_power_db": -2.1,
+            "bin": 351
+          },
+          {
+            "frequency_hz": 393.276,
+            "relative_peak_power_db": -4.51,
+            "bin": 1169
+          },
+          {
+            "frequency_hz": 348.794,
+            "relative_peak_power_db": -4.53,
+            "bin": 1037
+          },
+          {
+            "frequency_hz": 879.743,
+            "relative_peak_power_db": -8.68,
+            "bin": 2615
+          },
+          {
+            "frequency_hz": 196.094,
+            "relative_peak_power_db": -8.75,
+            "bin": 583
+          },
+          {
+            "frequency_hz": 146.896,
+            "relative_peak_power_db": -9.22,
+            "bin": 437
+          },
+          {
+            "frequency_hz": 523.721,
+            "relative_peak_power_db": -12.3,
+            "bin": 1557
+          }
+        ],
+        [
+          {
+            "frequency_hz": 117.932,
+            "relative_peak_power_db": 0.0,
+            "bin": 351
+          },
+          {
+            "frequency_hz": 440.444,
+            "relative_peak_power_db": -0.2,
+            "bin": 1309
+          },
+          {
+            "frequency_hz": 350.003,
+            "relative_peak_power_db": -1.18,
+            "bin": 1040
+          },
+          {
+            "frequency_hz": 174.668,
+            "relative_peak_power_db": -1.37,
+            "bin": 519
+          },
+          {
+            "frequency_hz": 196.119,
+            "relative_peak_power_db": -1.72,
+            "bin": 583
+          },
+          {
+            "frequency_hz": 131.854,
+            "relative_peak_power_db": -3.45,
+            "bin": 392
+          },
+          {
+            "frequency_hz": 879.774,
+            "relative_peak_power_db": -4.21,
+            "bin": 2615
+          },
+          {
+            "frequency_hz": 393.261,
+            "relative_peak_power_db": -6.48,
+            "bin": 1169
+          },
+          {
+            "frequency_hz": 146.923,
+            "relative_peak_power_db": -7.37,
+            "bin": 437
+          },
+          {
+            "frequency_hz": 233.729,
+            "relative_peak_power_db": -7.43,
+            "bin": 695
+          }
+        ]
+      ],
+      "cross_channel_peak_comparison": [
+        {
+          "frequency_hz": 440.467,
+          "left_relative_to_right_db": 2.67,
+          "relative_peak_power_db": 0.0
+        },
+        {
+          "frequency_hz": 174.682,
+          "left_relative_to_right_db": 3.35,
+          "relative_peak_power_db": -0.53
+        },
+        {
+          "frequency_hz": 117.942,
+          "left_relative_to_right_db": 0.04,
+          "relative_peak_power_db": -1.12
+        },
+        {
+          "frequency_hz": 131.828,
+          "left_relative_to_right_db": 3.29,
+          "relative_peak_power_db": -2.03
+        },
+        {
+          "frequency_hz": 350.017,
+          "left_relative_to_right_db": -0.9,
+          "relative_peak_power_db": -3.07
+        },
+        {
+          "frequency_hz": 196.112,
+          "left_relative_to_right_db": -4.88,
+          "relative_peak_power_db": -4.69
+        },
+        {
+          "frequency_hz": 393.272,
+          "left_relative_to_right_db": 4.63,
+          "relative_peak_power_db": -5.07
+        },
+        {
+          "frequency_hz": 879.762,
+          "left_relative_to_right_db": -2.67,
+          "relative_peak_power_db": -6.38
+        },
+        {
+          "frequency_hz": 146.908,
+          "left_relative_to_right_db": 0.17,
+          "relative_peak_power_db": -8.36
+        },
+        {
+          "frequency_hz": 233.769,
+          "left_relative_to_right_db": -5.52,
+          "relative_peak_power_db": -10.48
+        },
+        {
+          "frequency_hz": 294.54,
+          "left_relative_to_right_db": -1.79,
+          "relative_peak_power_db": -11.72
+        },
+        {
+          "frequency_hz": 220.452,
+          "left_relative_to_right_db": -1.36,
+          "relative_peak_power_db": -12.04
+        }
+      ],
+      "strongest_peak_trajectory": [
+        {
+          "median_hz": 174.682,
+          "min_hz": 117.388,
+          "max_hz": 590.141,
+          "values_hz": [
+            590.141,
+            440.506,
+            440.437,
+            131.807,
+            440.611,
+            117.388,
+            117.679,
+            117.968,
+            174.694,
+            132.081,
+            131.842,
+            174.682,
+            440.41,
+            440.381,
+            174.637,
+            348.829,
+            131.884,
+            349.996,
+            174.658
+          ]
+        },
+        {
+          "median_hz": 196.121,
+          "min_hz": 117.394,
+          "max_hz": 879.633,
+          "values_hz": [
+            233.745,
+            879.633,
+            440.421,
+            131.842,
+            440.511,
+            117.394,
+            117.632,
+            117.98,
+            174.664,
+            132.064,
+            196.113,
+            117.909,
+            440.465,
+            440.334,
+            174.644,
+            348.863,
+            196.121,
+            349.939,
+            233.586
+          ]
+        }
+      ],
+      "strongest_peak_separation_median_hz": 0.048,
+      "strongest_peak_separation_min_hz": 0.006,
+      "strongest_peak_separation_max_hz": 439.127
+    },
+    {
+      "video_id": "6Kj-ye-aYBA",
+      "label": "Singing-bowl reference",
+      "requested_start_seconds": 60,
+      "requested_end_seconds": 90,
+      "source_url": "https://www.youtube.com/watch?v=6Kj-ye-aYBA&t=60s",
+      "source_file": "6Kj-ye-aYBA-60-90.m4a",
+      "decoder_streams": [
+        "Stream #0:0[0x1](eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)",
+        "Stream #0:0(eng): Audio: pcm_f32le, 44100 Hz, stereo, flt, 2822 kb/s (default)"
+      ],
+      "decoded_seconds": 30.0,
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "fft_size": 131072,
+      "window_seconds": 2.9722,
+      "fft_bin_spacing_hz": 0.336456,
+      "window_count": 19,
+      "window": "Hann",
+      "overlap_fraction": 0.5,
+      "rms_dbfs_by_channel": [
+        -16.81,
+        -17.93
+      ],
+      "maximum_absolute_sample": 0.640117,
+      "samples_at_or_above_full_scale": 0,
+      "power_weighted_centroid_hz": 236.34,
+      "energy_fraction_20_to_250hz": 0.5364,
+      "energy_fraction_250_to_2000hz": 0.4627,
+      "energy_fraction_above_2000hz": 0.0009,
+      "left_right_waveform_correlation": -0.093476,
+      "left_right_power_spectrum_cosine": 0.207642,
+      "side_energy_fraction": 0.546354,
+      "strongest_peaks_by_channel": [
+        [
+          {
+            "frequency_hz": 131.412,
+            "relative_peak_power_db": 0.0,
+            "bin": 391
+          },
+          {
+            "frequency_hz": 261.466,
+            "relative_peak_power_db": -6.04,
+            "bin": 777
+          },
+          {
+            "frequency_hz": 347.661,
+            "relative_peak_power_db": -9.45,
+            "bin": 1033
+          },
+          {
+            "frequency_hz": 448.293,
+            "relative_peak_power_db": -10.44,
+            "bin": 1332
+          },
+          {
+            "frequency_hz": 264.555,
+            "relative_peak_power_db": -12.1,
+            "bin": 786
+          },
+          {
+            "frequency_hz": 791.184,
+            "relative_peak_power_db": -14.46,
+            "bin": 2352
+          },
+          {
+            "frequency_hz": 331.303,
+            "relative_peak_power_db": -21.5,
+            "bin": 985
+          },
+          {
+            "frequency_hz": 392.432,
+            "relative_peak_power_db": -22.0,
+            "bin": 1166
+          },
+          {
+            "frequency_hz": 2149.772,
+            "relative_peak_power_db": -24.8,
+            "bin": 6389
+          },
+          {
+            "frequency_hz": 657.518,
+            "relative_peak_power_db": -25.29,
+            "bin": 1954
+          }
+        ],
+        [
+          {
+            "frequency_hz": 347.662,
+            "relative_peak_power_db": 0.0,
+            "bin": 1033
+          },
+          {
+            "frequency_hz": 328.611,
+            "relative_peak_power_db": -3.71,
+            "bin": 977
+          },
+          {
+            "frequency_hz": 261.466,
+            "relative_peak_power_db": -8.21,
+            "bin": 777
+          },
+          {
+            "frequency_hz": 448.292,
+            "relative_peak_power_db": -8.62,
+            "bin": 1332
+          },
+          {
+            "frequency_hz": 130.45,
+            "relative_peak_power_db": -9.02,
+            "bin": 388
+          },
+          {
+            "frequency_hz": 392.433,
+            "relative_peak_power_db": -9.42,
+            "bin": 1166
+          },
+          {
+            "frequency_hz": 86.14,
+            "relative_peak_power_db": -10.83,
+            "bin": 256
+          },
+          {
+            "frequency_hz": 265.715,
+            "relative_peak_power_db": -12.06,
+            "bin": 790
+          },
+          {
+            "frequency_hz": 89.521,
+            "relative_peak_power_db": -14.78,
+            "bin": 266
+          },
+          {
+            "frequency_hz": 791.182,
+            "relative_peak_power_db": -16.47,
+            "bin": 2352
+          }
+        ]
+      ],
+      "cross_channel_peak_comparison": [
+        {
+          "frequency_hz": 347.661,
+          "left_relative_to_right_db": -8.78,
+          "relative_peak_power_db": 0.0
+        },
+        {
+          "frequency_hz": 130.692,
+          "left_relative_to_right_db": 10.42,
+          "relative_peak_power_db": -0.23
+        },
+        {
+          "frequency_hz": 328.611,
+          "left_relative_to_right_db": -18.8,
+          "relative_peak_power_db": -4.12
+        },
+        {
+          "frequency_hz": 261.466,
+          "left_relative_to_right_db": 2.17,
+          "relative_peak_power_db": -4.46
+        },
+        {
+          "frequency_hz": 448.292,
+          "left_relative_to_right_db": -1.81,
+          "relative_peak_power_db": -6.9
+        },
+        {
+          "frequency_hz": 392.433,
+          "left_relative_to_right_db": -12.55,
+          "relative_peak_power_db": -9.65
+        },
+        {
+          "frequency_hz": 265.715,
+          "left_relative_to_right_db": 0.4,
+          "relative_peak_power_db": -10.12
+        },
+        {
+          "frequency_hz": 86.14,
+          "left_relative_to_right_db": -22.07,
+          "relative_peak_power_db": -11.27
+        },
+        {
+          "frequency_hz": 791.184,
+          "left_relative_to_right_db": 1.94,
+          "relative_peak_power_db": -12.82
+        },
+        {
+          "frequency_hz": 89.521,
+          "left_relative_to_right_db": -13.35,
+          "relative_peak_power_db": -15.05
+        },
+        {
+          "frequency_hz": 657.517,
+          "left_relative_to_right_db": -8.26,
+          "relative_peak_power_db": -16.91
+        },
+        {
+          "frequency_hz": 119.97,
+          "left_relative_to_right_db": -17.25,
+          "relative_peak_power_db": -22.67
+        }
+      ],
+      "strongest_peak_trajectory": [
+        {
+          "median_hz": 131.055,
+          "min_hz": 130.384,
+          "max_hz": 261.467,
+          "values_hz": [
+            131.532,
+            261.467,
+            131.055,
+            131.3,
+            131.544,
+            130.533,
+            131.59,
+            130.536,
+            131.561,
+            131.207,
+            130.775,
+            131.059,
+            130.416,
+            131.035,
+            130.384,
+            130.732,
+            131.451,
+            130.467,
+            130.549
+          ]
+        },
+        {
+          "median_hz": 347.662,
+          "min_hz": 130.359,
+          "max_hz": 791.185,
+          "values_hz": [
+            347.659,
+            347.662,
+            347.665,
+            347.663,
+            347.659,
+            347.659,
+            347.659,
+            347.662,
+            347.664,
+            347.664,
+            347.662,
+            347.662,
+            347.658,
+            347.658,
+            347.664,
+            657.523,
+            791.181,
+            791.185,
+            130.359
+          ]
+        }
+      ],
+      "strongest_peak_separation_median_hz": 216.61,
+      "strongest_peak_separation_min_hz": 0.19,
+      "strongest_peak_separation_max_hz": 660.718
+    }
+  ],
+  "missing_files": []
+}

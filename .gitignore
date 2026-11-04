@@ -1,0 +1,17 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.cache/
+.matplotlib-cache/
+.openai/
+node_modules/
+*.log
+*.part
+*.info.json
+metadata.jsonl
+*check-ins*.json
+*personal-sessions*.json

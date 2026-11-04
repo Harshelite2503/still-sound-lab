@@ -1,0 +1,165 @@
+{
+  "reviewed_date": "2026-11-04",
+  "method": "One-pass qualitative review of all 100 top and 100 recent top-level comment rows per video returned by yt-dlp, no replies. Deduplication by comment ID. Pinned promotional posts counted in retrieval but not treated as listening outcomes. No sentiment classifier or clinical outcome labeling.",
+  "totals": {
+    "retrieved_rows": 600,
+    "unique_comment_ids": 557,
+    "unique_exact_texts": 546,
+    "unique_pinned_promotional_posts": 3,
+    "other_unique_comment_ids": 554
+  },
+  "limitations": [
+    "Not random or representative; sorting, moderation, self-selection and duplicate text affect visibility.",
+    "Comments are not verified unique listeners; views are not unique patients.",
+    "Diagnoses, playback exposure, medications and before/after outcomes are unverified.",
+    "No causal inference or success-rate estimate is supported.",
+    "Promotional and formulaic praise text was observed; authenticity cannot be inferred.",
+    "Comments are multilingual and this was a qualitative reading, not an independently coded multilingual study."
+  ],
+  "product_hypotheses": [
+    "Offer separate control of water/noise layers and tonal layers.",
+    "Use gradual onset, stable levels, dim mode and minimal interaction; avoid disruptive interruptions.",
+    "Ask about listening purpose and emotional effect, not just pain.",
+    "Capture nonresponse, discomfort and early stops alongside positive experiences.",
+    "Track context and concurrent care explicitly; do not train treatment labels from comment praise."
+  ],
+  "videos": [
+    {
+      "label": "Migraine / binaural recording",
+      "themes": [
+        "Repeat listening and claimed relief; some describe distraction or sleep rather than complete pain removal.",
+        "Comment-section reassurance, darkness and minimal screen use matter.",
+        "Some listen alongside medication, rest or other measures, so attribution is unresolved."
+      ],
+      "contrasts": [
+        {
+          "stratum": "new",
+          "row": 19,
+          "paraphrase": "Wants the trickling-water section repeated.",
+          "comment_id": "Ugz2G28VdB_5yIjLn2h4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&lc=Ugz2G28VdB_5yIjLn2h4AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 65,
+          "paraphrase": "Wants the tone without water.",
+          "comment_id": "UgxsPukW8QfEESSolU94AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&lc=UgxsPukW8QfEESSolU94AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 30,
+          "paraphrase": "Reports the opening ping hurt head and ears at maximum volume.",
+          "comment_id": "UgxJaOhKPvNtL12m26t4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&lc=UgxJaOhKPvNtL12m26t4AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 40,
+          "paraphrase": "Explicitly reports no benefit.",
+          "comment_id": "UgwwDJ_k7k-8Of37_3B4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&lc=UgwwDJ_k7k-8Of37_3B4AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 64,
+          "paraphrase": "Reports nausea while listening; causality unknown.",
+          "comment_id": "Ugzt0Ye8RObjWm4hIIt4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=fyGmSFUPo8o&lc=Ugzt0Ye8RObjWm4hIIt4AaABAg"
+        }
+      ],
+      "video_id": "fyGmSFUPo8o",
+      "url": "https://www.youtube.com/watch?v=fyGmSFUPo8o",
+      "sample": {
+        "top_rows": 100,
+        "recent_rows": 100,
+        "overlap_ids": 10,
+        "unique_comment_ids": 190,
+        "unique_pinned_promotional_posts": 1,
+        "unique_exact_texts": 190
+      }
+    },
+    {
+      "label": "Handpan recording",
+      "themes": [
+        "Relaxation, focus during study/work, bedtime and emotional comfort recur.",
+        "Some report headache relief; others use it after an episode.",
+        "Comments value slow, warm timbre and a gentle background role."
+      ],
+      "contrasts": [
+        {
+          "stratum": "new",
+          "row": 52,
+          "paraphrase": "Expected calming but reports crying; emotional intensity is not necessarily harm.",
+          "comment_id": "UgyCGJq_sQVIPxBXdAR4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=Ttaf1IYt6F4&lc=UgyCGJq_sQVIPxBXdAR4AaABAg"
+        },
+        {
+          "stratum": "top",
+          "row": 91,
+          "paraphrase": "Prefers this background style; other meditation music felt sad or overwhelming.",
+          "comment_id": "Ugxyt_W-6dTb5Skvxxh4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=Ttaf1IYt6F4&lc=Ugxyt_W-6dTb5Skvxxh4AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 82,
+          "paraphrase": "Questions what the title’s 777 Hz actually represents.",
+          "comment_id": "UgzRhyoRLWz1eoSdXNJ4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=Ttaf1IYt6F4&lc=UgzRhyoRLWz1eoSdXNJ4AaABAg"
+        }
+      ],
+      "video_id": "Ttaf1IYt6F4",
+      "url": "https://www.youtube.com/watch?v=Ttaf1IYt6F4",
+      "sample": {
+        "top_rows": 100,
+        "recent_rows": 100,
+        "overlap_ids": 24,
+        "unique_comment_ids": 176,
+        "unique_pinned_promotional_posts": 1,
+        "unique_exact_texts": 174
+      }
+    },
+    {
+      "label": "Singing-bowl recording",
+      "themes": [
+        "Sleep, concentration, calm and appreciation of uninterrupted listening recur.",
+        "Some combine the audio with slow breathing, rest or other ambient sounds.",
+        "Commenters describe varying and sustained tones; individual reactions differ."
+      ],
+      "contrasts": [
+        {
+          "stratum": "new",
+          "row": 98,
+          "paraphrase": "Finds volume changes annoying rather than soothing.",
+          "comment_id": "UgzjsjNrlkHDjFBUw714AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=6Kj-ye-aYBA&lc=UgzjsjNrlkHDjFBUw714AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 50,
+          "paraphrase": "Reports nightmares after listening during sleep; causality unknown.",
+          "comment_id": "Ugws_OpB1T_sAaOf6mJ4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=6Kj-ye-aYBA&lc=Ugws_OpB1T_sAaOf6mJ4AaABAg"
+        },
+        {
+          "stratum": "new",
+          "row": 58,
+          "paraphrase": "Asks why listening provokes fear.",
+          "comment_id": "UgyAfKJ52pJy-dfFzkp4AaABAg",
+          "source_url": "https://www.youtube.com/watch?v=6Kj-ye-aYBA&lc=UgyAfKJ52pJy-dfFzkp4AaABAg"
+        }
+      ],
+      "video_id": "6Kj-ye-aYBA",
+      "url": "https://www.youtube.com/watch?v=6Kj-ye-aYBA",
+      "sample": {
+        "top_rows": 100,
+        "recent_rows": 100,
+        "overlap_ids": 9,
+        "unique_comment_ids": 191,
+        "unique_pinned_promotional_posts": 1,
+        "unique_exact_texts": 188
+      }
+    }
+  ]
+}

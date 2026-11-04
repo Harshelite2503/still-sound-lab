@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#243d32">
+  <meta name="description" content="Explore measured frequency spectra, spectrograms, stereo tones and personal comfort observations in Still.">
+  <title>Explore the sound · Still</title>
+  <link rel="stylesheet" href="graphs.css">
+</head>
+<body>
+  <header class="g-header">
+    <a class="g-brand" href="index.html"><span aria-hidden="true">≋</span> still <span class="g-brand-caption">PERSONAL SOUND LAB</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Sound lab</a><a href="research.html">Research</a><button id="dim-toggle" type="button" aria-pressed="false">Dim screen</button></nav>
+  </header>
+  <main class="g-main">
+    <section class="g-intro">
+      <p class="g-eyebrow">MEASURED SOUND · PERSONAL EXPERIENCE</p>
+      <h1>Explore the <em>sound.</em></h1>
+      <p class="g-lead">See the tones, texture and changes inside your three references.<br>Then explore which settings feel comfortable to you.</p>
+      <div class="g-boundary"><span aria-hidden="true">◉</span><p><strong>Sound has a spectrum. Comfort needs a listener.</strong> These graphs measure audio, not brain activity. A frequency peak is not evidence of a therapeutic “sweet spot.” Personal ratings are shown separately below.</p></div>
+    </section>
+
+    <section class="g-selection" aria-labelledby="reference-heading">
+      <div><p class="g-eyebrow">01 · CHOOSE A REFERENCE</p><h2 id="reference-heading">Three different kinds of quiet.</h2></div>
+      <label class="g-select-label" for="reference-select">Recording<select id="reference-select" disabled><option>Loading measured data…</option></select></label>
+    </section>
+    <p id="load-status" class="g-status" role="status">Loading local measurements…</p>
+    <div id="load-error" class="g-error" hidden><p>The measurements could not be loaded. Check your connection and reload this page.</p><button type="button" id="retry-load">Try again</button></div>
+    <div id="measurements" hidden>
+      <div class="g-source-line"><span id="reference-caption"></span><a id="reference-source" href="reference-study.html" target="_blank" rel="noreferrer">Open original recording ↗</a></div>
+
+      <section class="g-card g-spectrum-card" aria-labelledby="spectrum-heading">
+        <div class="g-card-heading"><div><p class="g-eyebrow">FREQUENCY CONTENT</p><h2 id="spectrum-heading">Where the sound’s energy sits</h2></div><fieldset class="g-segmented"><legend class="g-sr-only">Frequency range</legend><label><input type="radio" name="spectrum-range" value="low" checked><span>20–650 Hz</span></label><label><input type="radio" name="spectrum-range" value="full"><span>20 Hz–8 kHz · log</span></label></fieldset></div>
+        <div class="g-chart-meta"><p>Peaks show concentrated tone energy. Left and right ears share the same relative scale.</p><div class="g-legend"><span><i class="g-left"></i>Left</span><span><i class="g-right"></i>Right · dashed</span></div></div>
+        <div class="g-chart" id="spectrum-wrap"><canvas id="spectrum-chart" tabindex="0" role="img" aria-label="Left and right channel frequency spectrum. Hover or tap to inspect; use left and right arrows when focused." aria-describedby="spectrum-readout"></canvas></div>
+        <p id="spectrum-readout" class="g-readout">Hover, tap, or focus the plot and use the arrow keys to inspect a frequency.</p>
+        <p class="g-chart-note">Power in dB relative to the strongest spectral bin in this excerpt. Above 650 Hz, logarithmically spaced display bins retain the maximum power within each bin. Curves are not calibrated loudness or a measure of benefit.</p>
+      </section>
+
+      <div class="g-two-column">
+        <section class="g-card" aria-labelledby="spectrogram-heading">
+          <div class="g-card-heading"><div><p class="g-eyebrow">FREQUENCY × TIME</p><h2 id="spectrogram-heading">How the texture unfolds</h2></div></div>
+          <p class="g-card-description">Brighter regions carry more relative energy. Horizontal traces are sustained tones; changing traces reveal texture and notes.</p>
+          <div class="g-chart" id="spectrogram-wrap"><canvas id="spectrogram-chart" tabindex="0" role="img" aria-label="A spectrogram of this 30-second excerpt, frequency against time, with brightness showing relative power." aria-describedby="spectrogram-readout"></canvas></div>
+          <p id="spectrogram-readout" class="g-readout">Hover or tap to inspect time, frequency and relative power.</p>
+          <p class="g-chart-note">Channel powers averaged. Logarithmic frequency axis; relative color scale is normalized separately for each excerpt.</p>
+        </section>
+        <section class="g-card" aria-labelledby="envelope-heading">
+          <div class="g-card-heading"><div><p class="g-eyebrow">LEVEL × TIME</p><h2 id="envelope-heading">Steady or changing?</h2></div></div>
+          <p class="g-card-description">The digital RMS level shows how the signal’s average amplitude varies. It does not show the volume at your ears.</p>
+          <div class="g-legend g-envelope-legend"><span><i class="g-left"></i>Left</span><span><i class="g-right"></i>Right · dashed</span></div><div class="g-chart" id="envelope-wrap"><canvas id="envelope-chart" tabindex="0" role="img" aria-label="Left and right channel digital RMS level over the excerpt. Hover or tap to inspect; use arrow keys when focused." aria-describedby="envelope-readout"></canvas></div>
+          <p id="envelope-readout" class="g-readout">Hover, tap, or use arrow keys to inspect a moment.</p>
+          <p class="g-chart-note">100 ms RMS windows, in dBFS. Zero dBFS is the digital full-scale reference, not a recommended listening level.</p>
+        </section>
+      </div>
+
+      <section class="g-card g-features" aria-labelledby="features-heading">
+        <div><p class="g-eyebrow">DESCRIPTIVE FEATURES</p><h2 id="features-heading">Another view of this texture</h2><p class="g-card-description">Useful starting features for similarity. None is a comfort score. Features use 20 Hz to Nyquist (half the sample rate); the frequency plots stop at 8 kHz.</p></div>
+        <dl class="g-feature-values"><div><dt>Brightness centroid</dt><dd id="feature-centroid">—</dd></div><div><dt>85% energy roll-off</dt><dd id="feature-rolloff">—</dd></div><div><dt>Spectral flatness</dt><dd id="feature-flatness">—</dd></div></dl>
+        <div class="g-bands"><p>Share of spectral energy</p><div id="band-plot" role="img" aria-label="Low, middle and high frequency energy fractions"></div><div id="band-labels" class="g-band-labels"></div></div>
+      </section>
+    </div>
+
+    <section id="stereo-section" class="g-stereo-section" hidden aria-labelledby="stereo-heading">
+      <div class="g-section-heading"><div><p class="g-eyebrow">02 · THE TWO-EAR DETAIL</p><h2 id="stereo-heading">A small difference between ears.</h2><p>The first reference contains two stable, ear-separated tone pairs. These close-ups use its full 30-second excerpt, with finer frequency spacing.</p></div><a class="g-download" href="downloads/stereo-tone-pairs.pdf" download>Download this figure ↓</a></div>
+      <div class="g-two-column">
+        <section class="g-card g-zoom"><div class="g-card-heading"><h3>Lower pair</h3><span class="g-difference">≈0.5 Hz apart</span></div><div class="g-legend"><span><i class="g-left"></i>Left ≈82.5 Hz</span><span><i class="g-right"></i>Right ≈82.0 Hz</span></div><div class="g-chart" id="zoom-low-wrap"><canvas id="zoom-low-chart" tabindex="0" role="img" aria-label="First recording lower stereo pair: approximately 82.5 Hz left and 82.0 Hz right, around 0.5 Hz apart." aria-describedby="zoom-low-readout"></canvas></div><p id="zoom-low-readout" class="g-readout">Hover, tap, or use arrow keys to inspect.</p></section>
+        <section class="g-card g-zoom"><div class="g-card-heading"><h3>Upper pair</h3><span class="g-difference">≈3.0 Hz apart</span></div><div class="g-legend"><span><i class="g-left"></i>Left ≈171.5 Hz</span><span><i class="g-right"></i>Right ≈168.5 Hz</span></div><div class="g-chart" id="zoom-high-wrap"><canvas id="zoom-high-chart" tabindex="0" role="img" aria-label="First recording upper stereo pair: approximately 171.5 Hz left and 168.5 Hz right, around 3 Hz apart." aria-describedby="zoom-high-readout"></canvas></div><p id="zoom-high-readout" class="g-readout">Hover, tap, or use arrow keys to inspect.</p></section>
+      </div>
+      <p class="g-section-note">These are acoustic carrier differences, not measurements of a person’s brain rhythms. We have no EEG or controlled pain-response data for these recordings. The handpan and bowl recordings are not assigned a beat by subtracting unrelated peaks.</p>
+    </section>
+
+    <section id="comfort-section"></section>
+
+    <section class="g-methods g-card" aria-labelledby="methods-heading">
+      <div><p class="g-eyebrow">PROVENANCE & METHODS</p><h2 id="methods-heading">Keep the measurement in context.</h2></div>
+      <div class="g-method-columns"><div><p>These are three 30-second excerpts: the first recording at 32:48–33:18, and the handpan and singing bowls at 01:00–01:30. They cannot represent every passage in the full recordings.</p><p>The audio was decoded as stereo at 44.1 kHz. Frequency spectra use Hann-window averaging; the close-ups use the complete excerpt. The spectrogram trades some frequency precision for time detail.</p><p id="method-detail"></p></div><div><p>No brain-response measurements were collected. The research does not establish a universal frequency that maximizes comfort or treats migraine.</p><p><a href="research.html">Clinical evidence & experimental design ↗</a><br><a href="reference-study.html">Reference measurements & comment review ↗</a><br><a href="data/chart-data.json" download>Download the plotted measurements ↓</a></p></div></div>
+      <div class="g-download-row"><a class="g-download" href="downloads/reference-overview.pdf" download>Download all-reference figure · PDF ↓</a><a class="g-download" href="downloads/stereo-tone-pairs.pdf" download>Download stereo detail · PDF ↓</a></div>
+    </section>
+    <footer class="g-footer"><a class="g-brand" href="index.html">≋ still</a><p>Explore comfort alongside usual care. No paid AI API. No audio autoplay.</p><a href="index.html">Back to listening →</a></footer>
+  </main>
+  <script type="module" src="graphs.js"></script>
+  <script type="module" src="comfort-map.js"></script>
+</body>
+</html>
