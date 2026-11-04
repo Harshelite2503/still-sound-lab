@@ -1,0 +1,58 @@
+/* Song DNA page. Builds on style.css tokens. */
+.dna-answer strong{display:block;font:44px/1.05 Georgia,serif;letter-spacing:-1.5px;color:var(--green);margin:6px 0 12px}
+.dna-answer span{display:block;max-width:330px;margin:auto;line-height:1.6;font-size:12px;color:var(--muted)}
+.dna-answer .eyebrow{margin:0}
+.dna-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dna-grid .wide{grid-column:1/-1}
+.dna-grid svg{width:100%;height:auto;display:block;background:var(--soft);border-radius:10px}
+.dna-grid svg text{font:10px -apple-system,BlinkMacSystemFont,sans-serif;fill:var(--muted)}
+.dna-grid svg .grid{stroke:var(--line)}
+.dna-grid svg .dot{stroke:var(--green);stroke-width:1.5}
+.dna-grid svg .dot.minor{fill:var(--green)}
+.dna-grid svg .dot.major{fill:var(--surface)}
+.dna-grid svg .bar{fill:var(--line)}
+.dna-grid svg .bar.majorbar{fill:#a98b4a}
+.dna-grid svg .bar.minor{fill:var(--green)}
+.dna-grid svg .bar.lead{fill:#a98b4a}
+.bars{display:grid;gap:7px}
+.bar-row{display:grid;grid-template-columns:52px 1fr 70px;gap:10px;align-items:center;font-size:12px}
+.bar-row small{color:var(--muted);font-size:11px;text-align:right}
+.bar-track{height:10px;background:var(--soft);border-radius:5px;overflow:hidden}
+.bar-track i{display:block;height:100%;background:var(--line);border-radius:5px}
+.bar-track i.hl{background:var(--green)}
+.heading-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.progressions{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.prog{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface)}
+.prog b{display:block;font:15px Georgia,serif;margin-bottom:4px}
+.prog small{font-size:10px;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:8px 0 14px}
+.feature-table,.song-table{border-collapse:collapse;width:100%;font-size:12px;min-width:620px}
+.feature-table th,.song-table th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--soft);padding:9px 10px}
+.feature-table td,.song-table td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+.feature-table td:last-child{color:var(--muted)}
+.song-table tr.flagged td{color:var(--muted);font-style:italic}
+details summary{cursor:pointer;font-size:12px;margin:6px 0}
+.timeline-wrap{margin-top:16px}
+.timeline-wrap label{max-width:340px}
+.timeline{position:relative;height:38px;background:var(--soft);border-radius:8px;overflow:hidden;margin-top:10px}
+.timeline i{position:absolute;top:0;bottom:0;font:9px/38px -apple-system,sans-serif;font-style:normal;color:#fff;text-align:center;overflow:hidden;border-right:1px solid var(--surface)}
+.compare,.sketch,.how{margin-top:18px}
+.compare .upload-zone{max-width:520px}
+.compare-result{display:grid;grid-template-columns:200px 1fr;gap:24px;margin-top:20px;align-items:start}
+.compare-result .table-wrap{grid-column:1/-1}
+.score strong{display:block;font:64px/1 Georgia,serif;color:var(--green)}
+.score span{font-size:12px}
+.score small{display:block;margin-top:8px;font-size:10px;color:var(--muted);line-height:1.6}
+.compare-facts{margin:0;padding-left:18px;font-size:13px;line-height:1.7}
+.sketch-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:6px 0 16px}
+.sketch-controls label:first-child{grid-column:span 2}
+.sketch-controls .check{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:12px;padding-top:18px}
+.sketch-controls output{float:right;color:var(--ink)}
+.sketch-actions>*{flex:0 0 auto}
+.rate-row{margin-top:6px}
+.rate-row>*{flex:0 0 auto}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.how h3{margin-bottom:6px}
+.how .micro{margin:0}
+@media(max-width:1000px){.dna-grid{grid-template-columns:1fr}.sketch-controls{grid-template-columns:1fr 1fr}.how-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.compare-result{grid-template-columns:1fr}.sketch-controls{grid-template-columns:1fr}.sketch-controls label:first-child{grid-column:auto}.how-grid{grid-template-columns:1fr}.dna-answer{display:none}.bar-row{grid-template-columns:44px 1fr 60px}}

@@ -3,6 +3,7 @@ import {
   contourEqDb, contourCeilingDb, createSafetyChain, CONTOUR_BANDS, MODES, clamp,
 } from './comfort-engine.js';
 import { PreferenceGP, startingPoint } from './preference-model.js';
+import * as levels from './comfort-state.js';
 
 const $ = id => document.getElementById(id);
 const KEY = 'still-profile-v1';
@@ -164,10 +165,11 @@ function setActiveLevel(levelDb, seconds = .4) {
 
 /* ---------- Levels and modes ---------- */
 const mode = () => MODES[profile.mode] || MODES.normal;
-const capDb = () => Math.min(CONTOUR_CAP_DB, profile.contour.length >= 3 ? contourCeilingDb(profile.contour) : CONTOUR_CAP_DB);
-const baseDb = () => Math.min(profile.baseLevelDb, capDb());
-const outputLevelDb = () => baseDb() + mode().offsetDb + (profile.trims[profile.mode] ?? 0);
-const fadeInSeconds = () => mode().fadeSeconds + .75 * (profile.answers.sudden ?? 0);
+// Level and fade rules live in comfort-state.js so every page plays at the same level.
+const capDb = () => levels.capDb(profile);
+const baseDb = () => levels.baseDb(profile);
+const outputLevelDb = () => levels.outputLevelDb(profile);
+const fadeInSeconds = () => levels.fadeInSeconds(profile);
 const listening = () => active?.kind === 'listen';
 const fmtDb = db => `${db > 0 ? '+' : ''}${db.toFixed(0)} dB`;
 

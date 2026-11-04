@@ -23,6 +23,17 @@ A state selector (normal day, warning signs, during an attack, recovering) adjus
 
 The [research page](dist/research.html#profile-evidence) lists the evidence behind each design choice. [docs/product-strategy.md](docs/product-strategy.md) is the full fact-checked strategy and roadmap, including myths to avoid. Its claims were checked against original sources by an independent review pass.
 
+## Song DNA (new)
+
+Do your favourite songs share something your brain likes? [Song DNA](dist/songs.html) measures full-length songs (key, chords, tempo, tuning, loudness, stereo, repetition) with one analyser that runs in Node and in the browser. It then lets you compare any song you own, or make an original style sketch from the same building blocks.
+
+First profile: 18 full-length Kishore Kumar songs ([report](docs/song-dna.md), [evidence](docs/song-dna-research.md)).
+- **No special frequency.** Home notes fall on 9 of the 12 notes, and tuning varies by ±46 cents.
+- **Shared vocabulary.** An even split of major and minor keys. The ♭VII chord (G with A as home) swings with the home chord in both. The Andalusian walk (Am → G → F) on the home chord appears in only 3 of 18.
+- **An era's sound.** Moderate tempos around 118 BPM, and a near-mono mix.
+
+Only derived numbers are stored, never audio, melodies or chord timelines.
+
 ## What is a “sweet frequency zone”?
 
 A zone means a **range of frequencies**. A personal sweet zone would be a range you repeatedly rate as comforting under similar conditions. An audio file alone cannot reveal a universal best range.
@@ -74,6 +85,6 @@ Open [localhost:4173](http://127.0.0.1:4173). Microphone access needs localhost 
 | [analysis/](analysis/) | Scripts that reproduce the measurements and figures |
 | [samples/](samples/) / [data/](data/) | Reference excerpts, measurements, and sampled public comments |
 | [figures/](figures/) | PDF, PNG, SVG, CSV, and JSON exports |
-| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner and claims-linter checks |
+| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner, Song DNA and claims-linter checks |
 
 See [methods](docs/methods.md) and [prototype details](docs/prototype-notes.md) for research and technical explanations. Comments generate hypotheses, not evidence of effectiveness. Source material belongs to its creators. This prototype explores comfort, not migraine treatment effects.
