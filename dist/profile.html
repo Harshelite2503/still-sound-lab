@@ -8,9 +8,10 @@
 <title>Comfort profile · Still</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="profile.css">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 <body>
-<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="index.html">Sound lab</a><a href="library.html">Sound dataset</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="quiet.html">Quiet room</a><a href="journal.html">Journal</a><a href="index.html">Sound lab</a><a href="library.html">Sound dataset</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
 <main>
 <section class="intro">
   <div>
@@ -45,6 +46,7 @@
   <p class="muted">Your comfort sound plays about 14 dB quieter than usual, with a softer top end, almost no swell and a slow fade-in of 6 seconds or more. Silence is always fine.</p>
   <div class="attack-actions"><button id="attack-play" class="primary big" type="button">▶ Play my comfort sound</button><button id="attack-stop" class="outline big" type="button">■ Fade to silence</button></div>
   <p class="micro" id="attack-detail"></p>
+  <p class="micro"><a href="quiet.html">Open the quiet room</a> for a darker one-tap screen that also keeps your episode journal.</p>
 </section>
 
 <div class="profile-steps" id="profile-steps">
@@ -125,5 +127,6 @@
 <footer><div><a class="brand" href="index.html">≋ still</a><p>A comfort exploration prototype. No accounts. Nothing leaves this browser.</p></div><div><a href="research.html">Read the evidence &amp; product plan ↗</a><p>No universal healing frequency is established.</p></div></footer>
 </main>
 <script type="module" src="profile.js"></script>
+<script src="pwa.js" defer></script>
 </body>
 </html>

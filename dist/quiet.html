@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b100d">
+<meta name="description" content="A dark, quiet space for hard headache moments: a dark screen, your comfort sound, or a softer version. Nothing plays until you press it.">
+<title>Quiet room · Still</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiet.css">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body class="dim quiet-room">
+<main class="qr">
+<header class="qr-top">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still</a>
+  <nav aria-label="Other pages"><a href="journal.html">Journal</a><a href="profile.html">Comfort profile</a></nav>
+</header>
+
+<h1 class="qr-title">Quiet room</h1>
+<p class="qr-sub">Nothing plays until you press it. Silence is always fine.</p>
+
+<div class="qr-state" role="radiogroup" aria-label="How are you right now?">
+  <label><input type="radio" name="state" value="attack" checked><span>Headache now</span></label>
+  <label><input type="radio" name="state" value="warning"><span>Warning signs</span></label>
+  <label><input type="radio" name="state" value="recovering"><span>Recovering</span></label>
+</div>
+
+<div class="qr-choices">
+  <button class="qr-choice" id="go-dark" type="button"><strong>Dark screen, no sound</strong><span>Just rest. Tap anywhere to come back.</span></button>
+  <button class="qr-choice" id="go-comfort" type="button"><strong>My comfort sound</strong><span id="comfort-detail">A gentle, dark default.</span></button>
+  <button class="qr-choice" id="go-softer" type="button"><strong>Softer and darker</strong><span>Your sound, 6 dB quieter, with a duller top end and no swell.</span></button>
+</div>
+
+<div class="qr-playing" id="playing" hidden>
+  <p id="playing-text" role="status" aria-live="polite">Fading in…</p>
+  <button class="qr-stop" id="stop" type="button">■ Fade to silence</button>
+  <button class="qr-worse" id="worse" type="button">This is making it worse</button>
+</div>
+
+<label class="qr-timer">Fade out after
+  <select id="timer"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="60">60 minutes</option><option value="0">No timer</option></select>
+</label>
+
+<section class="qr-check" id="check" hidden aria-labelledby="check-title">
+  <p id="check-title">Optional: how did that go?</p>
+  <div class="qr-check-row">
+    <button type="button" data-follow="better">A bit easier</button>
+    <button type="button" data-follow="same">About the same</button>
+    <button type="button" data-follow="worse">Worse</button>
+    <button type="button" data-follow="skipped" class="qr-skip">Skip</button>
+  </div>
+  <p class="qr-note">This is how it felt, not proof the sound helped. Headaches also change with time, rest and medicine.</p>
+</section>
+
+<p class="qr-status" id="status" role="status" aria-live="polite"></p>
+
+<footer class="qr-foot">
+  <p>Still is for comfort. It does not diagnose, treat or prevent migraine. A new, sudden or worst-ever headache, or weakness, numbness, confusion or trouble speaking: get medical help now.</p>
+  <p>Saved only on this device. <a href="journal.html">See your journal</a>.</p>
+</footer>
+</main>
+
+<div class="qr-dark" id="dark" hidden tabindex="-1" aria-label="Dark screen. Tap or press any key to come back."><p>Tap to come back</p></div>
+<script type="module" src="quiet.js"></script>
+<script src="pwa.js" defer></script>
+</body>
+</html>

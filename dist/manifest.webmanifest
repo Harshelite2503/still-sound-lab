@@ -1,0 +1,24 @@
+{
+  "name": "Still: quiet room and sound comfort",
+  "short_name": "Still",
+  "description": "A dark, quiet space for hard headache moments, plus a personal sound-comfort profile. Works offline. Data stays on your device.",
+  "id": "./quiet.html",
+  "start_url": "./quiet.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b100d",
+  "theme_color": "#0b100d",
+  "categories": ["health", "lifestyle", "music"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Quiet room", "short_name": "Quiet room", "url": "./quiet.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Journal", "url": "./journal.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Comfort profile", "url": "./profile.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

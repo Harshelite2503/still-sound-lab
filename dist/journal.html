@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172720">
+<meta name="description" content="Your headache-episode journal: when you opened the quiet room, what you chose, and how it felt afterwards. Stored only on this device.">
+<title>Journal · Still</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="journal.css">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="quiet.html">Quiet room</a><a href="profile.html">Comfort profile</a><a href="index.html">Sound lab</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<main class="journal">
+<section class="j-intro">
+  <p class="eyebrow">YOUR JOURNAL</p>
+  <h1>What you reached for,<br>on the <em>hard days.</em></h1>
+  <p class="lede">Every time you use the quiet room, Still notes the date, what you chose and for how long. Sessions within 12 hours of each other count as one episode. Nothing leaves this device.</p>
+</section>
+
+<section class="j-stats" aria-label="Last 60 days">
+  <div class="panel j-stat"><strong id="stat-used">0</strong><span>episodes where you used Still, last 60 days</span></div>
+  <div class="panel j-stat"><strong id="stat-missed">0</strong><span>headaches you noted without using Still</span></div>
+  <div class="panel j-stat"><strong id="stat-minutes">–</strong><span>typical minutes of sound per episode</span></div>
+  <div class="panel j-stat"><strong id="stat-worse">0</strong><span>sessions that made things worse</span></div>
+</section>
+
+<section class="panel j-section">
+  <h2>What you chose</h2>
+  <div id="choices" class="j-bars"></div>
+  <h2>How it felt afterwards</h2>
+  <div id="follow" class="j-bars"></div>
+  <p class="micro">These are your own notes after each session. Feeling better afterwards does not show the sound caused it: headaches also ease with time, rest and medicine. To compare options fairly, a clinician can help you set up a simple personal experiment.</p>
+</section>
+
+<section class="panel j-section">
+  <div class="j-head"><h2>Episodes</h2><span class="pill" id="episode-count">0</span></div>
+  <ol id="episodes" class="j-episodes"><li class="muted">No episodes yet. When a headache starts, open the <a href="quiet.html">quiet room</a>.</li></ol>
+</section>
+
+<section class="panel j-section">
+  <h2>Had a headache without opening Still?</h2>
+  <p class="muted">Noting these keeps the picture honest. One tap, no details.</p>
+  <div class="button-row"><input id="missed-date" type="date" aria-label="Date of the headache"><button id="add-missed" class="outline" type="button">Note it</button></div>
+  <p class="micro" id="missed-note"></p>
+</section>
+
+<section class="panel j-section">
+  <h2>Your data</h2>
+  <p class="muted">Taking part in the Still pilot? Enter the code you were given and download a summary to send back. It contains only day numbers counted from your first use, what you tapped and for how long. It has no dates, notes, sound settings or anything about your device.</p>
+  <div class="button-row"><input id="code" type="text" inputmode="text" autocomplete="off" maxlength="24" placeholder="Pilot code, e.g. P017" aria-label="Pilot participant code"><button id="pilot" class="primary" type="button">Download pilot summary</button></div>
+  <div class="button-row data-row"><button id="export" class="text-button" type="button">Export full journal ↓</button><label class="text-button import-label" for="import">Import a backup ↑</label><input id="import" class="sr-only" type="file" accept="application/json"><button id="clear" class="text-button" type="button">Clear journal</button></div>
+  <p class="micro" id="data-note"></p>
+</section>
+
+<footer><div><a class="brand" href="index.html">≋ still</a><p>A comfort tool. It does not diagnose, treat or prevent migraine. A new, sudden or worst-ever headache needs medical care.</p></div><div><a href="research.html">Evidence and sources ↗</a><p>No accounts. Nothing leaves this browser unless you export it.</p></div></footer>
+</main>
+<script type="module" src="journal.js"></script>
+<script src="pwa.js" defer></script>
+</body>
+</html>
