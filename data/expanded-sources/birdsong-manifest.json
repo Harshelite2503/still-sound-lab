@@ -1,0 +1,118 @@
+{
+  "dataset_id": "stobbe2022-birdsong",
+  "title": "Soundscapes Bird Song Study",
+  "repository_url": "https://osf.io/4y3vh/",
+  "source_api": "https://api.osf.io/v2/nodes/4y3vh/files/osfstorage/",
+  "retrieved_date": "2026-11-04",
+  "paper_url": "https://www.nature.com/articles/s41598-022-20841-0",
+  "doi": "10.1038/s41598-022-20841-0",
+  "evidence_tier": "controlled study stimulus",
+  "outcome_scope": "Short-term self-reported anxiety, depression and paranoia in healthy participants; not migraine or pain.",
+  "design": "Randomized online experiment; 295 participants; four 6-minute conditions.",
+  "result_summary": "Both birdsong groups reported less anxiety and paranoia after exposure; high-diversity birdsong also reduced depression. Traffic increased depression. Cognitive measures did not improve.",
+  "limitations": "No neutral-sound control; acute exposure only. Diversity manipulation did not yield a clear differential benefit. A 30-second excerpt was not independently tested.",
+  "license_status": "Unspecified for OSF audio. Open access article license does not establish a license for the repository audio or underlying bird recordings.",
+  "redistribute_audio": false,
+  "files": [
+    {
+      "id": "k73rg",
+      "local_file": "birdsong-low.mp3",
+      "condition": "Birdsong, low diversity",
+      "study_group_n": 63,
+      "original_filename": "Vogelstimmen Low Diverse 6 Minuten 2021-03-30.mp3",
+      "source_url": "https://osf.io/4y3vh/files/osfstorage/61531d59ed4cbe0124dc7d35",
+      "download_url": "https://osf.io/download/k73rg/",
+      "bytes": 5827575,
+      "expected_sha256": "151051a7dcaebb3dc1b979c141102f40493aeb997556b57765d14ea411e0a09e",
+      "file_version": 1,
+      "study_exposure_seconds": 360,
+      "suggested_analysis_interval_seconds": [
+        60,
+        90
+      ],
+      "license": "No license assigned in OSF node metadata; raw audio retained locally for analysis, not redistributed.",
+      "checksum_verified": true,
+      "decode_exit_code": 0,
+      "decoder_metadata": [
+        "Duration: 00:06:04.22, start: 0.000000, bitrate: 127 kb/s",
+        "Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 128 kb/s",
+        "Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s"
+      ]
+    },
+    {
+      "id": "szbgx",
+      "local_file": "birdsong-high.mp3",
+      "condition": "Birdsong, high diversity",
+      "study_group_n": 80,
+      "original_filename": "Vogelstimmen High Diverse 6 Minuten 2021-03-31.mp3",
+      "source_url": "https://osf.io/4y3vh/files/osfstorage/61531d5a9ef82f011ecce8eb",
+      "download_url": "https://osf.io/download/szbgx/",
+      "bytes": 5827575,
+      "expected_sha256": "9afc56ab8f94919927e089adee673967a722d674250c8dc2a8730939b923ed0d",
+      "file_version": 1,
+      "study_exposure_seconds": 360,
+      "suggested_analysis_interval_seconds": [
+        60,
+        90
+      ],
+      "license": "No license assigned in OSF node metadata; raw audio retained locally for analysis, not redistributed.",
+      "checksum_verified": true,
+      "decode_exit_code": 0,
+      "decoder_metadata": [
+        "Duration: 00:06:04.22, start: 0.000000, bitrate: 127 kb/s",
+        "Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 128 kb/s",
+        "Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s"
+      ]
+    },
+    {
+      "id": "8ydjb",
+      "local_file": "traffic-high.mp3",
+      "condition": "Traffic, high diversity",
+      "study_group_n": 69,
+      "original_filename": "City High Diverse 6 Minuten 2021-04-27.mp3",
+      "source_url": "https://osf.io/4y3vh/files/osfstorage/61531d7368797201348776f4",
+      "download_url": "https://osf.io/download/8ydjb/",
+      "bytes": 5827575,
+      "expected_sha256": "acc98c0b5bbfab5fd5d2532282ab10f31ea0d2224f8e76e32a8821521afb849f",
+      "file_version": 1,
+      "study_exposure_seconds": 360,
+      "suggested_analysis_interval_seconds": [
+        60,
+        90
+      ],
+      "license": "No license assigned in OSF node metadata; raw audio retained locally for analysis, not redistributed.",
+      "checksum_verified": true,
+      "decode_exit_code": 0,
+      "decoder_metadata": [
+        "Duration: 00:06:04.22, start: 0.000000, bitrate: 127 kb/s",
+        "Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 128 kb/s",
+        "Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s"
+      ]
+    },
+    {
+      "id": "7x6hp",
+      "local_file": "traffic-low.mp3",
+      "condition": "Traffic, low diversity",
+      "study_group_n": 83,
+      "original_filename": "City Low Diverse 6 Minuten 2021-04-28.mp3",
+      "source_url": "https://osf.io/4y3vh/files/osfstorage/61531d73ec7885012c412a49",
+      "download_url": "https://osf.io/download/7x6hp/",
+      "bytes": 5827575,
+      "expected_sha256": "270b649fe41d5f4fd2a1456c432c827525a0f7f1412bef2b1e3b336138017894",
+      "file_version": 1,
+      "study_exposure_seconds": 360,
+      "suggested_analysis_interval_seconds": [
+        60,
+        90
+      ],
+      "license": "No license assigned in OSF node metadata; raw audio retained locally for analysis, not redistributed.",
+      "checksum_verified": true,
+      "decode_exit_code": 0,
+      "decoder_metadata": [
+        "Duration: 00:06:04.22, start: 0.000000, bitrate: 127 kb/s",
+        "Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 128 kb/s",
+        "Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "checked_date": "2026-11-04",
+  "studies": [
+    {
+      "id": "stobbe2022",
+      "population": "295 healthy adults",
+      "design": "Randomized online four-condition experiment; 6-minute birdsong or traffic soundscapes of low/high diversity.",
+      "outcome": "Anxiety and paranoia declined in both birdsong groups; no cognitive improvement.",
+      "limitations": "Acute outcomes; no neutral-sound control; not migraine or pain; no clear diversity advantage.",
+      "audio_access": "Four exact study MP3s publicly downloadable from OSF; repository audio license unspecified.",
+      "source_url": "https://www.nature.com/articles/s41598-022-20841-0",
+      "audio_repository": "https://osf.io/4y3vh/"
+    },
+    {
+      "id": "diamante2020",
+      "population": "174 randomized, 173 analyzed adults with acute migraine (body counts; abstract inconsistently says183).",
+      "design": "Open-label ER trial: patient-chosen music plus usual medication versus usual medication alone.",
+      "outcome": "At1hour, >=3-point pain reduction in82/87 vs73/86 (94%vs85%;p=.037). Meanpain2.63vs3.40(p=.0173).",
+      "limitations": "No active auditory control; varied concurrent medication; one music participant withdrew after irritation/worsening. Abstract headache-free wording conflicts with body score0\u20132 definition. No frequency isolation.",
+      "audio_access": "No exact open playlist or stimuli identified; participant-chosen genres. Data on request.",
+      "source_url": "https://www.ahmjournal.com/music-medicine-as-a-component-of-acute-migraine-attack-management-in-the-emergency-room-a-randomized-controlled-open-label-trial/",
+      "citation": "Diamante PAB, Roxas AA Jr. Annals of Headache Medicine2020;04:01. doi:10.30756/ahmj.2020.04.01",
+      "stimulus_detail": "At least30minutes of shuffled music from preferred-genre lists(classical,pop,rock,jazz,R&B,meditation,religious,OPM); tracks not individually reported."
+    },
+    {
+      "id": "koenig2013",
+      "population": "78 adolescents with migraine or tension-type headache",
+      "design": "Randomized attention-placebo-controlled trial: six music-therapy sessions over8weeks versus rhythm-pedagogy sessions.",
+      "outcome": "Neither treatment superior; both showed about20% mean headache-frequency reduction.",
+      "limitations": "Therapist intervention, not passive listening; mixed primary headache diagnoses.",
+      "audio_access": "No open standardized audio stimulus dataset identified.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23876282/"
+    },
+    {
+      "id": "alvarsson2010",
+      "population": "40 participants",
+      "design": "Laboratory mental-arithmetic stressor followed by nature or environmental-noise sound conditions.",
+      "outcome": "Skin-conductance recovery tended to be faster for nature; high-frequency heart-rate variability showed no effect.",
+      "limitations": "Physiological stress recovery is not migraine efficacy; small laboratory sample.",
+      "audio_access": "No verified openly licensed exact stimulus files located in this search.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/20617017/"
+    },
+    {
+      "id": "steininger2025",
+      "population": "49 healthy adults analyzed",
+      "design": "Preregistered counterbalanced fMRI experiment with matched audiovisual nature, urban and indoor environments during electrical pain.",
+      "outcome": "Pooled pain ratings lower for nature than urban (difference-.54on0\u20138scale) and indoor(-.48); nociception-related neural responses also reduced.",
+      "limitations": "Combined visual+audio intervention; cannot attribute effect to sound or a frequency band; experimentally induced pain, not migraine.",
+      "audio_access": "Behavioral/fMRI-derived data and analysis onOSF; exact reusable audio not confirmed.",
+      "source_url": "https://www.nature.com/articles/s41467-025-56870-2",
+      "data_repository": "https://osf.io/t8dqu/"
+    }
+  ]
+}

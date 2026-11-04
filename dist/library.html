@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#243d32">
+  <meta name="description" content="Explore measured sounds, human emotion ratings, and recordings used in research. An evidence-aware sound dataset for Still.">
+  <title>Sound dataset · Still</title>
+  <link rel="stylesheet" href="graphs.css"><link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <header class="g-header"><a class="g-brand" href="index.html">≋ still <span class="g-brand-caption">PERSONAL SOUND LAB</span></a><nav aria-label="Main navigation"><a href="index.html">Sound lab</a><a href="graphs.html">Graphs</a><button id="dim-toggle" aria-pressed="false">Dim screen</button></nav></header>
+  <main class="g-main">
+    <section class="g-intro">
+      <p class="g-eyebrow">A LARGER DATASET · CLEARER EVIDENCE</p>
+      <h1>More sounds.<br><em>Measured carefully.</em></h1>
+      <p class="g-lead">Explore frequency patterns alongside human ratings, and compare the exact recordings used in a controlled birdsong study.</p>
+      <div class="g-boundary"><span aria-hidden="true">◉</span><p><strong>Positive emotion, comfort and migraine relief are different outcomes.</strong> The tone ratings describe perceived emotion. The birdsong experiment measured short-term psychological outcomes. Neither dataset identifies a migraine-relieving frequency zone.</p></div>
+    </section>
+    <p id="library-status" class="g-status" role="status">Loading measured data…</p>
+    <div id="library-error" class="g-error" hidden><p>The dataset could not be loaded. No substitute results are shown.</p><button id="retry-load">Try again</button></div>
+    <div id="library-content" hidden>
+      <section class="l-stats" aria-label="Dataset size"><div><strong id="total-count">—</strong><span>new recordings analyzed</span></div><div><strong id="tone-count">—</strong><span>tones with human ratings</span></div><div><strong id="study-count">—</strong><span>controlled-study recordings</span></div></section>
+      <div class="l-evidence-grid">
+        <section class="g-card"><p class="g-eyebrow">HUMAN EMOTION RATINGS</p><h2>EmoSynth</h2><p>Synthetic sine, square and sawtooth sounds with different frequencies, envelopes and durations. The original study reports 40 annotators using 1–5 valence and arousal scales. Per-sound averages describe perceived emotion, not personal liking or clinical outcomes.</p><p id="version-note" class="l-small"></p><p class="l-small">Source: Baird, Parada-Cabaleiro, Fraser, Hantke &amp; Schuller (2018), corrected 2020 archive. Our figures and acoustic features are derived analyses.</p><a href="https://zenodo.org/records/3727593" target="_blank" rel="noreferrer">Dataset & CC BY 4.0 license ↗</a></section>
+        <section class="g-card"><p class="g-eyebrow">CONTROLLED STUDY STIMULI</p><h2>Birdsong & traffic</h2><p>A randomized online experiment assigned 295 people to four six-minute soundscapes. Anxiety and paranoia decreased in the birdsong groups. It did not test migraine or isolate a beneficial frequency.</p><p class="l-small">Here we measure 01:00–01:30 of each recording. That excerpt was not independently tested. Traffic is included as a study comparison, not a comfort recommendation.</p><a href="https://www.nature.com/articles/s41598-022-20841-0" target="_blank" rel="noreferrer">Study ↗</a> · <a href="https://osf.io/4y3vh/" target="_blank" rel="noreferrer">Original recordings ↗</a></section>
+      </div>
+      <section class="g-card" aria-labelledby="zone-chart-title">
+        <p class="g-eyebrow">01 · FREQUENCY GROUPS</p><h2 id="zone-chart-title">Which tone groups received more positive ratings?</h2>
+        <p class="g-card-description">Each point averages the sound-level valence means within one frequency group. The vertical line shows the lowest and highest sound means across its waveform, envelope and duration variants. This spread is <strong>not a confidence interval</strong>. A higher group average is a clue within this synthetic dataset, not a recommended listening range.</p>
+        <p class="l-small"><strong>Reading this batch:</strong> the highest group mean is near 3,520 Hz (valence 3.82/5), but that group also has high arousal (4.30/5). Near 311 Hz, mean valence is 3.77/5 and arousal 3.43/5. More positive emotion does not automatically mean a calming sound; these are observations within this release.</p><div class="g-chart l-chart"><canvas id="zone-chart" role="img" tabindex="0" aria-label="Frequency-group valence means and ranges. The same values are in the table below. Use arrow keys to inspect." aria-describedby="zone-readout"></canvas></div>
+        <p id="zone-readout" class="g-readout">Hover or tap a group; use arrow keys when the chart is focused.</p>
+        <p class="g-chart-note">Frequency is estimated from the audio, grouped by the dataset's frequency index. The corrected archive does not supply a Hz lookup table. Valence: 1 = negative, 5 = positive. All variants remain included.</p>
+        <details><summary>See the frequency-group numbers</summary><div class="l-table-scroll"><table><thead><tr><th>Estimated tone</th><th>Sounds</th><th>Mean valence</th><th>Range of sound means</th></tr></thead><tbody id="zone-table"></tbody></table></div></details>
+      </section>
+      <section class="g-card" aria-labelledby="scatter-title">
+        <div class="g-card-heading"><div><p class="g-eyebrow">02 · SOUND-LEVEL AVERAGES</p><h2 id="scatter-title">The variation inside each zone.</h2></div><div class="l-controls"><label>Horizontal axis<select id="scatter-x"><option value="carrier">Estimated tone frequency</option><option value="centroid">Spectral brightness</option></select></label><label>Human rating<select id="scatter-y"><option value="valence">Valence · negative to positive</option><option value="arousal">Arousal · weak to strong</option></select></label></div></div>
+        <p class="g-card-description">One point per EmoSynth sound. Different textures can receive different ratings at a similar pitch. Select a point to inspect its measurement below; overlapping points can also be selected from the recording list.</p>
+        <div class="l-legend"><span><i style="background:#247586"></i>Sine</span><span><i style="background:#b96445"></i>Square</span><span><i style="background:#778349"></i>Sawtooth</span></div>
+        <div class="g-chart l-chart"><canvas id="scatter-chart" role="img" tabindex="0" aria-label="Individual synthetic sound ratings against a measured frequency feature. Arrow keys inspect sounds; Enter selects one." aria-describedby="scatter-readout"></canvas></div>
+        <p id="scatter-readout" class="g-readout">Hover or tap a point. Arrow keys inspect; Enter selects.</p>
+        <p id="correlation-note" class="g-chart-note"></p>
+      </section>
+      <section id="recording-detail" class="g-card" aria-labelledby="recording-heading">
+        <div class="g-card-heading"><div><p class="g-eyebrow">03 · INSPECT A RECORDING</p><h2 id="recording-heading">What is in the sound?</h2></div><div class="l-controls"><label>Collection<select id="collection"><option value="all">All analyzed sounds</option><option value="emosynth">EmoSynth · human ratings</option><option value="birdsong">Birdsong & traffic · study</option></select></label><label>Recording<select id="recording-select"></select></label></div></div>
+        <h3 id="recording-title" class="l-detail-title"></h3><p id="recording-description" class="g-card-description"></p>
+        <div id="rating-values" class="l-ratings"></div>
+        <div class="g-chart l-chart"><canvas id="sample-chart" role="img" tabindex="0" aria-label="Selected recording's relative spectral energy. Arrow keys inspect frequency bins." aria-describedby="sample-readout"></canvas></div>
+        <p id="sample-readout" class="g-readout">Hover, tap or use arrow keys to inspect a frequency bin.</p>
+        <p class="g-chart-note">Channel powers averaged. Each point sums energy within a logarithmic bin; wider bins cover more frequencies. Zero dB is the highest-energy bin in this recording. This is not power per Hz, calibrated loudness, or a benefit score.</p>
+        <dl id="sample-features" class="l-features"></dl>
+        <p id="sample-evidence" class="l-small"></p><a id="sample-source" target="_blank" rel="noreferrer">Source & provenance ↗</a>
+      </section>
+      <section class="g-card" aria-labelledby="clinical-heading"><p class="g-eyebrow">WHAT HAS BEEN TESTED FOR MIGRAINE?</p><h2 id="clinical-heading">Evidence for listening, not a verified frequency library.</h2><div class="g-method-columns"><div><p>A small 2021 pilot followed 20 people using a structured music intervention for three months and reported fewer migraine attacks. With no control group, it cannot establish that music caused the improvement.</p><a href="https://pubmed.ncbi.nlm.nih.gov/34601093/" target="_blank" rel="noreferrer">Migraine pilot study ↗</a></div><div><p>A 2020 open-label randomized study compared chosen music plus usual acute migraine care with usual care alone. It reported better short-term pain outcomes. Participants knew their treatment, and the study did not publish an exact reusable playlist or identify a beneficial frequency zone.</p><a href="https://www.ahmjournal.com/music-medicine-as-a-component-of-acute-migraine-attack-management-in-the-emergency-room-a-randomized-controlled-open-label-trial/" target="_blank" rel="noreferrer">Acute migraine study ↗</a></div></div><p><strong>A controlled study also found no advantage:</strong> a 2013 trial assigned 78 adolescents with migraine or tension-type headache to music therapy or an attention-control rhythm program. Music therapy was not superior for headache frequency or intensity. This involved therapist-led sessions, not a playlist. <a href="https://pubmed.ncbi.nlm.nih.gov/23876282/" target="_blank" rel="noreferrer">Attention-controlled trial ↗</a></p><p class="l-small">These studies inform the product hypothesis. They do not validate the EmoSynth tones, the birdsong excerpts, or our generated sounds as migraine treatments.</p></section>
+      <section class="g-card g-methods"><p class="g-eyebrow">REPRODUCIBLE & TRACEABLE</p><h2>Keep the data and the claim together.</h2><p id="analysis-method"></p><p>EmoSynth labels are kept separate from personal check-ins and study outcomes. No human-response label is invented for the birdsong or traffic excerpts. The original three YouTube references remain on the <a href="graphs.html">reference graphs page</a>.</p><p>The private repository includes the analysis scripts, source manifests, checksums, aggregate ratings and derived measurements. EmoSynth audio is available under CC BY 4.0. The OSF audio has no explicit reuse license in its metadata, so this site links to it rather than redistributing it.</p><div class="g-download-row"><a class="g-download" href="data/expanded-dataset.json" download>All measurements · JSON ↓</a><a class="g-download" href="downloads/expanded-features.csv" download>Feature table · CSV ↓</a><a class="g-download" href="downloads/expanded-overview.pdf" download>Dataset overview · PDF ↓</a></div></section>
+    </div>
+    <footer class="g-footer"><a class="g-brand" href="index.html">≋ still</a><p>Measured sounds. Traceable evidence. No paid AI API.</p><a href="graphs.html#comfort-section">Your own comfort map →</a></footer>
+  </main>
+  <script type="module" src="library.js"></script>
+</body>
+</html>

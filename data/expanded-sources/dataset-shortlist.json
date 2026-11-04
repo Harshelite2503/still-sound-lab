@@ -1,0 +1,125 @@
+[
+  {
+    "dataset": "EmoSynth: The Emotional Synthetic Audio Dataset",
+    "version_record": "3727593",
+    "retrieved_date": "2026-11-04",
+    "source_url": "https://zenodo.org/records/3727593",
+    "metadata_url": "https://zenodo.org/api/records/3727593",
+    "download_url": "https://zenodo.org/api/records/3727593/files/emoSynth-DB-fix.zip/content",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "archive_bytes": 103356254,
+    "archive_md5": "98074685b39793ccb2b18b29e85f47d8",
+    "dataset_doi": "10.5281/zenodo.3727593",
+    "paper_doi": "10.1145/3243274.3243277",
+    "citation": "Baird, A., Parada-Cabaleiro, E., Fraser, C., Hantke, S., and Schuller, B. (2018). The Perceived Emotion of Isolated Synthetic Audio: The EmoSynth Dataset and Results. Audio Mostly 2018.",
+    "published_description_audio_count": 144,
+    "verified_archive_audio_count": 168,
+    "aggregate_label_count": 168,
+    "count_note": "The corrected 2020 archive contains 168 WAVs and 168 matching aggregate-label rows, while its landing-page description and 2018 paper describe 144 files. Use the inspected archive count, retain this discrepancy.",
+    "parameter_grid_from_filenames": {
+      "waveforms": [
+        "s",
+        "sq",
+        "sw"
+      ],
+      "frequency_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "envelope_indices": [
+        "a0",
+        "a1"
+      ],
+      "duration_indices": [
+        "d1",
+        "d2"
+      ]
+    },
+    "frequency_note": "No Hz mapping is present in the archive. The paper maps 12 frequency classes; do not assign that table directly to the archive's 14 frequency indices. Derive frequency from waveform and label it as measured.",
+    "ratings": {
+      "construct": "perceived valence and arousal, not pain relief or comfort treatment response",
+      "scale": [
+        1,
+        5
+      ],
+      "valence_anchors": [
+        "negative",
+        "positive"
+      ],
+      "arousal_anchors": [
+        "weak",
+        "strong"
+      ],
+      "reported_total_annotators": 40,
+      "per_stimulus_annotator_n": "not provided; means suggest varying counts, so do not assume 40 for every clip",
+      "available_columns": [
+        "audio_file",
+        "valence",
+        "arousal",
+        "round_val",
+        "round_ar",
+        "round_val_sd",
+        "round_ar_sd"
+      ],
+      "statistics": "valence/arousal are aggregate means; rounded SD fields represent across-listener rating dispersion, not confidence intervals"
+    },
+    "clinical_validation": "No migraine or pain outcomes measured in this dataset.",
+    "dataset_creators": [
+      "Alice Baird",
+      "Emilia Parada-Cabaleiro"
+    ],
+    "archive_sha256": "5efd135c9aee6c39c88c69b1e66f1bf2e9eb55b9606b07ce2386a092dd904550",
+    "archive_checksum_verified": true
+  },
+  {
+    "dataset": "Emo-Soundscapes",
+    "source_url": "https://www.metacreation.net/projects/emo-soundscapes",
+    "download_url": "https://drive.google.com/file/d/1cfMgMssDc-ytedcITvM18nzWcBLeoZFz/view?usp=sharing",
+    "audio_count": 1213,
+    "seconds_per_clip": 6,
+    "original_recordings": 600,
+    "mixed_clips": 613,
+    "annotators": 1182,
+    "countries": 74,
+    "construct": "Ranked perceived valence/arousal, not migraine benefit",
+    "license": "Official site says Creative Commons; exact per-file licenses not yet inspected",
+    "paper_url": "https://www.metacreation.net/s/2017-Emo-Soundscapes-ADatasetforSoundscapeEmotionRecognition.pdf",
+    "downloaded": false
+  },
+  {
+    "dataset": "DEAM",
+    "source_url": "https://cvml.unige.ch/databases/DEAM/",
+    "manual_url": "https://cvml.unige.ch/databases/DEAM/manual.pdf",
+    "audio_count": 1802,
+    "audio_download_size": "1.3 GB",
+    "annotation_download_size": "4.7 MB",
+    "construct": "Expressed musical emotion; overall and continuous valence/arousal",
+    "license": "Creative Commons music from multiple sources; exact per-track terms must be checked",
+    "downloaded": false
+  },
+  {
+    "dataset": "ARAUS",
+    "source_url": "https://github.com/ntudsp/araus-dataset-baseline-models",
+    "paper_url": "https://arxiv.org/abs/2207.01078",
+    "data_doi": "10.21979/N9/9OTEVX",
+    "download_size": "~3 GB sources/metadata; reconstruction may exceed100 GB",
+    "responses_v1": 25440,
+    "participants_v1": 605,
+    "construct": "Soundscape pleasantness/eventfulness and calm/annoying/etc ratings; audio-visual context",
+    "license": "Mixed per-source CC licenses including NC/ND/SA. Consult maskers.csv and original sources; do not treat as uniform commercial license.",
+    "downloaded": false
+  }
+]

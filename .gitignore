@@ -9,6 +9,7 @@ __pycache__/
 .matplotlib-cache/
 .openai/
 node_modules/
+work/
 *.log
 *.part
 *.info.json

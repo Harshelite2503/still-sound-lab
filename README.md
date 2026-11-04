@@ -4,6 +4,8 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 [Open the private app](https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site) · [Explore the graphs](https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site/graphs.html)
 
+**New: [sound dataset explorer](https://comfort-sound-lab-harsh-nov26.harshelite-gupta.chatgpt.site/library.html).** Compare 168 human-rated synthetic sounds and four birdsong/traffic study recordings. See frequency-group ratings, individual spectra and source evidence. Emotion ratings and study outcomes stay separate; these are not verified migraine-relief tracks. See [dataset methods and reproduction steps](docs/expanded-dataset.md).
+
 **No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
 ## What is a “sweet frequency zone”?
