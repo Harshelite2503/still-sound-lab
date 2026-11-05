@@ -8,7 +8,19 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 **No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
-## Your comfort profile (new)
+## Still for Video (new, prototype)
+
+"I want to finish this lecture, but the audio feels harsh, and turning it down makes the words hard to follow." [Still for Video](dist/video.html) filters **one browser tab** (desktop Chrome or Edge) or a **local video file**, so speech stays clear while harsh sound is softened:
+
+1. **Gentler straight away.** A fixed gentle preset cuts rumble, edge, s-sounds and the top end, and gently holds back sudden loud moments. Every band is a cut, and a limiter caps the output. A speech guard never lets the 1–4 kHz speech band fall more than 6 dB below 500 Hz.
+2. **Hear original.** The button, or the **B** key, switches to the untouched sound instantly.
+3. **Tune on your own content (optional, about a minute).** The last 6 seconds you heard are played two ways at the same loudness. Pick the one that is gentler with the words still clear. A preference model chooses each next pair.
+4. **More sensitive today.** Sensitive and very sensitive soften more and play 3 or 6 dB quieter, always inside the speech guard.
+5. **Blinded check.** Three versions play in a random order at the same loudness: the original turned down, the gentle preset and your setting. You rate comfort and clarity for each.
+
+Nothing is uploaded. Study participants can export a record that holds no audio, titles, addresses or free text. Design, evidence, competitors and the pre-registered 90-day test are in [docs/still-for-video.md](docs/still-for-video.md). Run `node analysis/video_study.mjs exports/*.json` to apply the fixed success criteria.
+
+## Your comfort profile
 
 People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently from one day to the next. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
 
@@ -85,10 +97,10 @@ Open [localhost:4173](http://127.0.0.1:4173). Microphone access needs localhost 
 
 | Folder | Contents |
 | --- | --- |
-| [dist/](dist/) | Complete website, audio engine, comfort engine (`comfort-engine.js`) and preference learner (`preference-model.js`) |
+| [dist/](dist/) | Complete website, audio engine, comfort engine (`comfort-engine.js`), comfort filter for video (`comfort-filter.js`, `video-audio.js`) and preference learner (`preference-model.js`) |
 | [analysis/](analysis/) | Scripts that reproduce the measurements and figures |
 | [samples/](samples/) / [data/](data/) | Reference excerpts, measurements, and sampled public comments |
 | [figures/](figures/) | PDF, PNG, SVG, CSV, and JSON exports |
-| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner, Song DNA and claims-linter checks |
+| [tests/](tests/) | Audio, feedback-map, comfort engine, comfort filter and study analysis, preference learner, Song DNA and claims-linter checks |
 
 See [methods](docs/methods.md) and [prototype details](docs/prototype-notes.md) for research and technical explanations. Comments generate hypotheses, not evidence of effectiveness. Source material belongs to its creators. This prototype explores comfort, not migraine treatment effects.
