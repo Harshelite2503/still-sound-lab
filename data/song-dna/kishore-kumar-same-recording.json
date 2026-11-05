@@ -1,0 +1,145 @@
+{
+ "method": "DTW-aligned CQT chroma (hop 0.37 s at 11.025 kHz), mean cosine along the path, best of \u00b11 semitone; baseline = every mismatched song per row. Confirms the same song and arrangement, not the same master (a remix on the original vocal also passes).",
+ "songs": [
+  {
+   "song": "hamen tumse",
+   "same": 0.957,
+   "mismatched_max": 0.922,
+   "mismatched_mean": 0.885,
+   "margin": 0.035
+  },
+  {
+   "song": "aa chal",
+   "same": 0.933,
+   "mismatched_max": 0.889,
+   "mismatched_mean": 0.863,
+   "margin": 0.044
+  },
+  {
+   "song": "chalte chalte",
+   "same": 0.96,
+   "mismatched_max": 0.917,
+   "mismatched_mean": 0.888,
+   "margin": 0.044
+  },
+  {
+   "song": "chehra hai",
+   "same": 0.964,
+   "mismatched_max": 0.926,
+   "mismatched_mean": 0.9,
+   "margin": 0.038
+  },
+  {
+   "song": "choo kar",
+   "same": 0.954,
+   "mismatched_max": 0.912,
+   "mismatched_mean": 0.876,
+   "margin": 0.042
+  },
+  {
+   "song": "dil kya",
+   "same": 0.962,
+   "mismatched_max": 0.901,
+   "mismatched_mean": 0.875,
+   "margin": 0.061
+  },
+  {
+   "song": "dilbar mere",
+   "same": 0.973,
+   "mismatched_max": 0.917,
+   "mismatched_mean": 0.896,
+   "margin": 0.056
+  },
+  {
+   "song": "dream girl",
+   "same": 0.97,
+   "mismatched_max": 0.91,
+   "mismatched_mean": 0.885,
+   "margin": 0.06
+  },
+  {
+   "song": "ek ajnabee",
+   "same": 0.953,
+   "mismatched_max": 0.916,
+   "mismatched_mean": 0.889,
+   "margin": 0.037
+  },
+  {
+   "song": "ek ladki",
+   "same": 0.941,
+   "mismatched_max": 0.919,
+   "mismatched_mean": 0.894,
+   "margin": 0.022
+  },
+  {
+   "song": "kitne bhi",
+   "same": 0.965,
+   "mismatched_max": 0.927,
+   "mismatched_mean": 0.903,
+   "margin": 0.038
+  },
+  {
+   "song": "mera jeevan",
+   "same": 0.94,
+   "mismatched_max": 0.916,
+   "mismatched_mean": 0.881,
+   "margin": 0.023
+  },
+  {
+   "song": "mere sapnon",
+   "same": 0.963,
+   "mismatched_max": 0.921,
+   "mismatched_mean": 0.894,
+   "margin": 0.042
+  },
+  {
+   "song": "o mere",
+   "same": 0.961,
+   "mismatched_max": 0.935,
+   "mismatched_mean": 0.9,
+   "margin": 0.026
+  },
+  {
+   "song": "saagar kinare",
+   "same": 0.955,
+   "mismatched_max": 0.912,
+   "mismatched_mean": 0.889,
+   "margin": 0.043
+  },
+  {
+   "song": "yeh dosti",
+   "same": 0.832,
+   "mismatched_max": 0.892,
+   "mismatched_mean": 0.864,
+   "margin": -0.06
+  },
+  {
+   "song": "yeh shaam",
+   "same": 0.946,
+   "mismatched_max": 0.911,
+   "mismatched_mean": 0.892,
+   "margin": 0.035
+  },
+  {
+   "song": "roop tera",
+   "same": 0.971,
+   "mismatched_max": 0.903,
+   "mismatched_mean": 0.884,
+   "margin": 0.068
+  },
+  {
+   "song": "bachna ae",
+   "same": 0.965,
+   "mismatched_max": 0.924,
+   "mismatched_mean": 0.902,
+   "margin": 0.042
+  },
+  {
+   "song": "pyar diwana",
+   "same": 0.958,
+   "mismatched_max": 0.914,
+   "mismatched_mean": 0.893,
+   "margin": 0.045
+  }
+ ]
+}

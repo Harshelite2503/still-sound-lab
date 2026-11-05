@@ -27,10 +27,10 @@ The [research page](dist/research.html#profile-evidence) lists the evidence behi
 
 Do your favourite songs share something your brain likes? [Song DNA](dist/songs.html) measures full-length songs (key, chords, tempo, tuning, loudness, stereo, repetition) with one analyser that runs in Node and in the browser. It then lets you compare any song you own, or make an original style sketch from the same building blocks.
 
-First profile: 18 full-length Kishore Kumar songs ([report](docs/song-dna.md), [evidence](docs/song-dna-research.md)).
-- **No special frequency.** Home notes fall on 9 of the 12 notes, and tuning varies by ±46 cents.
-- **Shared vocabulary.** An even split of major and minor keys. The ♭VII chord (G with A as home) swings with the home chord in both. The Andalusian walk (Am → G → F) on the home chord appears in only 3 of 18.
-- **An era's sound.** Moderate tempos around 118 BPM, and a near-mono mix.
+First profile: 20 full-length Kishore Kumar songs from official label uploads; 18 were checked against a second copy of the same recording ([report](docs/song-dna.md), [evidence](docs/song-dna-research.md)).
+- **No special frequency.** Home notes fall on 9 of the 12 notes. Even the same recording's tuning differs between copies, by up to about 50 cents.
+- **Shared vocabulary.** A 10/10 major/minor split. The ♭VII chord (G with A as home) fills more than 3% of chord time in 13 of 20 songs. The Andalusian walk (Am → G → F → E) on the home chord appears in only 1.
+- **An era's sound.** Moderate tempos around 118 BPM, and mono-like transfers.
 
 Only derived numbers are stored, never audio, melodies or chord timelines.
 

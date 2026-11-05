@@ -1,34 +1,40 @@
-# Song DNA: 18 Kishore Kumar songs, measured end to end
+# Song DNA: 20 Kishore Kumar songs, measured end to end
 
-This report covers 20 Kishore Kumar recordings: 18 full-length originals form the profile, plus a DJ remix and a short excerpt analysed separately. It sets out what the songs share, what they don't, and what we can and can't conclude. The evidence behind every interpretation is in [song-dna-research.md](song-dna-research.md): a fact-checked brief built from peer-reviewed and primary sources.
+This report covers 20 full-length Kishore Kumar recordings, taken from official label uploads. Each was checked against a second, independently obtained copy where one exists: 18 are the same recording in both sets, and two second copies are a DJ remix and a short sad-version excerpt. It sets out what they share, what they don't, and what we can and can't conclude. The evidence behind every interpretation is in [song-dna-research.md](song-dna-research.md): a fact-checked brief built from peer-reviewed and primary sources.
 
 ## Short answer
 
 **It is not a frequency.**
 - The songs' home notes fall on 9 of the 12 notes of the octave.
-- Eleven of 18 are tuned 20 or more cents away from A = 440 Hz, in both directions (−46 to +44 cents). This might come from tape or transfer speed, or from instrument tuning; that isn't verified for these recordings.
-- Only 3 sit within 10 cents of "432 Hz" tuning, about what chance would give (3.6 expected if tunings were spread evenly).
+- Tuning spreads from −41 to +44 cents. Four songs sit within 10 cents of "432 Hz" tuning, exactly what chance would give.
+- **The same recording's tuning differs between copies.** In the test–retest comparison below, only 9 of the 18 songs available as the same recording from two sources kept their tuning within 5 cents. "Mera Jeevan Kora Kagaz" runs about 52 cents higher and about 4% faster in one copy than the other. That is consistent with a playback or transfer-speed difference: a 3% speed change would give about 52 cents and 3% in tempo, and the tempo reading is rough.
 
-Many people do remember the exact pitch of recordings they know well (Levitin 1994; Frieler et al. 2013). The originals may therefore feel "right" because of memory, not because the brain is built to prefer one frequency.
+So tuning describes the copy, not the song. Many people do remember the exact pitch of recordings they know well (Levitin 1994; Frieler et al. 2013), so a familiar version may feel "right" because of memory, not because the brain prefers one frequency.
 
 **What they share is a harmonic vocabulary and an era's sound:**
-- **Moderate, steady tempos.** Median 118 BPM; the middle half run 109–125 BPM. These are not slow songs.
-- **An even split of major and minor keys.** 9 and 9, across 15 keys, with clear modes within each song. Major-key songs lean on the major third (♭3:3 ratio 0.34–0.63, one at 0.91), and minor-key songs on the minor third (1.11–2.55). That is in line with the about-half Bilawal (major) and Asavari (natural minor) split reported for Hindi film hits (Choudhury et al., ISMIR 2013).
-- **Your G chord travels furthest.** Of your four triads (Am, G, F, E), the ♭VII chord (G when A is home) is the most shared. It swings with the home chord in both minor songs (i ↔ ♭VII in 4) and major songs (I ↔ ♭VII in 4–5). The home chord ↔ V swing is the most common move overall (7 songs).
-- **The Andalusian walk is an occasional colour, not a formula.** On the song's own home chord (i → ♭VII → ♭VI, Am → G → F with A as home), it appears in 3 songs: Chalte Chalte, Dilbar Mere Kab Tak and Saagar Kinare. The full walk to V (Am → G → F → E) appears in 1, Dilbar Mere Kab Tak. The same shape (a minor chord, then two major chords each a whole step lower) appears somewhere in 10 songs, but mostly on other degrees, such as vi → V → IV in a major key. Songs that have it use it 1–3 times.
-- **Busy but simple harmony.** About 24 chord changes per minute, 8–9 main chords per song, and about 45% of ~4-second passages recur later.
-- **A near-mono sound.** Median stereo correlation is 0.98. These files also have a high peak-to-average ratio (median crest 15 dB), but that reflects whichever master or transfer was downloaded, not the era: one 320 kbps file measured −5 LUFS, against a median of −14.
+- **Moderate, steady tempos.** Median 118 BPM; the middle half run 110–125 BPM. These are not slow songs.
+- **An even split of major and minor keys.** 10 and 10, across 15 keys. 19 have a clear mode; Pyar Diwana Hota Hai sits between D minor and F major, which share the same notes. Major-key songs lean on the major third (♭3:3 ratio 0.39–0.63), and minor-key songs on the minor third (1.06–2.09). That is in line with the about-half Bilawal (major) and Asavari (natural minor) split reported for Hindi film hits (Choudhury et al., ISMIR 2013).
+- **Your G chord travels furthest.** Of your four triads (Am, G, F, E), the ♭VII chord (G when A is home) is the most shared. It appears in 16 of 20 songs and fills more than 3% of chord time in 13, and it swings with the home chord in both minor songs (i ↔ ♭VII) and major songs (I ↔ ♭VII), 4 songs each. The home chord ↔ V swing is the most common move overall (I → V → I in 8 songs).
+- **The Andalusian walk is a rare colour, not a formula.** Starting on the song's own home chord, it appears in 1 song: Dilbar Mere Kab Tak, twice, going all the way to V (Am → G → F → E with A as home). The same shape appears only on other degrees in 7 more songs, such as vi → V → IV in a major key.
+- **Busy but simple harmony.** About 24 chord changes per minute, 8–9 main chords per song, and about half of ~4-second passages recur later.
+- **A mono-like sound.** Median stereo correlation is 1.00; most of these transfers are effectively mono.
 
-No dataset here can explain why these songs became hits. All 18 are famous and there is no comparison set of non-hits. Large studies find that audio features predict popularity poorly (Pachet & Roy 2008; Interiano et al. 2018).
+No dataset here can explain why these songs became hits. All of these songs are famous and there is no comparison set of non-hits. Large studies find that audio features predict popularity poorly (Pachet & Roy 2008; Interiano et al. 2018).
 
 ## The songs
 
 | Group | Songs |
 | --- | --- |
-| Profile (18) | Aa Chal Ke Tujhe, Chalte Chalte Mere Yeh Geet, Chehra Hai Ya Chaand Khila, Choo Kar Mere Man Ko, Dil Kya Kare Jab, Dilbar Mere Kab Tak, Dream Girl, Ek Ajnabee Haseena Se, Ek Ladki Bheegi Bheegi Si, Kitne Bhi Tu Karle Sitam, Mera Jeevan Kora Kagaz, Mere Sapnon Ki Rani, O Mere Dil Ke Chain, Saagar Kinare, Yeh Shaam Mastani, Roop Tera Mastana, Bachna Ae Haseeno, Pyar Diwana Hota Hai |
-| Flagged, analysed separately | Hamen Tumse Pyar Kitna (a DJ remix, not the original recording); Yeh Dosti Hum Nahin (sad version), a 1:53 excerpt at 32 kHz / 40 kb/s |
+| Profile (20) | Hamen Tumse Pyar Kitna, Aa Chal Ke Tujhe, Chalte Chalte Mere Yeh Geet, Chehra Hai Ya Chand Khila Hai, Choo Kar Mere Man Ko, Dil Kya Kare Jab Kisi Ko, Dilbar Mere Kab Tak Mujhe, Dream Girl, Ek Ajnabee Haseena Se, Ek Ladki Bheegi Bhagi Si, Kitne Bhi Tu Karle Sitam, Mera Jeevan Kora Kagaz, Mere Sapnon Ki Rani, O Mere Dil Ke Chain, Saagar Kinare, Yeh Dosti Hum Nahin Todenge, Yeh Shaam Mastani, Roop Tera Mastana, Bachna Ae Haseeno, Pyar Diwana Hota Hai |
 
-Each profile file was decoded in full (3.6–6.7 minutes). Audio stays on the owner's machine. The repository holds only derived summary numbers in [dist/data/song-dna/kishore-kumar.json](../dist/data/song-dna/kishore-kumar.json): no audio, lyrics, melodies, chord timelines or section order. Source files are identified by a hash of their file name, not the name.
+**Sources.**
+- **The profile set.** The listed songs come from official uploads by Saregama Music, Universal Music India and the "Kishore Kumar – Topic" channel ([sources manifest](../data/song-dna/kishore-kumar-sources.json)). Each was downloaded as YouTube's best audio stream (Opus, 112–149 kb/s, 48 kHz) with no re-encoding, using [analysis/fetch_song_set.py](../analysis/fetch_song_set.py).
+- **What higher quality changes.** The analysis runs at 22.05 kHz, so codec differences above about 11 kHz don't affect it. The real gain from this set is official versions of every song, including full originals in place of the remix and the excerpt. Two official uploads (Chalte Chalte, Ek Ladki Bheegi Bhagi Si) are about 35 s shorter than the first-set files.
+- **The first set.** The owner's earlier set of MP3s (mostly 128 kb/s; two at 320 kb/s, the DJ remix at 192 kb/s and a 1:53 sad-version excerpt at 40 kb/s), serves as the independent copy for the test–retest and same-recording checks.
+
+**Each download was checked against the first-set copy.** [analysis/same_recording_check.py](../analysis/same_recording_check.py) aligns chroma with DTW and compares each pair with mismatched songs as a baseline. Two "Topic" uploads (Aa Chal Ke Tujhe and Ek Ajnabee Haseena Se) scored no higher than unrelated songs, so they are different recordings or arrangements. They were replaced with Saregama uploads that match (0.93 and 0.95).
+
+Audio stays on the owner's machine. The repository holds only derived summary numbers in [dist/data/song-dna/kishore-kumar.json](../dist/data/song-dna/kishore-kumar.json): no audio, lyrics, melodies, chord timelines or section order. Source files are identified by a hash of their file name, and the manifest lists public video IDs.
 
 ## Method
 
@@ -48,11 +54,20 @@ One analyser, [dist/song-dna.js](../dist/song-dna.js), runs both in Node (to bui
 Rebuild:
 
 ```sh
-node analysis/build_song_dna.mjs --dir ~/Desktop/songs/Kishore_Kumar --artist "Kishore Kumar" \
-  --out dist/data/song-dna/kishore-kumar.json --exclude "DJ_"
-.venv/bin/python -I analysis/song_dna_crosscheck.py --dir ~/Desktop/songs/Kishore_Kumar \
+.venv/bin/python -I analysis/fetch_song_set.py --manifest data/song-dna/kishore-kumar-sources.json \
+  --output-dir ~/Desktop/songs/Kishore_Kumar_youtube
+node analysis/build_song_dna.mjs --dir ~/Desktop/songs/Kishore_Kumar_youtube --artist "Kishore Kumar" \
+  --out dist/data/song-dna/kishore-kumar.json
+.venv/bin/python -I analysis/song_dna_crosscheck.py --dir ~/Desktop/songs/Kishore_Kumar_youtube \
   --dna dist/data/song-dna/kishore-kumar.json --out data/song-dna/kishore-kumar-crosscheck.json
 node analysis/compare_songs.mjs dist/data/song-dna/kishore-kumar.json path/to/other/songs/*.mp3
+# Test–retest against a second copy of the same songs, and a same-song check:
+node analysis/build_song_dna.mjs --dir ~/Desktop/songs/Kishore_Kumar --artist "Kishore Kumar (first set, MP3)" \
+  --out data/song-dna/kishore-kumar-first-set.json --exclude "DJ_"
+node analysis/compare_sets.mjs data/song-dna/kishore-kumar-first-set.json dist/data/song-dna/kishore-kumar.json \
+  --out data/song-dna/kishore-kumar-test-retest.json
+.venv/bin/python -I analysis/same_recording_check.py --a ~/Desktop/songs/Kishore_Kumar --b ~/Desktop/songs/Kishore_Kumar_youtube \
+  --out data/song-dna/kishore-kumar-same-recording.json
 ```
 
 Adding an artist means running the same build with another folder. The page currently loads Kishore Kumar only; the data format already supports more artists.
@@ -68,19 +83,31 @@ Adding an artist means running the same build with another folder. The page curr
 2. **A bug found by real recordings.** The first version read 9 of 18 songs as A minor. Noise floors had pushed extra energy into pitch classes covered by one more octave at the edges of the range. The fix subtracts each frame's noise floor and normalises bin weights per pitch class. A regression test now fails on the old code: a noisy F# minor song was read as E, with the raw key profile saying A minor.
 3. **Independent cross-check with librosa** (different algorithms; [data/song-dna/kishore-kumar-crosscheck.json](../data/song-dna/kishore-kumar-crosscheck.json)).
    - **Tuning:** mean absolute difference 3.4 cents.
-   - **Tempo:** agrees on 17 of 20 songs (1 octave error, 2 different).
-   - **Key:** agrees on 13 of 20. Of the 7 disagreements, 4 are a fifth apart and 2 are relative major/minor; only 1 is unrelated. Agreement between two estimators is not accuracy: neither is ground truth. State-of-the-art trained models reach about 68–80% exact accuracy on pop, with errors clustering on fifths and relative keys (Korzeniowski & Widmer 2018). Template methods on old film recordings are expected to do worse, so read key letters loosely until a musician checks a sample.
-4. **Comparisons** ([data/song-dna/kishore-kumar-comparisons.json](../data/song-dna/kishore-kumar-comparisons.json)):
+   - **Tempo:** agrees on 17 of 20 songs; 2 are half/double-time readings and 1 differs.
+   - **Key:** agrees on 15 of 20. Of the 5 disagreements, 2 are a fifth apart and 2 are relative major/minor; only 1 is unrelated. Agreement between two estimators is not accuracy: neither is ground truth. State-of-the-art trained models reach about 68–80% exact accuracy on pop, with errors clustering on fifths and relative keys (Korzeniowski & Widmer 2018). Template methods on old film recordings are expected to do worse, so read key letters loosely until a musician checks a sample.
+4. **Test–retest: the same songs from two independent sources** ([data/song-dna/kishore-kumar-test-retest.json](../data/song-dna/kishore-kumar-test-retest.json), `sameRecording` summary). This compares the official uploads with the owner's first-set MP3s, for the 18 songs that are the same recording in both.
+   - **Key:** identical for 16 of 18. One flips between A major and A minor, and one other changes.
+   - **Tempo:** identical for 16 of 18 (one half-time reading, and Mera Jeevan Kora Kagaz runs about 4% faster in one copy).
+   - **Tuning:** within 5 cents for only 9 of 18, with differences up to about 50 cents.
+   - **Loudness:** differs by up to about 10 LU.
+
+   So key, chords and tempo describe the music. Tuning and loudness describe the particular transfer and master.
+5. **Same song, checked by chroma alignment** ([data/song-dna/kishore-kumar-same-recording.json](../data/song-dna/kishore-kumar-same-recording.json)).
+   - **Method:** DTW-aligned chroma similarity for each pair, against all 19 mismatched songs.
+   - **Same recordings:** all 18 same-recording pairs score 0.93–0.97, each 0.02–0.07 above its best mismatched pair (mismatched pairs score up to 0.94, so the margin is real but modest). The DJ remix of Hamen Tumse Pyar Kitna also scores 0.96, because it reuses the original's vocal and harmony. So this check confirms the same song and arrangement, not the same master.
+   - **The exception:** Yeh Dosti scores 0.83, below its mismatched pairs, as expected: the first-set file was the sad version.
+   - **Rejected uploads:** this check is how the two different-recording "Topic" uploads were found and replaced.
+6. **Comparisons with other audio** ([data/song-dna/kishore-kumar-comparisons.json](../data/song-dna/kishore-kumar-comparisons.json)):
 
 | Audio | Closeness to the profile |
 | --- | --- |
-| Each profile song against the other 17 | median 73% (52–87%) |
-| The DJ remix (same song) | 74% |
-| The low-quality 1:53 excerpt | 62% |
-| Three ambient/binaural reference excerpts | 24–40% |
-| Two generated sketches (Am–G–F–E and I–V–vi–IV) | 43–49% |
+| Each profile song against the other 19 | median 72% (47–84%) |
+| The DJ remix of Hamen Tumse Pyar Kitna | 76%, and its nearest profile song is the original |
+| The 1:53 sad-version excerpt of Yeh Dosti | 58% |
+| Three ambient/binaural reference excerpts | 21–39% |
+| Two generated sketches (Am–G–F–E and I–V–vi–IV) | 40–49% |
 
-Closeness is half 13 measured features (tempo, loudness, brightness, chord density, repetition and more; tuning is shown but not scored, because it wraps around and reflects the recording) and half harmony (scale-note use compared with same-mode songs, and chord roles). So a song with the same chords but modern production can score lowish. A real contrast set, such as modern Hindi film songs, Western pop and other singers of the era, is the next test.
+Closeness is half 13 measured features (tempo, loudness, brightness, chord density, repetition and more; tuning is shown but not scored, because it reflects the copy) and half harmony (scale-note use compared with same-mode songs, and chord roles). So a song with the same chords but modern production can score lowish. A real contrast set, such as modern Hindi film songs, Western pop and other singers of the era, is the next test.
 
 ## Product: Song DNA page
 

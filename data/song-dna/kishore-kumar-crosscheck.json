@@ -1,53 +1,51 @@
 {
  "librosa_version": "1.0.0",
- "profileBuiltAt": "2026-11-04T20:25:50.248Z",
+ "profileBuiltAt": "2026-11-05T08:56:15.704Z",
  "summary": {
   "songs": 20,
   "tuning_mean_abs_diff_cents": 3.4,
   "key_relations_final": {
-   "same": 13,
+   "same": 15,
    "relative": 2,
    "parallel": 0,
-   "fifth": 4,
+   "fifth": 2,
    "semitone": 0,
    "other": 1
   },
   "key_relations_profile_only": {
    "same": 9,
-   "relative": 2,
-   "parallel": 1,
-   "fifth": 7,
+   "relative": 3,
+   "parallel": 0,
+   "fifth": 5,
    "semitone": 0,
-   "other": 1
+   "other": 3
   },
   "tempo_agreement": {
    "same": 17,
-   "octave": 1,
+   "octave": 2,
    "triple-ratio": 0,
-   "different": 2
+   "different": 1
   }
  },
  "songs": [
   {
    "name": "Hamen Tumse Pyar Kitna",
-   "flags": [
-    "excluded-by-pattern"
-   ],
+   "flags": [],
    "tuning_cents": {
-    "js": 17.1,
-    "librosa": 21.0
+    "js": 12.2,
+    "librosa": 18.0
    },
    "key": {
-    "js": "Am",
+    "js": "Em",
     "js_profile_only": "Em",
     "librosa": "Am",
-    "librosa_r": 0.804,
-    "librosa_margin": 0.196,
-    "relation": "same",
+    "librosa_r": 0.756,
+    "librosa_margin": 0.104,
+    "relation": "fifth",
     "relation_profile_only": "fifth"
    },
    "tempo_bpm": {
-    "js": 126.8,
+    "js": 126.3,
     "librosa": 123.0,
     "agreement": "same"
    }
@@ -56,20 +54,20 @@
    "name": "Aa Chal Ke Tujhe",
    "flags": [],
    "tuning_cents": {
-    "js": 43.5,
-    "librosa": 42.0
+    "js": 44.1,
+    "librosa": 41.0
    },
    "key": {
     "js": "D#",
-    "js_profile_only": "A#",
+    "js_profile_only": "Gm",
     "librosa": "D#",
-    "librosa_r": 0.728,
-    "librosa_margin": 0.088,
+    "librosa_r": 0.733,
+    "librosa_margin": 0.103,
     "relation": "same",
-    "relation_profile_only": "fifth"
+    "relation_profile_only": "other"
    },
    "tempo_bpm": {
-    "js": 112.3,
+    "js": 112.7,
     "librosa": 112.3,
     "agreement": "same"
    }
@@ -78,42 +76,42 @@
    "name": "Chalte Chalte Mere Yeh Geet",
    "flags": [],
    "tuning_cents": {
-    "js": 28.1,
-    "librosa": 33.0
+    "js": 6.5,
+    "librosa": 10.0
    },
    "key": {
     "js": "F#m",
     "js_profile_only": "C#m",
     "librosa": "F#m",
-    "librosa_r": 0.853,
-    "librosa_margin": 0.263,
+    "librosa_r": 0.848,
+    "librosa_margin": 0.24,
     "relation": "same",
     "relation_profile_only": "fifth"
    },
    "tempo_bpm": {
-    "js": 126.1,
+    "js": 124.0,
     "librosa": 123.0,
     "agreement": "same"
    }
   },
   {
-   "name": "Chehra hai ya chaand khila",
+   "name": "Chehra Hai Ya Chand Khila Hai",
    "flags": [],
    "tuning_cents": {
-    "js": -45.6,
-    "librosa": -40.0
+    "js": -20.3,
+    "librosa": -20.0
    },
    "key": {
-    "js": "A",
+    "js": "Am",
     "js_profile_only": "E",
-    "librosa": "E",
-    "librosa_r": 0.756,
-    "librosa_margin": 0.114,
-    "relation": "fifth",
-    "relation_profile_only": "same"
+    "librosa": "Am",
+    "librosa_r": 0.783,
+    "librosa_margin": 0.09,
+    "relation": "same",
+    "relation_profile_only": "other"
    },
    "tempo_bpm": {
-    "js": 109.0,
+    "js": 110.3,
     "librosa": 112.3,
     "agreement": "same"
    }
@@ -122,64 +120,64 @@
    "name": "Choo Kar Mere Man Ko",
    "flags": [],
    "tuning_cents": {
-    "js": -41.8,
-    "librosa": -43.0
+    "js": -41.5,
+    "librosa": -41.0
    },
    "key": {
     "js": "E",
     "js_profile_only": "E",
     "librosa": "E",
-    "librosa_r": 0.768,
-    "librosa_margin": 0.077,
+    "librosa_r": 0.849,
+    "librosa_margin": 0.028,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 140.2,
+    "js": 140.4,
     "librosa": 136.0,
     "agreement": "same"
    }
   },
   {
-   "name": "Dil Kya Kare Jab",
+   "name": "Dil Kya Kare Jab Kisi Ko",
    "flags": [],
    "tuning_cents": {
-    "js": -20.1,
-    "librosa": -23.0
+    "js": -39.1,
+    "librosa": -34.0
    },
    "key": {
     "js": "D#m",
     "js_profile_only": "D#m",
     "librosa": "G#m",
-    "librosa_r": 0.808,
-    "librosa_margin": 0.116,
+    "librosa_r": 0.697,
+    "librosa_margin": 0.039,
     "relation": "fifth",
     "relation_profile_only": "fifth"
    },
    "tempo_bpm": {
-    "js": 119.3,
+    "js": 118.4,
     "librosa": 89.1,
     "agreement": "different"
    }
   },
   {
-   "name": "Dilbar Mere Kab Tak",
+   "name": "Dilbar Mere Kab Tak Mujhe",
    "flags": [],
    "tuning_cents": {
-    "js": 14.2,
+    "js": 18.7,
     "librosa": 16.0
    },
    "key": {
     "js": "Fm",
     "js_profile_only": "Fm",
     "librosa": "Fm",
-    "librosa_r": 0.764,
-    "librosa_margin": 0.112,
+    "librosa_r": 0.766,
+    "librosa_margin": 0.106,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 91.4,
+    "js": 91.6,
     "librosa": 184.6,
     "agreement": "octave"
    }
@@ -188,20 +186,20 @@
    "name": "Dream Girl",
    "flags": [],
    "tuning_cents": {
-    "js": 26.0,
-    "librosa": 30.0
+    "js": 26.6,
+    "librosa": 36.0
    },
    "key": {
     "js": "F",
     "js_profile_only": "C",
     "librosa": "F",
-    "librosa_r": 0.883,
-    "librosa_margin": 0.13,
+    "librosa_r": 0.908,
+    "librosa_margin": 0.135,
     "relation": "same",
     "relation_profile_only": "fifth"
    },
    "tempo_bpm": {
-    "js": 126.9,
+    "js": 127.1,
     "librosa": 129.2,
     "agreement": "same"
    }
@@ -210,43 +208,43 @@
    "name": "Ek Ajnabee Haseena Se",
    "flags": [],
    "tuning_cents": {
-    "js": -20.2,
-    "librosa": -18.0
+    "js": -12.9,
+    "librosa": -14.0
    },
    "key": {
     "js": "D#m",
     "js_profile_only": "D#m",
-    "librosa": "A#m",
-    "librosa_r": 0.643,
-    "librosa_margin": 0.023,
-    "relation": "fifth",
-    "relation_profile_only": "fifth"
+    "librosa": "D#m",
+    "librosa_r": 0.677,
+    "librosa_margin": 0.002,
+    "relation": "same",
+    "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 98.2,
+    "js": 98.6,
     "librosa": 99.4,
     "agreement": "same"
    }
   },
   {
-   "name": "Ek Ladki Bheegi Bheegi Si",
+   "name": "Ek Ladki Bheegi Bhagi Si",
    "flags": [],
    "tuning_cents": {
-    "js": 13.0,
-    "librosa": 16.0
+    "js": 16.7,
+    "librosa": 13.0
    },
    "key": {
     "js": "Em",
     "js_profile_only": "Em",
     "librosa": "Em",
-    "librosa_r": 0.76,
-    "librosa_margin": 0.077,
+    "librosa_r": 0.87,
+    "librosa_margin": 0.196,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 120.0,
-    "librosa": 123.0,
+    "js": 119.7,
+    "librosa": 117.5,
     "agreement": "same"
    }
   },
@@ -254,15 +252,15 @@
    "name": "Kitne Bhi Tu Karle Sitam",
    "flags": [],
    "tuning_cents": {
-    "js": -4.8,
-    "librosa": -7.0
+    "js": -4.9,
+    "librosa": -8.0
    },
    "key": {
     "js": "D",
     "js_profile_only": "D",
     "librosa": "D",
-    "librosa_r": 0.697,
-    "librosa_margin": 0.036,
+    "librosa_r": 0.682,
+    "librosa_margin": 0.033,
     "relation": "same",
     "relation_profile_only": "same"
    },
@@ -276,20 +274,20 @@
    "name": "Mera Jeevan Kora Kagaz",
    "flags": [],
    "tuning_cents": {
-    "js": -29.5,
-    "librosa": -23.0
+    "js": 22.3,
+    "librosa": 27.0
    },
    "key": {
     "js": "G",
     "js_profile_only": "G",
     "librosa": "G",
-    "librosa_r": 0.729,
-    "librosa_margin": 0.214,
+    "librosa_r": 0.761,
+    "librosa_margin": 0.16,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 93.3,
+    "js": 97.1,
     "librosa": 95.7,
     "agreement": "same"
    }
@@ -298,17 +296,17 @@
    "name": "Mere Sapnon Ki Rani",
    "flags": [],
    "tuning_cents": {
-    "js": 25.3,
-    "librosa": 27.0
+    "js": 17.8,
+    "librosa": 19.0
    },
    "key": {
     "js": "A#m",
-    "js_profile_only": "F",
+    "js_profile_only": "Fm",
     "librosa": "A#m",
-    "librosa_r": 0.839,
-    "librosa_margin": 0.164,
+    "librosa_r": 0.826,
+    "librosa_margin": 0.16,
     "relation": "same",
-    "relation_profile_only": "other"
+    "relation_profile_only": "fifth"
    },
    "tempo_bpm": {
     "js": 118.3,
@@ -320,39 +318,39 @@
    "name": "O Mere Dil Ke Chain",
    "flags": [],
    "tuning_cents": {
-    "js": -23.9,
-    "librosa": -20.0
+    "js": -9.5,
+    "librosa": -5.0
    },
    "key": {
     "js": "Am",
-    "js_profile_only": "A",
+    "js_profile_only": "E",
     "librosa": "Am",
-    "librosa_r": 0.67,
-    "librosa_margin": 0.084,
+    "librosa_r": 0.701,
+    "librosa_margin": 0.048,
     "relation": "same",
-    "relation_profile_only": "parallel"
+    "relation_profile_only": "other"
    },
    "tempo_bpm": {
-    "js": 108.7,
+    "js": 55.6,
     "librosa": 112.3,
-    "agreement": "same"
+    "agreement": "octave"
    }
   },
   {
    "name": "Saagar Kinare",
    "flags": [],
    "tuning_cents": {
-    "js": -0.9,
-    "librosa": 5.0
+    "js": -0.5,
+    "librosa": 4.0
    },
    "key": {
-    "js": "Am",
-    "js_profile_only": "C",
+    "js": "F",
+    "js_profile_only": "F",
     "librosa": "F",
-    "librosa_r": 0.836,
-    "librosa_margin": 0.035,
-    "relation": "other",
-    "relation_profile_only": "fifth"
+    "librosa_r": 0.849,
+    "librosa_margin": 0.058,
+    "relation": "same",
+    "relation_profile_only": "same"
    },
    "tempo_bpm": {
     "js": 118.2,
@@ -361,64 +359,62 @@
    }
   },
   {
-   "name": "Yeh Dosti Hum Nahin (sad version)",
-   "flags": [
-    "short-or-partial"
-   ],
+   "name": "Yeh Dosti Hum Nahin Todenge",
+   "flags": [],
    "tuning_cents": {
-    "js": -37.7,
-    "librosa": -33.0
+    "js": 42.2,
+    "librosa": 46.0
    },
    "key": {
-    "js": "F",
-    "js_profile_only": "F",
-    "librosa": "F",
-    "librosa_r": 0.857,
-    "librosa_margin": 0.032,
+    "js": "G",
+    "js_profile_only": "G",
+    "librosa": "G",
+    "librosa_r": 0.698,
+    "librosa_margin": 0.098,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 107.4,
-    "librosa": 66.3,
-    "agreement": "different"
+    "js": 112.1,
+    "librosa": 112.3,
+    "agreement": "same"
    }
   },
   {
    "name": "Yeh Shaam Mastani",
    "flags": [],
    "tuning_cents": {
-    "js": -4.8,
-    "librosa": -4.0
+    "js": -34.1,
+    "librosa": -33.0
    },
    "key": {
     "js": "F#",
     "js_profile_only": "C#",
-    "librosa": "C#",
-    "librosa_r": 0.788,
-    "librosa_margin": 0.004,
-    "relation": "fifth",
-    "relation_profile_only": "same"
+    "librosa": "A#m",
+    "librosa_r": 0.756,
+    "librosa_margin": 0.036,
+    "relation": "other",
+    "relation_profile_only": "relative"
    },
    "tempo_bpm": {
-    "js": 116.8,
-    "librosa": 117.5,
+    "js": 115.4,
+    "librosa": 112.3,
     "agreement": "same"
    }
   },
   {
-   "name": "Roop Tera Mastana Aradhana",
+   "name": "Roop Tera Mastana",
    "flags": [],
    "tuning_cents": {
-    "js": -29.3,
-    "librosa": -31.0
+    "js": -29.9,
+    "librosa": -29.0
    },
    "key": {
     "js": "C#",
     "js_profile_only": "C#",
     "librosa": "A#m",
-    "librosa_r": 0.396,
-    "librosa_margin": 0.204,
+    "librosa_r": 0.4,
+    "librosa_margin": 0.221,
     "relation": "relative",
     "relation_profile_only": "relative"
    },
@@ -429,23 +425,23 @@
    }
   },
   {
-   "name": "Bachna Ae Haseeno Lo Main Aa",
+   "name": "Bachna Ae Haseeno",
    "flags": [],
    "tuning_cents": {
-    "js": -3.5,
-    "librosa": 5.0
+    "js": -3.2,
+    "librosa": 4.0
    },
    "key": {
     "js": "A",
     "js_profile_only": "A",
     "librosa": "A",
-    "librosa_r": 0.803,
-    "librosa_margin": 0.245,
+    "librosa_r": 0.772,
+    "librosa_margin": 0.219,
     "relation": "same",
     "relation_profile_only": "same"
    },
    "tempo_bpm": {
-    "js": 132.1,
+    "js": 131.2,
     "librosa": 136.0,
     "agreement": "same"
    }
@@ -454,20 +450,20 @@
    "name": "Pyar Diwana Hota Hai",
    "flags": [],
    "tuning_cents": {
-    "js": -18.1,
-    "librosa": -18.0
+    "js": -9.0,
+    "librosa": -10.0
    },
    "key": {
     "js": "Dm",
     "js_profile_only": "Dm",
     "librosa": "F",
-    "librosa_r": 0.687,
-    "librosa_margin": 0.157,
+    "librosa_r": 0.545,
+    "librosa_margin": 0.029,
     "relation": "relative",
     "relation_profile_only": "relative"
    },
    "tempo_bpm": {
-    "js": 123.6,
+    "js": 124.0,
     "librosa": 123.0,
     "agreement": "same"
    }

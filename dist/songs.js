@@ -196,7 +196,7 @@ function renderCompare(song, cmp) {
   $('compare-score').textContent = pct(cmp.overall);
   const loo = data.leaveOneOut.map(x => x.overall).sort((a, b) => a - b);
   const typical = [loo[Math.floor(loo.length * .25)], loo[Math.floor(loo.length * .75)]];
-  $('compare-context').textContent = `For reference: each of the ${core.length} profile songs, compared with the other ${core.length - 1}, scores ${pct(typical[0])}–${pct(typical[1])} (middle half); three calm ambient recordings scored 24–40%. Half the score is 13 measured features (tempo, loudness, brightness, chord density, repetition…), so a song with the same chords in a modern mix can score low.`;
+  $('compare-context').textContent = `For reference: each of the ${core.length} profile songs, compared with the other ${core.length - 1}, scores ${pct(typical[0])}–${pct(typical[1])} (middle half); three calm ambient recordings scored 21–39%. Half the score is 13 measured features (tempo, loudness, brightness, chord density, repetition…), so a song with the same chords in a modern mix can score low.`;
   $('compare-title').textContent = song.name;
   renderTimeline(song);
   const facts = $('compare-facts'); facts.replaceChildren();

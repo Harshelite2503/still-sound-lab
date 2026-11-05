@@ -51,12 +51,12 @@ function decode(file) {
 /** "Artist_-_Ek_Ladki_Bheegi_Bheegi_Si_(site.tag).mp3" → "Ek Ladki Bheegi Bheegi Si" */
 function titleFrom(file) {
   return path.basename(file, path.extname(file))
-    .replace(/\(mp3\.pm\)/gi, '').replace(/\b\d{3}\s*kbps\b/gi, '')
+    .replace(/\([a-z0-9-]+\.[a-z]{2,}\)/gi, '').replace(/\b\d{3}\s*kbps\b/gi, '')
     .replace(/^(kishore[_ ]kumar|dj[_ -]+[a-z]+)[_ -]+-?[_ ]*/i, '').replace(/^-[_ ]*/, '')
-    .replace(/\([^)]*\)/g, '').replace(/_/g, ' ').replace(/\s+/g, ' ').trim().replace(/ Sad$/i, ' (sad version)');
+    .replace(/^\d{2} (?=\S)/, '').replace(/\([^)]*\)/g, '').replace(/_/g, ' ').replace(/\s+/g, ' ').trim().replace(/ Sad$/i, ' (sad version)');
 }
 
-const files = fs.readdirSync(dir).filter(f => /\.(mp3|m4a|wav|flac|ogg|aac)$/i.test(f)).sort();
+const files = fs.readdirSync(dir).filter(f => /\.(mp3|m4a|wav|flac|ogg|opus|webm|aac)$/i.test(f)).sort();
 const exclude = args.exclude ? new RegExp(args.exclude, 'i') : null;
 const songs = [];
 for (const file of files) {

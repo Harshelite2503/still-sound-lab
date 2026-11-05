@@ -1,0 +1,138 @@
+{
+ "schema": "still-song-sources-v1",
+ "artist": "Kishore Kumar",
+ "selected": "2026-11-05",
+ "rule": "Official label or YouTube Music 'Topic' uploads only (Saregama Music, Universal Music India, Kishore Kumar - Topic); duration close to the known recording; no karaoke, revival re-recordings, fan remasters, remixes or film-scene videos. Audio is downloaded for local analysis only and never committed. Each download is checked against an independently obtained copy with DTW chroma alignment (analysis/same_recording_check.py); two 'Topic' uploads failed and were replaced.",
+ "songs": [
+  {
+   "title": "Hamen Tumse Pyar Kitna",
+   "film": "Kudrat (1981)",
+   "id": "lNW8qsoeWs4",
+   "channel": "Saregama Music",
+   "note": "Original Kishore Kumar recording; replaces the DJ remix in the first set"
+  },
+  {
+   "title": "Aa Chal Ke Tujhe",
+   "film": "Door Gagan Ki Chhaon Mein (1964)",
+   "id": "Y_8VmzWOsgs",
+   "channel": "Saregama Music",
+   "note": "The 'Kishore Kumar - Topic' upload (8MwHRkFnHcE) is a different recording: chroma alignment 0.87 with the first-set file vs 0.93 for this one"
+  },
+  {
+   "title": "Chalte Chalte Mere Yeh Geet",
+   "film": "Chalte Chalte (1976)",
+   "id": "o-1VCNhJTaA",
+   "channel": "Universal Music India",
+   "note": "Official full audio, about 35 s shorter than the first-set file"
+  },
+  {
+   "title": "Chehra Hai Ya Chand Khila Hai",
+   "film": "Saagar (1985)",
+   "id": "HpLIPK48a-c",
+   "channel": "Universal Music India",
+   "note": "Listed as 'Saagar Jaisi Aankhon Wali', the same song"
+  },
+  {
+   "title": "Choo Kar Mere Man Ko",
+   "film": "Yaarana (1981)",
+   "id": "4w9FBmbCfws",
+   "channel": "Universal Music India"
+  },
+  {
+   "title": "Dil Kya Kare Jab Kisi Ko",
+   "film": "Julie (1975)",
+   "id": "iaaBqrQrtUM",
+   "channel": "Universal Music India"
+  },
+  {
+   "title": "Dilbar Mere Kab Tak Mujhe",
+   "film": "Satte Pe Satta (1982)",
+   "id": "aMo2UZYgl34",
+   "channel": "Kishore Kumar - Topic"
+  },
+  {
+   "title": "Dream Girl",
+   "film": "Dream Girl (1977)",
+   "id": "yQdVnvqI37M",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "Ek Ajnabee Haseena Se",
+   "film": "Ajnabee (1974)",
+   "id": "0HqHruwzusM",
+   "channel": "Saregama Music",
+   "note": "The 'Kishore Kumar - Topic' upload (b6WLXTkei_k) is a different recording: chroma alignment 0.90 with the first-set file vs 0.95 for this one"
+  },
+  {
+   "title": "Ek Ladki Bheegi Bhagi Si",
+   "film": "Chalti Ka Naam Gaadi (1958)",
+   "id": "N8iDfHba2DY",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "Kitne Bhi Tu Karle Sitam",
+   "film": "Sanam Teri Kasam (1982)",
+   "id": "Xk-6OO9NYxI",
+   "channel": "Universal Music India",
+   "note": "Male (Kishore Kumar) version"
+  },
+  {
+   "title": "Mera Jeevan Kora Kagaz",
+   "film": "Kora Kagaz (1974)",
+   "id": "RJAdgU8ddpE",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "Mere Sapnon Ki Rani",
+   "film": "Aradhana (1969)",
+   "id": "Nw7lcCNSYy8",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "O Mere Dil Ke Chain",
+   "film": "Mere Jeevan Saathi (1972)",
+   "id": "5eyflIV8pzM",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "Saagar Kinare",
+   "film": "Saagar (1985)",
+   "id": "I7KZxQDgFOM",
+   "channel": "Universal Music India",
+   "note": "Duet with Lata Mangeshkar"
+  },
+  {
+   "title": "Yeh Dosti Hum Nahin Todenge",
+   "film": "Sholay (1975)",
+   "id": "ZCkJosuRsms",
+   "channel": "Universal Music India",
+   "note": "Full duet with Manna Dey; replaces the 1:53 sad-version excerpt in the first set"
+  },
+  {
+   "title": "Yeh Shaam Mastani",
+   "film": "Kati Patang (1970)",
+   "id": "tNrpDUn9vxI",
+   "channel": "Kishore Kumar - Topic"
+  },
+  {
+   "title": "Roop Tera Mastana",
+   "film": "Aradhana (1969)",
+   "id": "TgMqJQ_6ToI",
+   "channel": "Saregama Music",
+   "note": "Labelled 'Original LP Recording'"
+  },
+  {
+   "title": "Bachna Ae Haseeno",
+   "film": "Hum Kisise Kum Nahin (1977)",
+   "id": "zgcW44Id114",
+   "channel": "Saregama Music"
+  },
+  {
+   "title": "Pyar Diwana Hota Hai",
+   "film": "Kati Patang (1970)",
+   "id": "jsy5f55MAP0",
+   "channel": "Saregama Music",
+   "note": "Labelled 'Original LP Recording'"
+  }
+ ]
+}

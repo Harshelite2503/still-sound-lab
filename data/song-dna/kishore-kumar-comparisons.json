@@ -1,72 +1,72 @@
 [
  {
-  "file": "DJ - LODHI - Hamen Tumse Pyar Kitna .mp3",
-  "overall": 0.7444314212698642,
-  "features": 0.6171934479874412,
-  "scale": 0.9234801092005323,
-  "harmony": 0.8198586799040422,
-  "key": "Am",
-  "bpm": 126.84466117908711,
-  "closest": "Ek Ladki Bheegi Bheegi Si"
- },
- {
-  "file": "Kishore Kumar - Yeh Dosti Hum Nahin Sad .mp3",
-  "overall": 0.6187199968054936,
-  "features": 0.3919832859262248,
-  "scale": 0.9217348768881888,
-  "harmony": 0.7691785384813362,
-  "key": "F",
-  "bpm": 107.42163185708611,
-  "closest": "Aa Chal Ke Tujhe"
- },
- {
   "file": "6Kj-ye-aYBA-60-90.m4a",
-  "overall": 0.3820865030310501,
-  "features": 0.18984371498257774,
-  "scale": 0.4528694320242843,
-  "harmony": 0.6957891501347604,
+  "overall": 0.38884515970991684,
+  "features": 0.15912785397366813,
+  "scale": 0.4950264776884669,
+  "harmony": 0.7420984532038641,
   "key": "C",
   "bpm": 127.07135001049046,
-  "closest": "Pyar Diwana Hota Hai"
+  "closest": "Mera Jeevan Kora Kagaz"
  },
  {
   "file": "Ttaf1IYt6F4-60-90.m4a",
-  "overall": 0.3995298924632557,
-  "features": 0.1193582851262616,
-  "scale": 0.8820214051641952,
-  "harmony": 0.4773815944363044,
+  "overall": 0.3638276697996389,
+  "features": 0.08412108880209919,
+  "scale": 0.8451795259524777,
+  "harmony": 0.4418889756418793,
   "key": "Dm",
   "bpm": 68.33253634202639,
   "closest": "Mera Jeevan Kora Kagaz"
  },
  {
   "file": "fyGmSFUPo8o-1968-1998.m4a",
-  "overall": 0.2367498041400449,
-  "features": 0.07518266541133695,
-  "scale": 0.3192522913012013,
-  "harmony": 0.4773815944363044,
+  "overall": 0.21317043646937855,
+  "features": 0.04955984305552269,
+  "scale": 0.3116730841245895,
+  "harmony": 0.4418889756418793,
   "key": "Fm",
   "bpm": 81.28900977835282,
   "closest": "Mera Jeevan Kora Kagaz"
  },
  {
   "file": "sketch-andalusian.wav",
-  "overall": 0.4277952998616936,
-  "features": 0.17287251600558312,
-  "scale": 0.8230659725665215,
-  "harmony": 0.5423701948690867,
+  "overall": 0.40191178683939893,
+  "features": 0.14295184140694742,
+  "scale": 0.8268115939782898,
+  "harmony": 0.49493187056541116,
   "key": "Am",
   "bpm": 107.78975916091714,
   "closest": "Mera Jeevan Kora Kagaz"
  },
  {
   "file": "sketch-pop.wav",
-  "overall": 0.4925604210918158,
-  "features": 0.1726378586552666,
-  "scale": 0.8736227665793621,
-  "harmony": 0.7513432004773679,
+  "overall": 0.486801444821749,
+  "features": 0.1318380437138567,
+  "scale": 0.8934045902627031,
+  "harmony": 0.7901251015965793,
   "key": "D",
   "bpm": 118.79283763393401,
   "closest": "Mera Jeevan Kora Kagaz"
+ },
+ {
+  "file": "DJ - LODHI - Hamen Tumse Pyar Kitna .mp3",
+  "overall": 0.7633677846654795,
+  "features": 0.6638159933769628,
+  "scale": 0.9391806579252061,
+  "harmony": 0.7866584939827863,
+  "key": "Am",
+  "bpm": 126.84466117908711,
+  "closest": "Hamen Tumse Pyar Kitna"
+ },
+ {
+  "file": "Kishore Kumar - Yeh Dosti Hum Nahin Sad .mp3",
+  "overall": 0.5811357805374995,
+  "features": 0.2884622886297686,
+  "scale": 0.9439778880673233,
+  "harmony": 0.8036406568231376,
+  "key": "F",
+  "bpm": 107.42163185708611,
+  "closest": "Aa Chal Ke Tujhe"
  }
 ]
