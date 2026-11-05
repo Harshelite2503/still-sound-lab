@@ -8,6 +8,8 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 **No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
+**Music popularity research:** [Read the evidence review and analysis of 19,281 charting songs](docs/music-popularity-research.md). Includes tempo and audio-feature graphs, historical prediction checks, source references, and code to reproduce the results. Popularity, viral spread, and personal comfort are measured separately.
+
 ## Your comfort profile (new)
 
 People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:

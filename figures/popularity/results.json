@@ -1,0 +1,470 @@
+{
+  "seed": 20261105,
+  "scope": "Top-10 strength among songs already charted, not virality or population hit probability",
+  "target": "rank_score >= 91 within 52 weeks of first observed chart week",
+  "cohort": {
+    "audio_rows": 20405,
+    "song_metadata_rows": 20405,
+    "raw_chart_rows": 250392,
+    "conflicting_song_week_duplicate_rows": 13,
+    "conflicting_song_week_ids_excluded": 1,
+    "chart_rows": 250335,
+    "chart_songs": 20401,
+    "chart_first_date": "1964-01-04",
+    "chart_last_date": "2018-12-29",
+    "merged_rows": 20401,
+    "left_censored_or_missing_start": 98,
+    "incomplete_52_week_followup": 360,
+    "censoring_union_excluded": 457,
+    "ambiguous_billboard_identity_ids_excluded": 4,
+    "explicit_wrong_version_markers_excluded": 658,
+    "invalid_tempo_excluded": 1,
+    "artist_name_disagreement_flagged": 1050,
+    "analysis_songs": 19281,
+    "top10_songs": 3699,
+    "top10_fraction": 0.1918468959078886,
+    "first_debut_year": 1964,
+    "last_debut_year": 2017,
+    "artist_components": 4525,
+    "largest_artist_component_songs": 3496,
+    "spotify_snapshot_zeros": 746,
+    "missing_model_values": 0
+  },
+  "correlations": [
+    {
+      "feature": "tempo",
+      "chart_spearman": -0.001637669210628374,
+      "chart_year_adjusted_rank_correlation": -2.418968994897009e-05,
+      "spotify_snapshot_spearman": 0.005082225600785735
+    },
+    {
+      "feature": "danceability",
+      "chart_spearman": 0.06380756929765141,
+      "chart_year_adjusted_rank_correlation": 0.04883475732642517,
+      "spotify_snapshot_spearman": 0.09403365416282879
+    },
+    {
+      "feature": "energy",
+      "chart_spearman": -0.02715222207600148,
+      "chart_year_adjusted_rank_correlation": -0.0395667430902393,
+      "spotify_snapshot_spearman": 0.1789341714091887
+    },
+    {
+      "feature": "loudness",
+      "chart_spearman": -0.02051987624295379,
+      "chart_year_adjusted_rank_correlation": 0.01312780614108615,
+      "spotify_snapshot_spearman": 0.323802749463103
+    },
+    {
+      "feature": "acousticness",
+      "chart_spearman": -0.004665658917489054,
+      "chart_year_adjusted_rank_correlation": 0.010192417375120666,
+      "spotify_snapshot_spearman": -0.24611015154772917
+    },
+    {
+      "feature": "valence",
+      "chart_spearman": 0.02272751090431297,
+      "chart_year_adjusted_rank_correlation": 0.001707185139543624,
+      "spotify_snapshot_spearman": -0.13762633793811269
+    },
+    {
+      "feature": "speechiness",
+      "chart_spearman": -0.03739584221550025,
+      "chart_year_adjusted_rank_correlation": -0.02401979039337209,
+      "spotify_snapshot_spearman": 0.09837606726370031
+    },
+    {
+      "feature": "instrumentalness",
+      "chart_spearman": -0.011635300569395976,
+      "chart_year_adjusted_rank_correlation": -0.0433524219488524,
+      "spotify_snapshot_spearman": -0.11230587762669862
+    },
+    {
+      "feature": "liveness",
+      "chart_spearman": -0.044347953548634834,
+      "chart_year_adjusted_rank_correlation": -0.033744491274090814,
+      "spotify_snapshot_spearman": -0.04826952303501194
+    },
+    {
+      "feature": "duration_sec",
+      "chart_spearman": 0.08498379300144003,
+      "chart_year_adjusted_rank_correlation": 0.044196557876839085,
+      "spotify_snapshot_spearman": 0.2368728473929963
+    }
+  ],
+  "splits": [
+    {
+      "split": "Random songs",
+      "train_n": 15424,
+      "test_n": 3857,
+      "train_top10_fraction": 0.1918438796680498,
+      "test_top10_fraction": 0.19185895773917552,
+      "credited_artist_overlap": 1647,
+      "train_components": 4033,
+      "test_components": 1744
+    },
+    {
+      "split": "Unseen artist groups",
+      "train_n": 15923,
+      "test_n": 3358,
+      "train_top10_fraction": 0.198455065000314,
+      "test_top10_fraction": 0.16051220964860036,
+      "credited_artist_overlap": 0,
+      "train_components": 3620,
+      "test_components": 905
+    },
+    {
+      "split": "Later years (2010+)",
+      "train_n": 16768,
+      "test_n": 2134,
+      "train_top10_fraction": 0.20252862595419846,
+      "test_top10_fraction": 0.11855670103092783,
+      "credited_artist_overlap": 208,
+      "train_components": 4072,
+      "test_components": 532
+    }
+  ],
+  "models": [
+    {
+      "split": "Random songs",
+      "model": "Prevalence baseline",
+      "auc": 0.5,
+      "average_precision": 0.19185895773917552,
+      "brier": 0.15504909830176103,
+      "auc_cluster_ci95": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "split": "Random songs",
+      "model": "Tempo only",
+      "auc": 0.5164886975522202,
+      "average_precision": 0.20094525625897774,
+      "brier": 0.15526736894722806,
+      "auc_cluster_ci95": [
+        0.4962634121067498,
+        0.540218420879369
+      ]
+    },
+    {
+      "split": "Random songs",
+      "model": "Audio",
+      "auc": 0.5968993054652343,
+      "average_precision": 0.24971144501575815,
+      "brier": 0.15238490397832322,
+      "auc_cluster_ci95": [
+        0.5714424484795261,
+        0.6148181575301819
+      ]
+    },
+    {
+      "split": "Random songs",
+      "model": "Artist history + year",
+      "auc": 0.6355385462459573,
+      "average_precision": 0.2835712275406416,
+      "brier": 0.1495420965789592,
+      "auc_cluster_ci95": [
+        0.6064385971535763,
+        0.6542172076271192
+      ]
+    },
+    {
+      "split": "Random songs",
+      "model": "Audio + history + year",
+      "auc": 0.6546620971308171,
+      "average_precision": 0.30383085767065254,
+      "brier": 0.14758960342538177,
+      "auc_cluster_ci95": [
+        0.6259924109772076,
+        0.6739477848489266
+      ]
+    },
+    {
+      "split": "Random songs",
+      "model": "Audio (logistic)",
+      "auc": 0.592848719749586,
+      "average_precision": 0.25114887106378414,
+      "brier": 0.15259244654182433,
+      "auc_cluster_ci95": [
+        0.568485231270837,
+        0.6133561982457069
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Prevalence baseline",
+      "auc": 0.5,
+      "average_precision": 0.16051220964860036,
+      "brier": 0.13618770047456516,
+      "auc_cluster_ci95": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Tempo only",
+      "auc": 0.5151907839791082,
+      "average_precision": 0.16620516660551563,
+      "brier": 0.13658875500242468,
+      "auc_cluster_ci95": [
+        0.4879988174939959,
+        0.5464006333447179
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Audio",
+      "auc": 0.5703495561854656,
+      "average_precision": 0.19837218700474346,
+      "brier": 0.13547576207024312,
+      "auc_cluster_ci95": [
+        0.5384923107991355,
+        0.5995598069580057
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Artist history + year",
+      "auc": 0.6585619316577611,
+      "average_precision": 0.2538086656532721,
+      "brier": 0.13014802316087085,
+      "auc_cluster_ci95": [
+        0.6221150106988302,
+        0.7006739577332052
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Audio + history + year",
+      "auc": 0.6624416479481599,
+      "average_precision": 0.2662457479132278,
+      "brier": 0.12960788049473743,
+      "auc_cluster_ci95": [
+        0.6279277537029252,
+        0.6976739291350751
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "model": "Audio (logistic)",
+      "auc": 0.5633315146820443,
+      "average_precision": 0.19549458716961177,
+      "brier": 0.13554894032991152,
+      "auc_cluster_ci95": [
+        0.5331328561480353,
+        0.5904737918403369
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Prevalence baseline",
+      "auc": 0.5,
+      "average_precision": 0.11855670103092783,
+      "brier": 0.11155229384691044,
+      "auc_cluster_ci95": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Tempo only",
+      "auc": 0.5379402512749715,
+      "average_precision": 0.12924334351907327,
+      "brier": 0.11131066519130836,
+      "auc_cluster_ci95": [
+        0.5099148571504286,
+        0.5829916090406927
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Audio",
+      "auc": 0.5701008419959949,
+      "average_precision": 0.1442242819228804,
+      "brier": 0.11239617441376387,
+      "auc_cluster_ci95": [
+        0.5307658479693027,
+        0.6239270801013489
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Artist history + year",
+      "auc": 0.6612368746756099,
+      "average_precision": 0.2083684579452766,
+      "brier": 0.10076028794075999,
+      "auc_cluster_ci95": [
+        0.5946768017400973,
+        0.7087234535434003
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Audio + history + year",
+      "auc": 0.6922207302902124,
+      "average_precision": 0.22022716808553372,
+      "brier": 0.10158244382054653,
+      "auc_cluster_ci95": [
+        0.6451306135497008,
+        0.7388320145271566
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "model": "Audio (logistic)",
+      "auc": 0.5917044377622701,
+      "average_precision": 0.15643867081030569,
+      "brier": 0.11185936654952121,
+      "auc_cluster_ci95": [
+        0.552400458264251,
+        0.6363787055970694
+      ]
+    }
+  ],
+  "permuted_training_label_future_auc": [
+    0.4560752101838018,
+    0.4672352818805908,
+    0.5188950037088169,
+    0.5137247238349797,
+    0.4182179607600868,
+    0.5238803680659309,
+    0.5114910284454699,
+    0.5336998022664758,
+    0.4703010970953555,
+    0.5186995816286435
+  ],
+  "source_file_sha256": {
+    "musicoset_songfeatures/acoustic_features.csv": "6016430295a09fe32781c72a7bc17f08453859a1d7a5a9c9794618d9ed3322be",
+    "musicoset_metadata/songs.csv": "d69bbe45c3f210b14d330c275af162adab28e6df1c85617370dccc73dbc0241f",
+    "musicoset_popularity/song_chart.csv": "5853656f4c7fb823202f364c84bad2f0b6997414bbd0ed645bc3b018ada6164d"
+  },
+  "artist_match_sensitivity": {
+    "definition": "At least one credited Spotify artist name matches the Billboard artist string after normalization; alias mismatches can be valid originals",
+    "n": 18231,
+    "train_n": 15831,
+    "test_n": 2047,
+    "test_top10_fraction": 0.11431362970200293,
+    "models": [
+      {
+        "model": "Tempo only",
+        "auc": 0.5367820724963582,
+        "average_precision": 0.12393542514952793,
+        "brier": 0.10881169673654814
+      },
+      {
+        "model": "Audio",
+        "auc": 0.563054813054813,
+        "average_precision": 0.14657528724965374,
+        "brier": 0.10998509202724974
+      },
+      {
+        "model": "Audio + history + year",
+        "auc": 0.6852008994866138,
+        "average_precision": 0.20173831521030322,
+        "brier": 0.10002758516629173
+      }
+    ],
+    "correlations": [
+      {
+        "feature": "tempo",
+        "chart_spearman": 0.00048441165690685565,
+        "chart_year_adjusted_rank_correlation": 0.0015834038445209592,
+        "spotify_snapshot_spearman": 0.01198384582190324
+      },
+      {
+        "feature": "danceability",
+        "chart_spearman": 0.06376495615746985,
+        "chart_year_adjusted_rank_correlation": 0.047315775419011066,
+        "spotify_snapshot_spearman": 0.09539690693684763
+      },
+      {
+        "feature": "energy",
+        "chart_spearman": -0.022324144964462733,
+        "chart_year_adjusted_rank_correlation": -0.036275854186711746,
+        "spotify_snapshot_spearman": 0.16775929958696842
+      },
+      {
+        "feature": "loudness",
+        "chart_spearman": -0.015415890655116008,
+        "chart_year_adjusted_rank_correlation": 0.0188831642661229,
+        "spotify_snapshot_spearman": 0.32653152036375854
+      },
+      {
+        "feature": "acousticness",
+        "chart_spearman": -0.008014147795772144,
+        "chart_year_adjusted_rank_correlation": 0.009252851992650626,
+        "spotify_snapshot_spearman": -0.24489378403667567
+      },
+      {
+        "feature": "valence",
+        "chart_spearman": 0.025195311501027527,
+        "chart_year_adjusted_rank_correlation": 0.004052225555719468,
+        "spotify_snapshot_spearman": -0.15501303537710556
+      },
+      {
+        "feature": "speechiness",
+        "chart_spearman": -0.03858445030565058,
+        "chart_year_adjusted_rank_correlation": -0.025354348023603496,
+        "spotify_snapshot_spearman": 0.09441394328516622
+      },
+      {
+        "feature": "instrumentalness",
+        "chart_spearman": -0.01591978002652459,
+        "chart_year_adjusted_rank_correlation": -0.04890331391506039,
+        "spotify_snapshot_spearman": -0.09798810870052221
+      },
+      {
+        "feature": "liveness",
+        "chart_spearman": -0.046511039438034876,
+        "chart_year_adjusted_rank_correlation": -0.03550699242538524,
+        "spotify_snapshot_spearman": -0.04999541273344137
+      },
+      {
+        "feature": "duration_sec",
+        "chart_spearman": 0.08856539014562445,
+        "chart_year_adjusted_rank_correlation": 0.04478439597413477,
+        "spotify_snapshot_spearman": 0.228974117649707
+      }
+    ]
+  },
+  "paired_auc_differences": [
+    {
+      "split": "Random songs",
+      "comparison": "Combined minus artist history + year",
+      "auc_difference": 0.01912355088485984,
+      "paired_cluster_ci95": [
+        0.004709313888911992,
+        0.030751143136595865
+      ]
+    },
+    {
+      "split": "Unseen artist groups",
+      "comparison": "Combined minus artist history + year",
+      "auc_difference": 0.003879716290398738,
+      "paired_cluster_ci95": [
+        -0.013499800686749563,
+        0.01964425444699719
+      ]
+    },
+    {
+      "split": "Later years (2010+)",
+      "comparison": "Combined minus artist history + year",
+      "auc_difference": 0.030983855614602485,
+      "paired_cluster_ci95": [
+        0.0018759464952975563,
+        0.08319749161031362
+      ]
+    }
+  ],
+  "versions": {
+    "python": "3.13.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2"
+  }
+}

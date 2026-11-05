@@ -16,3 +16,6 @@ work/
 metadata.jsonl
 *check-ins*.json
 *personal-sessions*.json
+figures/popularity/predictions.json
+data/music-popularity-raw/
+.venv-popularity/

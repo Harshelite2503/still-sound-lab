@@ -1,0 +1,46 @@
+{
+  "dataset": "MusicOSet original 2019 release",
+  "authors": [
+    "Mariana O. Silva",
+    "Lais M. Rocha",
+    "Mirella M. Moro"
+  ],
+  "retrieved_date": "2026-11-05",
+  "homepage": "https://marianaossilva.github.io/DSW2019/",
+  "repository": "https://github.com/marianaossilva/DSW2019",
+  "paper": "https://marianaossilva.github.io/DSW2019/assets/data/paper.pdf",
+  "license_statement": "The dataset is meant for research purposes. No standard permissive commercial license was identified.",
+  "separator": "tab",
+  "archives": [
+    {
+      "filename": "musicoset_metadata.zip",
+      "source_url": "https://marianaossilva.github.io/DSW2019/assets/data/musicoset_metadata.zip",
+      "bytes": 6017643,
+      "sha256": "ce9983432f67fdd8689a0b2cc8d998ac7e1efb55c70e8210e3e17c6b16818ec4"
+    },
+    {
+      "filename": "musicoset_popularity.zip",
+      "source_url": "https://marianaossilva.github.io/DSW2019/assets/data/musicoset_popularity.zip",
+      "bytes": 12427519,
+      "sha256": "cceca52d49b32942890bb12908ed5c482da412ad68bf8b29de9f6be275a99777"
+    },
+    {
+      "filename": "musicoset_songfeatures.zip",
+      "source_url": "https://marianaossilva.github.io/DSW2019/assets/data/musicoset_songfeatures.zip",
+      "bytes": 54542494,
+      "sha256": "b14d75255f82541bd2cfab56d34b937e616770269fff1455abc0afe1ccc146dd"
+    }
+  ],
+  "extraction": "Metadata and popularity tables plus acoustic_features.csv and README files. lyrics.csv was not extracted or used.",
+  "observed_counts": {
+    "song_metadata": 20405,
+    "audio_features": 20405,
+    "weekly_song_chart_rows": 250392,
+    "unique_chart_songs": 20402,
+    "chart_first_date": "1964-01-04",
+    "chart_last_date": "2018-12-29",
+    "spotify_popularity_min": 0,
+    "spotify_popularity_max": 92,
+    "spotify_popularity_zeros": 1267
+  }
+}
