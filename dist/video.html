@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172720">
+<meta name="description" content="Still for Video softens harsh sound in a browser tab or video file while keeping speech clear, tuned on your own content.">
+<title>Still for Video</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="video.css">
+</head>
+<body>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="video.html" aria-current="page">For video</a><a href="profile.html">Comfort profile</a><a href="index.html">Sound lab</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<main>
+<section class="intro">
+  <div>
+    <p class="eyebrow">STILL FOR VIDEO · PROTOTYPE</p>
+    <h1>Keep the words.<br><em>Soften the rest.</em></h1>
+    <p class="lede">When a lecture, tutorial or podcast sounds harsh, turning it down makes the words hard to follow.<br class="desktop"> Still softens the harsh parts of one tab or video file and keeps speech clear. Press <strong>Hear original</strong> (or <kbd>B</kbd> on this page) to compare at any time.</p>
+  </div>
+</section>
+
+<div class="care-note"><span aria-hidden="true">◉</span><p>Start with your device volume low. Still never makes anything louder than the original, and it never adds sound of its own. It is a comfort tool. It does not diagnose, treat or prevent any condition. Seek care for a new, sudden or different headache.</p></div>
+
+<div id="status" class="status" role="status" aria-live="polite">Choose a tab or a video file to start. Nothing plays until you do.</div>
+<p class="micro" id="storage-note" hidden>This browser is blocking site storage, so your settings and record won’t be kept after you close the page.</p>
+
+<section class="panel" id="start-panel" aria-labelledby="start-heading">
+  <div class="step"><span>01</span> CHOOSE WHAT TO LISTEN TO</div>
+  <h2 id="start-heading">What do you want to watch?</h2>
+  <div class="start-grid">
+    <div class="start-choice">
+      <button id="tab-start" class="primary big" type="button">Filter a browser tab</button>
+      <p class="micro" id="tab-note">Pick the tab with your video and keep <strong>“Also share tab audio”</strong> ticked. Works in Chrome and Edge on a computer. Copy-protected videos (most films and paid streaming) may come through silent.</p>
+    </div>
+    <div class="start-choice">
+      <button id="file-button" class="primary big" type="button">Open a video or audio file</button>
+      <input id="file-input" class="sr-only" type="file" accept="video/*,audio/*" tabindex="-1" aria-hidden="true">
+      <p class="micro">The file stays on this device. Picture and sound play here, together.</p>
+    </div>
+  </div>
+  <div class="two-fields context-fields">
+    <label>What are you watching? (optional)<select id="content"><option value="unspecified">Prefer not to say</option><option value="lecture">A lecture or talk</option><option value="tutorial">A tutorial or course</option><option value="podcast">A podcast or interview</option><option value="news">News</option><option value="other">Something else</option></select></label>
+    <label>How are you listening?<select id="device"><option value="unsure">Not sure</option><option value="wired">Wired headphones or earbuds</option><option value="bluetooth">Bluetooth headphones or earbuds</option><option value="speakers">Speakers</option></select></label>
+  </div>
+  <div id="player-wrap" class="player-wrap" hidden><video id="video" controls playsinline></video></div>
+</section>
+
+<section class="panel live-panel" id="live-panel" aria-labelledby="live-heading" hidden>
+  <div class="heading-row"><h2 id="live-heading">Filtering <span id="live-source">this video</span></h2><button id="stop" class="outline" type="button">■ Stop</button></div>
+  <div class="live-grid">
+    <div>
+      <p class="eyebrow">HOW SENSITIVE TO SOUND DO YOU FEEL?</p>
+      <div class="segmented" role="radiogroup" aria-label="Current state">
+        <label><input type="radio" name="state" value="calm" checked><span>Calm</span></label>
+        <label><input type="radio" name="state" value="sensitive"><span>Sensitive</span></label>
+        <label><input type="radio" name="state" value="very"><span>Very sensitive</span></label>
+        <label><input type="radio" name="state" value="recovering"><span>Recovering</span></label>
+      </div>
+      <p class="micro" id="state-note">Calm: your setting as tuned.</p>
+      <label class="range-label">Volume <output id="volume-value">0 dB</output><input id="volume" type="range" min="-30" max="0" step="1" value="0" aria-label="Volume of the filtered sound"></label>
+      <div class="setting-switch" role="radiogroup" aria-label="Which setting to use">
+        <label><input type="radio" name="setting" value="personal" checked><span>My setting</span></label>
+        <label><input type="radio" name="setting" value="preset"><span>Gentle preset</span></label>
+      </div>
+    </div>
+    <div class="live-side">
+      <button id="bypass" class="bypass" type="button" aria-pressed="false"><strong>Hear original</strong><small>Or press B</small></button>
+      <label class="consent shortcut"><input type="checkbox" id="shortcut" checked> The B key switches to the original while this page is in front</label>
+      <ul class="setting-list" id="setting-list"></ul>
+      <p class="micro" id="latency-note"></p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="tune-panel" aria-labelledby="tune-heading" hidden>
+  <div class="step"><span>02</span> FINE-TUNE ON THIS AUDIO · OPTIONAL · ABOUT A MINUTE</div>
+  <div class="heading-row"><h2 id="tune-heading">Which is gentler, with the words still clear?</h2><span class="pill" id="tune-pill">ROUND 0</span></div>
+  <p class="muted">Let a few seconds of speech play, then pause and press the button below. Still plays the same moment two ways, at the same loudness. Choose the one that feels better while the words stay easy to follow. Five to eight rounds is usually enough. Stop whenever you like.</p>
+  <div class="button-row tune-start"><button id="clip-take" class="primary" type="button">Use the last 6 seconds</button><button id="tune-done" class="outline" type="button" disabled>Use my setting and go back</button></div>
+  <div id="tuner" class="tuner" hidden>
+    <div class="ab-cards"><div class="ab-card" id="card-a"><span>A</span><small id="desc-a">—</small></div><div class="ab-card" id="card-b"><span>B</span><small id="desc-b">—</small></div></div>
+    <div class="button-row"><button id="ab-play" class="primary" type="button">▶ Play A then B</button><button id="ab-a" class="outline" type="button">Replay A</button><button id="ab-b" class="outline" type="button">Replay B</button><button id="ab-stop" class="outline" type="button">■ Stop</button></div>
+    <div class="choice-row" role="group" aria-label="Which felt better?"><button class="choice" type="button" data-choice="a" disabled>A felt better</button><button class="choice" type="button" data-choice="b" disabled>B felt better</button><button class="choice" type="button" data-choice="same" disabled>About the same</button></div>
+    <div class="unclear-row" role="group" aria-label="Clarity problems"><button class="text-button choice" type="button" data-choice="unclear-a" disabled>A made the words hard to follow</button><button class="text-button choice" type="button" data-choice="unclear-b" disabled>B made the words hard to follow</button></div>
+    <div class="confidence"><span>How settled your setting is</span><div class="meter"><i id="settle-bar"></i></div><small id="settle-note">Learning starts after your first choice.</small></div>
+  </div>
+</section>
+
+<section class="panel" id="check-panel" aria-labelledby="check-heading" hidden>
+  <div class="step"><span>03</span> CHECK: DOES IT HELP? · ABOUT TWO MINUTES</div>
+  <h2 id="check-heading">Three versions, same loudness, random order</h2>
+  <p class="muted">One version is simply the original turned down, one is the gentle preset and one is your setting. All three play at the same loudness, so only the shaping differs. You won’t be told which is which, here or later. Use a moment you didn’t tune on: listen a little further into your video first. Play each version, then rate it.</p>
+  <div class="button-row tune-start"><button id="check-start" class="primary" type="button">Prepare the check from the last 6 seconds</button></div>
+  <div id="check-versions" class="check-versions" hidden></div>
+  <div class="button-row check-actions"><button id="check-save" class="primary" type="button" hidden disabled>Save ratings</button><button id="check-cancel" class="outline" type="button" hidden>Cancel check</button></div>
+</section>
+
+<section class="panel feedback-card" id="feedback-panel" aria-labelledby="feedback-heading" hidden>
+  <p class="eyebrow">AFTER LISTENING · OPTIONAL</p>
+  <h2 id="feedback-heading" tabindex="-1">How was that?</h2>
+  <fieldset><legend>Was it comfortable to listen to?</legend><div class="feelings" data-q="comfortable"><label><input type="radio" name="fb-comfortable" value="yes">Yes</label><label><input type="radio" name="fb-comfortable" value="somewhat">Somewhat</label><label><input type="radio" name="fb-comfortable" value="no">No</label></div></fieldset>
+  <fieldset><legend>Could you follow the words?</legend><div class="feelings" data-q="clear"><label><input type="radio" name="fb-clear" value="yes">Yes</label><label><input type="radio" name="fb-clear" value="somewhat">Somewhat</label><label><input type="radio" name="fb-clear" value="no">No</label></div></fieldset>
+  <fieldset><legend>Did Still make anything worse?</legend><div class="feelings" data-q="worse"><label><input type="radio" name="fb-worse" value="no">No</label><label><input type="radio" name="fb-worse" value="yes">Yes</label></div></fieldset>
+  <div class="button-row"><button id="fb-save" class="primary" type="button">Save</button><button id="fb-skip" class="outline" type="button">Skip</button></div>
+</section>
+
+<section class="panel" id="data-panel" aria-labelledby="data-heading">
+  <div class="heading-row"><h2 id="data-heading">Your listening record</h2><span class="pill">STORED ON THIS DEVICE</span></div>
+  <div id="summary" class="summary"></div>
+  <details class="study"><summary>Taking part in the Still for Video study?</summary>
+    <p>If you joined the study, you can export your record and send the file to the study team yourself. The export holds your study code, your settings, your comparison choices and ratings, the date and time of each session, round and check, how long you listened, how often and how long you switched to the original, the delay your browser reported, and the context you chose to give (what you watched, how you listened, how sensitive you felt). It holds no audio, no tab titles or web addresses, no file names and no free text.</p>
+    <label class="code-label">Study code (use the one the study team gave you, or keep this one)<input type="text" id="participant" maxlength="12" autocomplete="off" spellcheck="false"></label>
+    <label class="consent"><input type="checkbox" id="consent"> I have joined the study and agree to export this record for it.</label>
+    <div class="button-row"><button id="export" class="outline" type="button" disabled>Export study record ↓</button><button id="clear" class="text-button" type="button">Clear everything</button></div>
+  </details>
+</section>
+
+<section class="how panel">
+  <p class="eyebrow">HOW THIS WORKS, AND ITS LIMITS</p>
+  <div class="how-grid">
+    <div><h3>Never louder than the original</h3><p class="micro">Five gentle filters soften rumble, edge, s-sounds and the top end, and light compression holds back sudden loud moments. Every band is a cut, quiet sound is never raised above its original level, and a fixed limiter caps the output.</p></div>
+    <div><h3>A guard for speech</h3><p class="micro">Most of what makes speech understandable sits between about 1 and 4 kHz. Still never cuts that band more than 6 dB below the 500 Hz band. If a setting would, the shaping is scaled back.</p></div>
+    <div><h3>Tuned on your content</h3><p class="micro">Comparisons use the moment you just heard, loudness-matched, because what feels calm in a test tone may not carry over to a voice. A preference model picks each next pair.</p></div>
+    <div><h3>What it cannot tell you</h3><p class="micro">Feeling more comfortable is not proof of any health effect. Tab filtering adds a small delay, so lips can look slightly out of step, more so over Bluetooth. Silence is always fine.</p></div>
+  </div>
+</section>
+
+<footer><div><a class="brand" href="index.html">≋ still</a><p>A comfort prototype. No accounts. Nothing leaves this browser unless you export it.</p></div><div><a href="research.html">Read the evidence ↗</a><p>Not a medical device.</p></div></footer>
+</main>
+<script type="module" src="video.js"></script>
+</body>
+</html>
