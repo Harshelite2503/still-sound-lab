@@ -8,7 +8,16 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 **No paid API or API key is needed.** Audio processing and sound generation run in your browser.
 
-## Your comfort profile (new)
+## Quiet room and episode journal (new)
+
+The first product test. [docs/launch-plan.md](docs/launch-plan.md) explains why migraine comes first, the market, the pilot and the marketing plan.
+
+- **[Quiet room](dist/quiet.html)** opens dark, for the moment a headache starts. You choose a dark screen with no sound, your comfort sound from the profile, or a softer and darker version. Each starts quietly at the during-an-attack level and fades in. "This is making it worse" stops the sound and lowers that state's level for next time. Nothing asks you questions while it plays.
+- **[Journal](dist/journal.html)** groups sessions into headache episodes (within 12 hours of each other). It shows what you reached for and how it felt afterwards, and lets you note headaches where you didn't open Still.
+- **Pilot summary.** One button downloads a privacy-minimal file with day numbers only, no dates or notes. `python3 analysis/pilot_summary.py <folder>` turns participants' files into the go/no-go readout: did 40% or more use Still during two or more separate headaches within 60 days?
+- **Install it.** Use "Add to Home Screen". The app opens straight into the quiet room and its core pages work offline.
+
+## Your comfort profile
 
 People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
 
