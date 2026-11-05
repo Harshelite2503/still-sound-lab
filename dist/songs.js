@@ -1,5 +1,5 @@
 import { analyzeSong, compareToProfile, songDistance, PROFILE_FEATURES, PITCH_NAMES } from './song-dna.js';
-import { renderSketch, chordName, FEELS, TEXTURES } from './style-sketch.js';
+import { renderSketch, chordName, normaliseShape, FEELS, TEXTURES } from './style-sketch.js';
 import { createSafetyChain, MODES } from './comfort-engine.js';
 import { readComfortProfile, outputLevelDb, fadeInSeconds, modeOf, PROFILE_KEY } from './comfort-state.js';
 import { encodeWav } from './audio-engine.js';
@@ -11,7 +11,7 @@ const fmt = (v, d = 0) => (Number.isFinite(v) ? v.toFixed(d) : '—');
 const DEGREE_LABELS = ['1', '♭2', '2', '♭3', '3', '4', '♯4', '5', '♭6', '6', '♭7', '7'];
 const ns = 'http://www.w3.org/2000/svg';
 const RATINGS_KEY = 'still-sketch-ratings-v1';
-let data, core, profile;
+let data, core, profile, zone = null;
 
 function svgEl(svg, name, attrs, text) { const e = document.createElementNS(ns, name); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text !== undefined) e.textContent = text; svg.append(e); return e; }
 function bars(container, rows, { max } = {}) {
@@ -260,7 +260,7 @@ function setSketchLevel() {
 }
 function sketchParams() {
   const prog = JSON.parse($('sk-progression').value);
-  return { tonic: Number($('sk-key').value), progression: prog, bpm: Number($('sk-bpm').value), feel: $('sk-feel').value, texture: $('sk-texture').value, percussion: $('sk-perc').value, melody: $('sk-melody').checked, seed: sketchSeed, cycles: 3 };
+  return { tonic: Number($('sk-key').value), progression: prog, bpm: Number($('sk-bpm').value), feel: $('sk-feel').value, texture: $('sk-texture').value, percussion: $('sk-perc').value, melody: $('sk-melody').checked, matched: !!(zone && $('sk-match').checked), seed: sketchSeed, cycles: 3, v: 2 };
 }
 async function playSketch() {
   stopSketch(.3);
@@ -270,7 +270,8 @@ async function playSketch() {
   if (token !== playToken) return;
   const c = audio(); await c.resume();
   if (token !== playToken) return;
-  const s = renderSketch({ ...params, rate: c.sampleRate });
+  // Render at 22.05 kHz (all musical content is below 11 kHz) so spectral matching stays fast; the browser resamples.
+  const s = renderSketch({ ...params, rate: 22050, targetShape: params.matched ? zoneTarget() : null });
   if (token !== playToken) return;
   const buffer = c.createBuffer(2, s.left.length, s.rate);
   buffer.getChannelData(0).set(s.left); buffer.getChannelData(1).set(s.right);
@@ -287,6 +288,7 @@ async function playSketch() {
   $('sk-download').disabled = false;
   const mode = MODES[modeOf(comfort())];
   $('sk-chords').textContent = `Playing ${s.seconds.toFixed(0)} s: ${s.chords.slice(0, params.progression.length).map(x => x.name).join(' → ')} (repeats), ${params.bpm} BPM, ${FEELS[params.feel].label}, at ${level > 0 ? '+' : ''}${level.toFixed(0)} dB relative to your quiet reference with a ${fade.toFixed(1)} s fade-in${mode.offsetDb ? ` (${mode.label.toLowerCase()})` : ''}.`;
+  if (s.match) $('sk-chords').textContent += ` Matched to your songs' sound: on average ${s.match.meanAbsErrorAfterDb.toFixed(1)} dB from their median spectrum (was ${s.match.meanAbsErrorBeforeDb.toFixed(1)} dB)${s.match.coverage < .95 ? `, across the ${Math.round(s.match.coverage * 100)}% of bands this texture fills` : ''}. Plain and matched versions play at the same loudness.`;
   say('Your sketch fades in. Rate it below to teach Still your taste.');
 }
 function readRatings() {
@@ -299,6 +301,111 @@ function renderTaste() {
   for (const r of ratings) { const k = r.params.progression.join(' → '); const v = by.get(k) || { n: 0, sum: 0 }; v.n++; v.sum += r.rating; by.set(k, v); }
   const best = [...by.entries()].sort((a, b) => b[1].sum / b[1].n - a[1].sum / a[1].n)[0];
   $('sk-taste').textContent = `${ratings.length} rating${ratings.length === 1 ? '' : 's'} saved on this device. Highest so far: ${best[0].replace(/b/g, '♭')} (${best[1].n} rating${best[1].n === 1 ? '' : 's'}). With more ratings, Still can learn which progressions, tempos and textures calm you.`;
+  renderZoneTest(ratings);
+}
+const current = ratings => ratings.filter(r => r.params.v === 2 && typeof r.params.matched === 'boolean');
+function renderZoneTest(ratings = readRatings()) {
+  if (!zone) return;
+  // Paired comparisons only: the same sketch (same seed and settings) heard both ways. Anything else
+  // mixes in other differences (progression, texture, tempo) and cannot say what matching did.
+  const same = (a, b) => ['progression', 'tonic', 'bpm', 'feel', 'texture', 'percussion', 'melody', 'seed'].every(k => JSON.stringify(a[k]) === JSON.stringify(b[k]));
+  const rs = current(ratings), diffs = [];
+  for (const m of rs.filter(r => r.params.matched)) {
+    const p = [...rs].reverse().find(r => !r.params.matched && same(r.params, m.params));
+    if (p) diffs.push(m.rating - p.rating);
+  }
+  const mean = diffs.reduce((a, b) => a + b, 0) / Math.max(1, diffs.length);
+  $('zone-test').textContent = !diffs.length
+    ? 'No paired comparison yet. Play a sketch, rate it, press “Hear the other version”, and rate that too: same notes, only the zone matching changes.'
+    : `${diffs.length} paired comparison${diffs.length === 1 ? '' : 's'}: matched minus plain averages ${mean > 0 ? '+' : ''}${mean.toFixed(2)} (scale −2 to +2). ${diffs.length < 6 ? 'Too few to tell yet.' : Math.abs(mean) < .3 ? 'No clear preference so far.' : mean > 0 ? 'So far you tend to rate the matched version higher.' : 'So far you tend to rate the plain version higher.'} You know which version is playing, so this is a personal check, not a blinded test.`;
+}
+
+/* ---------------- Your sound zone ---------------- */
+function zoneTarget() { return zone.spectral.bandsHz.map((hz, i) => ({ hz, db: zone.spectral.medianDb[i] })); }
+function renderZone() {
+  if (!zone) { $('zone').hidden = true; return; }
+  const sp = zone.spectral, rg = zone.register;
+  $('zone-count').textContent = String(zone.songs);
+  const fmtHz = v => (v >= 1000 ? `${(v / 1000).toFixed(v >= 10000 ? 0 : 1)} kHz` : `${Math.round(v)} Hz`);
+  $('zone-summary').textContent = `Across your ${zone.songs} songs, relative to each song’s own 200 Hz–4 kHz level, the energy is spread fairly evenly from about ${fmtHz(sp.coreHz[0])} to ${fmtHz(sp.coreHz[1])} (the core zone, within 6 dB of the peak), then falls away: highs are soft and the deepest bass is rolled off. Half of the tonal energy (voice and instruments, including overtones) lies between ${rg.middle50.notes[0]} and ${rg.middle50.notes[1]} (${Math.round(rg.middle50.hz[0])}–${Math.round(rg.middle50.hz[1])} Hz), the range of the singing voice and the instruments around it. The middle half of the songs’ tempos run ${zone.region.tempoBpm[0].toFixed(0)}–${zone.region.tempoBpm[1].toFixed(0)} BPM. This is a region, not a single frequency, and it describes the songs, not your brain.`;
+  // Spectral chart.
+  const svg = $('zone-spectrum'); svg.replaceChildren();
+  const W = 520, H = 240, L = 40, R = 12, T = 12, B = 30, lo = 55, hi = 9000, dbLo = -40, dbHi = 12;
+  const x = hz => L + Math.log(hz / lo) / Math.log(hi / lo) * (W - L - R);
+  const y = db => T + (dbHi - Math.max(dbLo, Math.min(dbHi, db))) / (dbHi - dbLo) * (H - T - B);
+  for (const hz of [63, 125, 250, 500, 1000, 2000, 4000, 8000]) { svgEl(svg, 'line', { x1: x(hz), x2: x(hz), y1: T, y2: H - B, class: 'grid' }); svgEl(svg, 'text', { x: x(hz), y: H - 12, 'text-anchor': 'middle' }, hz >= 1000 ? `${hz / 1000}k` : String(hz)); }
+  for (const db of [0, -12, -24, -36]) svgEl(svg, 'text', { x: L - 6, y: y(db) + 3, 'text-anchor': 'end' }, `${db}`);
+  svgEl(svg, 'rect', { x: x(sp.coreHz[0] / 2 ** (1 / 6)), y: T, width: x(sp.coreHz[1] * 2 ** (1 / 6)) - x(sp.coreHz[0] / 2 ** (1 / 6)), height: H - T - B, class: 'core' });
+  const pts = arr => sp.bandsHz.map((hz, i) => `${x(hz).toFixed(1)},${y(arr[i]).toFixed(1)}`);
+  svgEl(svg, 'polygon', { points: [...pts(sp.q3Db), ...pts(sp.q1Db).reverse()].join(' '), class: 'iqr' });
+  for (const s of core) {
+    const b = normaliseShape(s.spectrum.bandsDb);
+    svgEl(svg, 'polyline', { points: b.map(v => `${x(v.hz).toFixed(1)},${y(v.db).toFixed(1)}`).join(' '), class: 'song' });
+  }
+  svgEl(svg, 'polyline', { points: pts(sp.medianDb).join(' '), class: 'median' });
+  svgEl(svg, 'text', { x: x(Math.sqrt(sp.coreHz[0] * sp.coreHz[1])), y: T + 12, 'text-anchor': 'middle', class: 'label' }, `core zone ${fmtHz(sp.coreHz[0])}–${fmtHz(sp.coreHz[1])}`);
+  svg.setAttribute('aria-label', `Median spectrum of your songs: ${sp.bandsHz.map((hz, i) => `${fmtHz(hz)} ${sp.medianDb[i].toFixed(0)} dB`).join(', ')}`);
+  // Register chart.
+  const rsv = $('zone-register'); rsv.replaceChildren();
+  const f = rg.semitoneHz, share = rg.medianShare, top = Math.max(...share);
+  const rx = hz => L + Math.log(hz / f[0]) / Math.log(f[f.length - 1] / f[0]) * (W - L - R);
+  const ry = v => T + (1 - v / top) * (H - T - B);
+  for (const [hz, name] of [[65.4, 'C2'], [130.8, 'C3'], [261.6, 'C4'], [523.3, 'C5'], [1046.5, 'C6'], [2093, 'C7'], [3951, 'B7']]) { svgEl(rsv, 'line', { x1: rx(hz), x2: rx(hz), y1: T, y2: H - B, class: 'grid' }); svgEl(rsv, 'text', { x: rx(hz), y: H - 12, 'text-anchor': 'middle' }, name); }
+  svgEl(rsv, 'rect', { x: rx(rg.middle50.hz[0]), y: T, width: rx(rg.middle50.hz[1]) - rx(rg.middle50.hz[0]), height: H - T - B, class: 'core' });
+  svgEl(rsv, 'polygon', { points: [`${rx(f[0])},${ry(0)}`, ...f.map((hz, i) => `${rx(hz).toFixed(1)},${ry(share[i]).toFixed(1)}`), `${rx(f[f.length - 1])},${ry(0)}`].join(' '), class: 'iqr' });
+  svgEl(rsv, 'polyline', { points: f.map((hz, i) => `${rx(hz).toFixed(1)},${ry(share[i]).toFixed(1)}`).join(' '), class: 'median' });
+  svgEl(rsv, 'text', { x: (rx(rg.middle50.hz[0]) + rx(rg.middle50.hz[1])) / 2, y: T + 12, 'text-anchor': 'middle', class: 'label' }, `${rg.middle50.notes[0]}–${rg.middle50.notes[1]}`);
+  rsv.setAttribute('aria-label', `Middle half of the tonal energy lies between ${rg.middle50.notes[0]} and ${rg.middle50.notes[1]}, ${Math.round(rg.middle50.hz[0])} to ${Math.round(rg.middle50.hz[1])} hertz`);
+  // Heart of the zone.
+  const heart = [...data.leaveOneOut].sort((a, b) => b.overall - a.overall).slice(0, 5);
+  $('zone-heart').replaceChildren(...heart.map(h => { const li = document.createElement('li'); li.append(h.name + ' '); const sm = document.createElement('small'); sm.textContent = `${pct(h.overall)} closeness to the rest`; li.append(sm); return li; }));
+  $('zone-others').textContent = String(zone.songs - 1);
+  renderZoneTest();
+}
+
+/* ---------------- Make one for me (factorised Thompson sampling over your ratings) ---------------- */
+function gammaSample(k) {
+  if (k < 1) return gammaSample(k + 1) * Math.random() ** (1 / k);
+  const d = k - 1 / 3, c = 1 / Math.sqrt(9 * d);
+  for (;;) {
+    let x, v;
+    do { const u1 = Math.random() || 1e-12, u2 = Math.random(); x = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2); v = 1 + c * x; } while (v <= 0);
+    v = v ** 3; const u = Math.random();
+    if (u < 1 - .0331 * x ** 4 || Math.log(u) < .5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+  }
+}
+const betaSample = (a, b) => { const x = gammaSample(a); return x / (x + gammaSample(b)); };
+function pickFor(factor, options, ratings, prior = {}) {
+  let best = null, bestScore = -1;
+  for (const o of options) {
+    let good = prior[o] || 0, bad = 0;
+    for (const r of ratings) if (String(factor(r.params)) === String(o)) { if (r.rating > 0) good++; else if (r.rating < 0) bad++; else { good += .5; bad += .5; } }
+    const score = betaSample(1 + good, 1 + bad);
+    if (score > bestScore) { bestScore = score; best = o; }
+  }
+  return best;
+}
+function makeForMe() {
+  const ratings = readRatings();
+  const progs = [...$('sk-progression').options].map(o => o.value);
+  // A small head start for your own favourite triads, so the first pick reflects what you told us.
+  const prog = pickFor(p => JSON.stringify(p.progression), progs, ratings, { [progs[0]]: 1 });
+  const texture = pickFor(p => p.texture, Object.keys(TEXTURES), ratings);
+  const feel = pickFor(p => p.feel, Object.keys(FEELS), ratings);
+  const matched = zone ? pickFor(p => p.matched, [true, false], current(ratings), { true: .5 }) : false;
+  // Key: one of the home notes your songs use most; tempo: inside your songs' middle-half range.
+  const tonicCounts = new Map(); core.forEach(s => tonicCounts.set(s.key.tonic, (tonicCounts.get(s.key.tonic) || 0) + 1));
+  const tonics = [...tonicCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(t => t[0]);
+  const tonic = tonics[Math.floor(Math.random() * tonics.length)];
+  const [t0, t1] = zone ? zone.region.tempoBpm : [profile.features.tempo.q1, profile.features.tempo.q3];
+  const bpm = Math.round(t0 + Math.random() * (t1 - t0));
+  $('sk-progression').value = prog; $('sk-texture').value = texture; $('sk-feel').value = feel; $('sk-key').value = String(tonic);
+  $('sk-bpm').value = String(bpm); $('sk-bpm-value').textContent = `${bpm} BPM`; $('sk-match').checked = matched;
+  sketchSeed++;
+  const romans = JSON.parse(prog);
+  const progLabel = `${romans.join(' → ').replace(/b/g, '♭')} (${romans.map(r => chordName(tonic, r)).join(' → ')})`;
+  $('sk-why').textContent = `Picked for you: ${progLabel}; ${TEXTURES[texture].toLowerCase()}; ${FEELS[feel].label}; ${PITCH_NAMES[tonic]} as home (one of your songs’ most common home notes); ${bpm} BPM (inside your songs’ range); ${matched ? 'matched to your songs’ sound' : 'plain sound, to keep testing the zone'}. ${ratings.length ? `Based on your ${ratings.length} rating${ratings.length === 1 ? '' : 's'}, and still trying new combinations now and then.` : 'No ratings yet, so this is a first guess. Rate it to steer the next one.'}`;
+  playSketch();
 }
 function setupSketch() {
   const presets = [
@@ -317,7 +424,11 @@ function setupSketch() {
   const renderLevelLabel = () => { const v = Number($('sk-level').value); $('sk-level-value').textContent = v ? `${v} dB` : 'Your level'; };
   renderLevelLabel();
   $('sk-level').addEventListener('input', () => { renderLevelLabel(); setSketchLevel(); });
-  $('sk-play').addEventListener('click', playSketch);
+  $('sk-play').addEventListener('click', () => { $('sk-why').textContent = ''; playSketch(); });
+  $('sk-forme').addEventListener('click', makeForMe);
+  // Same sketch (same seed and settings), other version: the only fair way to judge the zone matching.
+  $('sk-flip').addEventListener('click', () => { if (!lastSketch || !zone) { say('Play a sketch first.'); return; } $('sk-match').checked = !lastSketch.params.matched; $('sk-why').textContent = `Same sketch, now ${$('sk-match').checked ? 'matched to your songs’ sound' : 'plain'}. Rate this one too.`; playSketch(); });
+  if (!zone) { $('sk-match').checked = false; $('sk-match').disabled = true; $('sk-flip').disabled = true; }
   $('sk-new').addEventListener('click', () => { sketchSeed++; playSketch(); });
   $('sk-stop').addEventListener('click', () => { stopSketch(); say('Fading out.'); });
   $('sk-download').addEventListener('click', () => {
@@ -347,9 +458,10 @@ window.addEventListener('pagehide', () => stopSketch(.05));
 
 try {
   data = await (await fetch('data/song-dna/kishore-kumar.json')).json();
+  try { zone = await (await fetch('data/song-dna/kishore-kumar-zone.json')).json(); if (zone?.schema !== 'still-song-zone-v1') zone = null; } catch { zone = null; }
   core = data.songs.filter(s => !s.flags.length); profile = data.profile;
   $('song-count').textContent = String(core.length);
   $('artist-eyebrow').textContent = data.artist.toUpperCase();
-  renderFrequencies(); renderKeys(); renderRomans(); renderDegrees(); renderAndalusian(); renderFeatureTable(); renderSongTable(); setupSketch();
+  renderFrequencies(); renderKeys(); renderRomans(); renderDegrees(); renderAndalusian(); renderFeatureTable(); renderSongTable(); setupSketch(); renderZone();
   say(`Profile of ${core.length} full-length ${data.artist} songs. Choose a song below to compare, or make a sketch.`);
 } catch (err) { say('Could not load the Song DNA profile: ' + err.message); }

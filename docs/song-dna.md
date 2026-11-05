@@ -109,13 +109,41 @@ Adding an artist means running the same build with another folder. The page curr
 
 Closeness is half 13 measured features (tempo, loudness, brightness, chord density, repetition and more; tuning is shown but not scored, because it reflects the copy) and half harmony (scale-note use compared with same-mode songs, and chord roles). So a song with the same chords but modern production can score lowish. A real contrast set, such as modern Hindi film songs, Western pop and other singers of the era, is the next test.
 
+## Your sound zone
+
+Taken one at a time, the songs differ in key, tempo and tuning. Taken together, they share a clear *region*: not a single frequency, but a consistent way of spreading sound.
+
+![Spectral zone](../figures/song-dna/spectral-zone.png)
+
+- **Where the energy sits.** Relative to each song's own 200 Hz–4 kHz power average, the median spectrum stays within 6 dB of its peak from **159 Hz to 2.5 kHz** (the core zone). It then falls about 15 dB by 8 kHz, and the deepest bass below about 125 Hz is rolled off. The 20 songs hug this shape tightly; the ambient references don't.
+- **Where the notes sit.** Half of the tonal energy lies between **F♯3 and A4 (183–444 Hz)**, and 80% between A♯2 and E5. That's voice and instruments with percussion removed, and it includes overtones, so it's broader than the sung notes alone. That is the range of the singing voice and the instruments around it.
+- **Pace, brightness and harmony.** Taking each measure on its own, the middle half of the songs run 110–125 BPM, with a spectral centroid of 700–940 Hz, 27–47% minor chords and 23–26 chord changes a minute. Fewer songs fall inside all of these ranges at once.
+
+![Register zone](../figures/song-dna/register-zone.png)
+![Feature region](../figures/song-dna/feature-region.png)
+
+**What this does and doesn't mean.** The zone describes your 20 songs. It is not a measurement of your brain, and it isn't a frequency to listen to. Whether it is what calms *you* is a hypothesis, and the page lets you check it. Play a sketch, then hear the same sketch again matched to the zone or plain, at equal loudness, and rate both. Still keeps score of these pairs. You know which version is playing, so it is a personal check, not a blinded test.
+
+**Per-song plots.** Each song has a full-length spectrogram, a chromagram, its spectrum against the set, and its pitch range. These are drawn by [analysis/plot_song_dna.py](../analysis/plot_song_dna.py) into the owner's song folder (`plots/`), never into the repository. Detailed time–frequency pictures of whole songs come close to a transcription, so only the aggregate charts above are shared.
+
+```sh
+.venv/bin/python -I analysis/plot_song_dna.py --dir ~/Desktop/songs/Kishore_Kumar_youtube \
+  --dna dist/data/song-dna/kishore-kumar.json --contrast data/song-dna/kishore-kumar-comparisons.json \
+  --private-out ~/Desktop/songs/Kishore_Kumar_youtube/plots --figures figures/song-dna \
+  --zone-out dist/data/song-dna/kishore-kumar-zone.json   # add --skip-private to redraw only the shared charts
+```
+
 ## Product: Song DNA page
 
-[dist/songs.html](../dist/songs.html) does four things:
+[dist/songs.html](../dist/songs.html) does five things:
 1. Shows the profile: home notes and tuning, key and mode, chord roles, scale-note use, your Andalusian triads and typical ranges.
-2. Compares any song you own, in the browser and without uploading it, and shows its chord timeline (never stored).
-3. Makes **style sketches**. These are original instrumentals in Keherwa or Dadra feel with pad, santoor-like or harmonium-like textures. They use only common building blocks: key, tempo and generic chord progressions. The melody is a seeded random walk over chord tones; no song's melody, lyrics or recording is used.
-4. Learns taste from your ratings ("Calming / Neutral / Not for me"), stored on this device.
+2. Shows **your sound zone** (the spectral and pitch-range charts above) and the five songs with the highest leave-one-out closeness to the rest, the most typical of the set. Currently these are Mere Sapnon Ki Rani, Dream Girl, Yeh Shaam Mastani, Dilbar Mere Kab Tak and Mera Jeevan Kora Kagaz; the last two are tied.
+3. Compares any song you own, in the browser and without uploading it, and shows its chord timeline (never stored).
+4. Makes **style sketches**. These are original instrumentals in Keherwa or Dadra feel, with pad or harmonium-like textures and a sung-vowel-like melody, or a santoor-like texture with a flute-like melody. They use only common building blocks (key, tempo, generic chord progressions); the melody is a seeded random walk over chord tones, and no song's melody, lyrics or recording is used.
+   - **Match your songs' sound** EQs the finished sketch toward the zone's median spectrum. The two passes together stay within ±12 dB per band, quiet bands are lifted by at most 6 dB, empty bands are only ever cut, and nothing above 8 kHz or below 63 Hz is boosted. Filtering is zero-phase. Afterwards plain and matched versions are set to the same loudness-weighted level, so matching never makes a sketch louder.
+   - **How close matching gets** (averaged over the bands each texture actually fills): pad and harmonium go from about 4 dB to about 1 dB from the zone; santoor/flute from about 8 dB to 4 dB; a pad with the melody off from 8 dB to 3 dB, across 75% of the bands. Matching raised a harmonium sketch's closeness to the profile from 42% to 48%. The rest of the gap is real production (vocals, orchestra, density) that a procedural sketch doesn't have.
+   - **Make one for me** picks a progression, texture, feel and matched-or-plain setting by Thompson sampling over your ratings. Each option keeps a Beta score from "Calming / Neutral / Not for me", so it favours what has worked and still tries other options now and then. Key comes from your songs' most common home notes, and tempo from inside their middle-half range. Your own Am–G–F–E triads get a small head start.
+5. Learns taste from your ratings, stored on this device, and keeps score of paired matched-versus-plain comparisons ("Hear the other version").
 
 All playback goes through Still's safety chain and follows the comfort profile's current state (quieter during an attack).
 

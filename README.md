@@ -32,7 +32,9 @@ First profile: 20 full-length Kishore Kumar songs from official label uploads; 1
 - **Shared vocabulary.** A 10/10 major/minor split. The ♭VII chord (G with A as home) fills more than 3% of chord time in 13 of 20 songs. The Andalusian walk (Am → G → F → E) on the home chord appears in only 1.
 - **An era's sound.** Moderate tempos around 118 BPM, and mono-like transfers.
 
-Only derived numbers are stored, never audio, melodies or chord timelines.
+- **Your sound zone.** Together the songs keep their energy even from 159 Hz to 2.5 kHz, and half of their tonal energy lies between F♯3 and A4 ([charts](figures/song-dna/)). Style sketches can be matched to this zone, and **Make one for me** learns from your ratings which progressions, textures and feels calm you.
+
+Only derived numbers and aggregate charts are stored, never audio, melodies, chord timelines or per-song spectrograms.
 
 ## What is a “sweet frequency zone”?
 

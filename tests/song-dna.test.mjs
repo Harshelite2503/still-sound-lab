@@ -189,3 +189,61 @@ const crosscheck = JSON.parse(fs.readFileSync(new URL('../data/song-dna/kishore-
 assert.equal(crosscheck.profileBuiltAt, published.builtAt, 'librosa cross-check must be re-run after rebuilding the profile');
 for (const row of crosscheck.songs) assert.equal(row.key.js, published.songs.find(s => s.name === row.name)?.key.name, `stale cross-check key for ${row.name}`);
 console.log('song DNA extras ok · tonic stable across tuning, in-key Andalusian, silence rejected, sketch melodies in key, comfort rules, data consistent');
+
+// Spectral matching: a sketch moves toward a target long-term spectrum, safely.
+const { matchSpectrum, spectrumShape, voiceHarmonics, BAND_CENTRES } = await import('../dist/style-sketch.js');
+const target = BAND_CENTRES.map(hz => ({ hz, db: hz < 125 ? -15 : hz <= 2500 ? 0 : -6 * Math.log2(hz / 2500) * 1.5 }));
+const plain = renderSketch({ progression: ['i', 'bVII', 'bVI', 'V'], texture: 'harmonium', cycles: 3, seed: 8 });
+const matched = renderSketch({ progression: ['i', 'bVII', 'bVI', 'V'], texture: 'harmonium', cycles: 3, seed: 8, targetShape: target });
+assert.equal(plain.match, null);
+assert.ok(matched.match.meanAbsErrorAfterDb < 2 && matched.match.meanAbsErrorAfterDb < matched.match.meanAbsErrorBeforeDb, `match error ${matched.match.meanAbsErrorBeforeDb.toFixed(1)} → ${matched.match.meanAbsErrorAfterDb.toFixed(1)} dB`);
+let mpk = 0; for (const v of matched.left) mpk = Math.max(mpk, Math.abs(v));
+assert.ok(mpk <= .35 + 1e-6 && matched.left.every(Number.isFinite), `matched peak ${mpk}`);
+assert.ok(matched.match.gainsDb.every(g => Math.abs(g) <= 24 + 1e-9), 'two passes of at most ±12 dB');
+const backMatched = analyzeSong({ channels: [matched.left, matched.right], sampleRate: matched.rate });
+assert.ok(chordAccuracy(backMatched, matched.chords) > .75, 'matching keeps the harmony recognisable');
+// Matching never invents energy where there is none: a pure low tone is not turned into hiss.
+const tone = new Float32Array(22050 * 4).map((_, i) => .1 * Math.sin(2 * Math.PI * 220 * i / 22050));
+const toneCopy = [Float32Array.from(tone), Float32Array.from(tone)];
+matchSpectrum(toneCopy, 22050, BAND_CENTRES.map(hz => ({ hz, db: 0 })));
+// Absolute check: the share of energy above 4 kHz stays negligible (a capped boost of a near-empty band).
+const { fft } = await import('../dist/audio-engine.js');
+const highShare = sig => {
+  const N = 65536, re = new Float64Array(N), im = new Float64Array(N);
+  for (let i = 0; i < N; i++) re[i] = sig[i] * (.5 - .5 * Math.cos(2 * Math.PI * i / N));
+  fft(re, im);
+  let hi = 0, all = 0;
+  for (let k = 1; k < N / 2; k++) { const p = re[k] ** 2 + im[k] ** 2; all += p; if (k * 22050 / N > 4000) hi += p; }
+  return hi / all;
+};
+assert.ok(highShare(toneCopy[0]) < 1e-6, `energy above 4 kHz after matching: ${highShare(toneCopy[0]).toExponential(2)}`);
+void spectrumShape;
+const vh = voiceHarmonics(220, 22050);
+assert.ok(vh.length > 10 && Math.max(...vh) === 1 && vh.every(v => v >= 0));
+console.log(`spectral matching ok · harmonium sketch ${matched.match.meanAbsErrorBeforeDb.toFixed(1)} → ${matched.match.meanAbsErrorAfterDb.toFixed(1)} dB from target`);
+
+// Review fixes: equal loudness for plain vs matched, caps hold across both passes, empty bands only cut.
+{
+  const { aWeightedLevelDb } = await import('../dist/comfort-engine.js');
+  const { SKETCH_LEVEL_DB } = await import('../dist/style-sketch.js');
+  const zoneData = JSON.parse(fs.readFileSync(new URL('../dist/data/song-dna/kishore-kumar-zone.json', import.meta.url)));
+  const zoneTarget = zoneData.spectral.bandsHz.map((hz, i) => ({ hz, db: zoneData.spectral.medianDb[i] }));
+  const weighted = s => { const m = new Float32Array(s.left.length); for (let i = 0; i < m.length; i++) m[i] = (s.left[i] + s.right[i]) / 2; return aWeightedLevelDb(m, s.rate); };
+  for (const [texture, melodyOn] of [['pad', true], ['santoor', true], ['harmonium', true], ['pad', false]]) {
+    const base = { tonic: 9, progression: ['i', 'bVII', 'bVI', 'V'], bpm: 115, texture, melody: melodyOn, cycles: 3, seed: 3 };
+    const p = renderSketch(base), m = renderSketch({ ...base, targetShape: zoneTarget });
+    assert.ok(Math.abs(weighted(p) - weighted(m)) < .5, `${texture}: matched ${weighted(m).toFixed(1)} vs plain ${weighted(p).toFixed(1)} dB`);
+    assert.ok(weighted(p) <= SKETCH_LEVEL_DB + .5, `${texture} plain level ${weighted(p).toFixed(1)}`);
+    const shape = m.match.bandsBefore; // the matcher's own view of the unmatched sketch
+    m.match.gainsDb.forEach((g, i) => {
+      assert.ok(g <= 12 + 1e-9 && g >= -12 - 1e-9, `${texture} band ${i} total gain ${g.toFixed(1)}`);
+      if (shape[i].empty) assert.ok(g <= 1e-9, `${texture} empty band ${BAND_CENTRES[i].toFixed(0)} Hz boosted ${g.toFixed(1)} dB`);
+      else if (shape[i].db < -30) assert.ok(g <= 6 + .5, `${texture} quiet band ${BAND_CENTRES[i].toFixed(0)} Hz boosted ${g.toFixed(1)} dB`);
+    });
+    assert.ok(m.match.meanAbsErrorAfterDb < m.match.meanAbsErrorBeforeDb, `${texture} matching should help`);
+  }
+  // The zone file must come from the current profile build.
+  assert.equal(zoneData.builtFrom, published.builtAt, 'zone file is stale: re-run analysis/plot_song_dna.py');
+  assert.equal(zoneData.songs, published.songs.filter(s => !s.flags.length).length);
+  console.log('zone and matching safety ok · equal loudness, caps hold across passes, empty bands never boosted');
+}

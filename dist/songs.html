@@ -67,8 +67,22 @@
   </article>
 </section>
 
+<section class="panel zone" id="zone">
+  <p class="eyebrow">07 · YOUR SOUND ZONE</p>
+  <div class="heading-row"><h2>Where your songs live</h2><span class="pill">FROM ALL <span id="zone-count">20</span> SONGS TOGETHER</span></div>
+  <p class="muted" id="zone-summary">Loading…</p>
+  <div class="zone-grid">
+    <figure><svg id="zone-spectrum" viewBox="0 0 520 240" role="img" aria-label="Spectral zone"></svg><figcaption class="micro">Each thin line is one song’s long-term spectrum, shown relative to its own 200 Hz–4 kHz average so loudness doesn’t matter. The thick line is the median, the band is the middle half, and the shaded strip is the core zone (within 6 dB of the peak).</figcaption></figure>
+    <figure><svg id="zone-register" viewBox="0 0 520 240" role="img" aria-label="Register zone"></svg><figcaption class="micro">How the tonal energy (voice and instruments, percussion removed) spreads across pitch. The shaded strip holds the middle half of it.</figcaption></figure>
+  </div>
+  <div class="zone-bottom">
+    <div><h3>The heart of your zone</h3><p class="micro">The songs closest to the other <span id="zone-others">19</span>, the most typical of the set:</p><ol id="zone-heart" class="heart"></ol></div>
+    <div><h3>Is this what you like?</h3><p class="micro">The zone describes your songs; it is not a brain measurement. Whether it is what calms <em>you</em> is a hypothesis. To check it, play a sketch, then “Hear the other version”: the same notes, matched to the zone or plain, at the same loudness. Rate both, and Still keeps score of these pairs.</p><p class="micro" id="zone-test"></p></div>
+  </div>
+</section>
+
 <section class="panel compare" id="compare">
-  <p class="eyebrow">07 · COMPARE A SONG</p>
+  <p class="eyebrow">08 · COMPARE A SONG</p>
   <div class="heading-row"><h2>How close is your song?</h2><span class="pill">ANALYSED IN THIS BROWSER</span></div>
   <p class="muted">Choose a song you own. Still measures the whole track here, in your browser, and compares it with the profile. Nothing is uploaded or stored. A 5-minute song can take up to half a minute.</p>
   <label class="upload-zone" for="compare-file"><span class="upload-symbol" aria-hidden="true">＋</span><strong>Choose a song</strong><span>MP3, M4A, WAV · up to 60 MB</span></label>
@@ -82,7 +96,7 @@
 </section>
 
 <section class="panel sketch" id="sketch">
-  <p class="eyebrow">08 · MAKE A STYLE SKETCH</p>
+  <p class="eyebrow">09 · MAKE A STYLE SKETCH</p>
   <div class="heading-row"><h2>An original sketch in this style</h2><span class="pill">NO MELODY IS COPIED</span></div>
   <p class="muted">Pick a progression, key, tempo and feel. It plays at your comfort-profile level for your current state (or your quiet reference if you have no profile), fades in slowly, and the level slider only goes quieter. Still builds a new instrumental from those ingredients, with a melody made from random chord tones. Chord progressions, keys and tempos are shared musical building blocks; no song’s melody or recording is used.</p>
   <div class="sketch-controls">
@@ -93,9 +107,11 @@
     <label>Texture<select id="sk-texture"></select></label>
     <label>Percussion<select id="sk-perc"><option value="soft">Soft</option><option value="off">Off</option></select></label>
     <label class="check"><input type="checkbox" id="sk-melody" checked> Melody</label>
+    <label class="check"><input type="checkbox" id="sk-match" checked> Match your songs’ sound</label>
     <label>Level <output id="sk-level-value">Your level</output><input id="sk-level" type="range" min="-30" max="0" value="0" aria-label="Sketch level: your comfort-profile level, or quieter"></label>
   </div>
-  <div class="button-row sketch-actions"><button id="sk-play" class="primary" type="button">▶ Make and play</button><button id="sk-new" class="outline" type="button">New melody</button><button id="sk-stop" class="outline" type="button">■ Fade out</button><button id="sk-download" class="text-button" type="button" disabled>Download WAV ↓</button></div>
+  <div class="button-row sketch-actions"><button id="sk-forme" class="primary" type="button">✦ Make one for me</button><button id="sk-play" class="outline" type="button">▶ Play these settings</button><button id="sk-flip" class="outline" type="button">⇄ Hear the other version</button><button id="sk-new" class="outline" type="button">New melody</button><button id="sk-stop" class="outline" type="button">■ Fade out</button><button id="sk-download" class="text-button" type="button" disabled>Download WAV ↓</button></div>
+  <p class="micro" id="sk-why"></p>
   <p class="micro" id="sk-chords">—</p>
   <div class="button-row rate-row"><span class="micro">How did it feel?</span><button class="outline sk-rate" type="button" data-rating="1">Calming</button><button class="outline sk-rate" type="button" data-rating="0">Neutral</button><button class="outline sk-rate" type="button" data-rating="-1">Not for me</button></div>
   <p class="micro" id="sk-taste"></p>
