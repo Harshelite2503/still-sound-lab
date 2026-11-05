@@ -175,10 +175,13 @@ assert.ok(renderSketch({ progression: ['i', 'V', 'i'], cycles: 2.6, feel: 'dadra
 const cs = await import('../dist/comfort-state.js');
 const base = { schema: 'still-profile-v1', baseLevelDb: -10, trims: { attack: -4 }, mode: 'normal', contour: [] };
 assert.equal(cs.outputLevelDb(base), -10);
+assert.equal(cs.outputLevelDb({ ...base, mode: 'very', trims: { very: -4 } }), -10 - 14 - 4);
+// A profile saved by an earlier version (mode 'attack', trims keyed 'attack') keeps its levels.
 assert.equal(cs.outputLevelDb({ ...base, mode: 'attack' }), -10 - 14 - 4);
+assert.equal(cs.modeOf({ mode: 'normal' }), 'calm'); assert.equal(cs.modeOf({ mode: 'warning' }), 'sensitive'); assert.equal(cs.modeOf({}), 'calm');
 assert.equal(cs.outputLevelDb({ ...base, mode: 'attack', trims: { attack: 50 } }), -24, 'trims can only lower');
 assert.equal(cs.outputLevelDb(null), 0);
-assert.ok(cs.fadeInSeconds(null) >= 3 && cs.fadeInSeconds({ mode: 'attack', answers: { sudden: 4 } }) === 9);
+assert.ok(cs.fadeInSeconds(null) >= 3 && cs.fadeInSeconds({ mode: 'very', answers: { sudden: 4 } }) === 9);
 
 // Published data stays consistent and clean: cross-check matches this build; no file names or timelines.
 const fs = await import('node:fs');

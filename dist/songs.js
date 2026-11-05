@@ -500,7 +500,7 @@ function setupSketch() {
     try { localStorage.setItem(RATINGS_KEY, JSON.stringify(ratings.slice(-500))); say('Rating saved on this device.'); } catch { say('This browser is not letting Still save ratings.'); }
     renderTaste();
   }));
-  // A state change on the profile page (e.g. to "during an attack") applies here at once.
+  // A state change on the profile page (e.g. to "very sensitive") applies here at once.
   window.addEventListener('storage', e => { if (e.key === PROFILE_KEY && active) { applyShelf(); setSketchLevel(); say('Your comfort state changed, so the sketch level was adjusted.'); } });
   renderTaste();
 }

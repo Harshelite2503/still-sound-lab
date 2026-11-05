@@ -41,9 +41,13 @@ for (const x of [[.5, .5, 1, .5], [.2, 1, .5, .3]]) {
 }
 
 // Attack mode caps the swell and softens the top end.
-const attack = renderComfortLoop([.9, 0, 1, 1], { rate, mode: 'attack', seed: 2 });
-assert.equal(attack.params.swellDb, MODES.attack.swellCapDb);
-const normal = renderComfortLoop([.9, 0, 1, 1], { rate, mode: 'normal', seed: 2 });
+const attack = renderComfortLoop([.9, 0, 1, 1], { rate, mode: 'very', seed: 2 });
+assert.equal(attack.params.swellDb, MODES.very.swellCapDb);
+const normal = renderComfortLoop([.9, 0, 1, 1], { rate, mode: 'calm', seed: 2 });
+// States are named by sensitivity; keys saved by earlier versions still map to the right state.
+assert.deepEqual(Object.keys(MODES), ['calm', 'sensitive', 'very', 'recovering']);
+assert.ok(Object.values(MODES).every(m => !/attack|migraine|warning|normal day/i.test(m.label)), 'state labels must not name disease phases');
+assert.equal(renderComfortLoop([.9, 0, 1, 1], { rate, mode: 'attack', seed: 2 }).params.swellDb, MODES.very.swellCapDb, 'legacy key attack maps to very sensitive');
 assert.ok(spectralSlopeDb(attack.left, rate, 1000, 8000) < spectralSlopeDb(normal.left, rate, 1000, 8000) - .5);
 
 // Personal contour EQ only ever turns bands down, by at most 12 dB, relative to the median band.

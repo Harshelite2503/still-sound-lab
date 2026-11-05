@@ -191,7 +191,7 @@ What we learn:
    - **Make one for me** picks a progression, texture, feel and matched-or-plain setting by Thompson sampling over your ratings. Each option keeps a Beta score from "Calming / Neutral / Not for me", so it favours what has worked and still tries other options now and then. Key comes from your songs' most common home notes, and tempo from inside their middle-half range. Your own Am–G–F–E triads get a small head start.
 5. Learns taste from your ratings, stored on this device, and keeps score of paired matched-versus-plain comparisons ("Hear the other version").
 
-All playback goes through Still's safety chain and follows the comfort profile's current state (quieter during an attack).
+All playback goes through Still's safety chain and follows the comfort profile's current state (quieter when you feel very sensitive).
 
 ## Next steps
 

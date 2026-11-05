@@ -18,4 +18,15 @@ for (const file of files) {
   }
 }
 assert.deepEqual(problems, [], 'Possible medical claim in user-facing text:\n' + problems.join('\n'));
+
+// The app's own controls describe how sensitive to sound someone feels, never disease phases
+// (FDA 2026 wellness guidance judges function, not only copy). Evidence pages may cite studies.
+const evidencePages = new Set(['research.html', 'library.html', 'reference-study.html', 'graphs.html']);
+const phase = /\b(during an attack|attack mode|warning signs|migraine phase|normal day)\b/i;
+const phaseHits = files.filter(f => !evidencePages.has(f)).flatMap(f => {
+  const text = fs.readFileSync(new URL(f, dir), 'utf8').replace(/<[^>]+>/g, ' ');
+  const m = text.match(phase);
+  return m ? [`${f}: “${m[0]}”`] : [];
+});
+assert.deepEqual(phaseHits, [], 'Disease-phase state names in app pages:\n' + phaseHits.join('\n'));
 console.log(`claims linter ok · ${files.length} files checked`);

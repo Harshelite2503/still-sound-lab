@@ -81,10 +81,10 @@ nav a[aria-current="page"]{font-weight:650}
 .data-row>*{flex:0 0 auto}
 .import-label{display:inline-block;cursor:pointer;font-weight:550;color:var(--ink)}
 
-.attack-panel{text-align:center;padding:48px 24px;margin-bottom:18px}
-.attack-panel h2{font-size:34px}
-.attack-panel .muted{max-width:560px;margin:0 auto 26px}
-.attack-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.quiet-panel{text-align:center;padding:48px 24px;margin-bottom:18px}
+.quiet-panel h2{font-size:34px}
+.quiet-panel .muted{max-width:560px;margin:0 auto 26px}
+.quiet-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 button.big{font-size:16px;padding:20px 30px;min-width:260px;border-radius:12px}
 body.quiet-mode .profile-steps,body.quiet-mode .how,body.quiet-mode .intro{display:none}
 

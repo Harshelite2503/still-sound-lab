@@ -10,7 +10,7 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 ## Your comfort profile (new)
 
-People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
+People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently from one day to the next. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
 
 1. **Four questions.** Sudden, hissy, rumbling and pulsing sounds. The answers pick a gentle first sound and longer fades. They are not a diagnosis.
 2. **A quiet reference.** You set your device volume against a soft hush. All later levels are relative to it, because a browser cannot measure loudness at your ears.
@@ -19,7 +19,7 @@ People differ. The same sound can be calming to one person and painful to anothe
 5. **Find your comfort sound.** Six-second A/B pairs at matched loudness: "which felt calmer?". A Gaussian-process preference model learns across four dimensions: darkness (spectral tilt), noise versus hum, slow swell, and softness of the top end. Each new pair is chosen where the model expects to learn most.
 6. **Your sound fingerprint.** A plain-language summary and a seamless loop of your comfort sound, with a sleep timer and a "this is making it worse" button.
 
-A state selector (normal day, warning signs, during an attack, recovering) adjusts playback across Still. During an attack the screen dims, only play and fade-to-silence remain, sounds play 14 dB quieter with a softer top end, and binaural sketches are hidden. The offsets are cautious starting points drawn from group studies, not measurements of you.
+A state selector, named by how sensitive to sound you feel (calm, sensitive, very sensitive, recovering), adjusts playback across Still. When you feel very sensitive, the screen dims, only play and fade-to-silence remain, sounds play 14 dB quieter with a softer top end, and binaural sketches are hidden. States are deliberately not named after migraine phases: under FDA's 2026 wellness guidance, features tied to a disease can make an app a medical device. The offsets are cautious starting points drawn from group studies, not measurements of you.
 
 The [research page](dist/research.html#profile-evidence) lists the evidence behind each design choice. [docs/product-strategy.md](docs/product-strategy.md) is the full fact-checked strategy and roadmap, including myths to avoid. Its claims were checked against original sources by an independent review pass.
 
