@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172720">
+<meta name="description" content="Song DNA: what a set of beloved songs share — key, chords, tempo, tuning, dynamics — measured over full-length recordings, with a song comparer and an original style-sketch generator.">
+<title>Song DNA · Still</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="songs.css">
+</head>
+<body>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="index.html">Sound lab</a><a href="profile.html">Comfort profile</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<main>
+<section class="intro">
+  <div>
+    <p class="eyebrow">SONG DNA · <span id="artist-eyebrow">KISHORE KUMAR</span></p>
+    <h1>What do your<br>favourite songs <em>share?</em></h1>
+    <p class="lede">We measured <span id="song-count">20</span> full-length songs: key, chords, tempo, tuning, loudness and more.<br class="desktop"> Then you can compare any song with them, or make an original sketch in their style.</p>
+  </div>
+  <aside class="intro-aside dna-answer">
+    <p class="eyebrow">IS IT A FREQUENCY?</p>
+    <strong id="freq-answer">No single one.</strong>
+    <span id="freq-detail">The songs’ home notes are spread across the octave, and their tuning varies too.</span>
+  </aside>
+</section>
+
+<div class="care-note"><span aria-hidden="true">◉</span><p>These are measurements of recordings, not of your brain. Automatic chord and key estimates make mistakes, especially with Indian melodic modes and old recordings. No song or setting here is a migraine treatment. Your audio never leaves this browser, and Still stores no audio.</p></div>
+<div id="status" class="status" role="status" aria-live="polite">Loading the profile…</div>
+
+<section class="dna-grid" id="profile">
+  <article class="panel">
+    <p class="eyebrow">01 · HOME NOTES AND TUNING</p>
+    <h2>Not one frequency</h2>
+    <p class="muted" id="freq-text"></p>
+    <svg id="freq-chart" viewBox="0 0 460 190" role="img" aria-label="Home-note frequency of each song"></svg>
+  </article>
+  <article class="panel">
+    <p class="eyebrow">02 · KEY AND MODE</p>
+    <h2 id="mode-title">Key and mode</h2>
+    <p class="muted" id="mode-text"></p>
+    <div id="key-bars" class="bars"></div>
+  </article>
+  <article class="panel">
+    <p class="eyebrow">03 · CHORD ROLES</p>
+    <h2>How the chords are used</h2>
+    <p class="muted">Share of chord time in each role relative to the song’s home key. Lower case means a minor chord. In A minor, i = Am, ♭VII = G, ♭VI = F and V = E. Even the best trained key finders get about 68–80% of pop songs exactly right, and simpler methods on old film recordings likely do worse; errors are usually a fifth away or the relative major/minor.</p>
+    <div id="roman-bars" class="bars"></div>
+  </article>
+  <article class="panel">
+    <p class="eyebrow">04 · SCALE NOTES</p>
+    <h2>Which notes they lean on</h2>
+    <p class="muted">Average energy on each note of the scale, measured from the home note, for major-key songs (gold) and minor-key songs (green) separately. Overtones blur this picture: every note also lights up its fifth and major third a little.</p>
+    <svg id="degree-chart" viewBox="0 0 460 190" role="img" aria-label="Scale-degree profile"></svg>
+  </article>
+  <article class="panel wide">
+    <p class="eyebrow">05 · YOUR TRIADS: Am → G → F → E</p>
+    <div class="heading-row"><h2>The Andalusian cadence</h2><span class="pill" id="andalusian-pill">—</span></div>
+    <p class="muted" id="andalusian-text"></p>
+    <div id="progressions" class="progressions"></div>
+  </article>
+  <article class="panel wide">
+    <p class="eyebrow">06 · THE NUMBERS, SONG BY SONG</p>
+    <div class="heading-row"><h2>Typical ranges</h2><span class="pill">MIDDLE HALF OF THE SONGS</span></div>
+    <div class="table-wrap"><table class="feature-table" id="feature-table"></table></div>
+    <details><summary>All songs</summary><div class="table-wrap"><table class="song-table" id="song-table"></table></div><p class="micro" id="flag-note"></p></details>
+  </article>
+</section>
+
+<section class="panel zone" id="zone">
+  <p class="eyebrow">07 · YOUR SOUND ZONE</p>
+  <div class="heading-row"><h2>Where your songs live</h2><span class="pill">FROM ALL <span id="zone-count">20</span> SONGS TOGETHER</span></div>
+  <p class="muted" id="zone-summary">Loading…</p>
+  <div class="zone-grid">
+    <figure><svg id="zone-spectrum" viewBox="0 0 520 240" role="img" aria-label="Spectral zone"></svg><figcaption class="micro">Each thin line is one song’s long-term spectrum, shown relative to its own 200 Hz–4 kHz average so loudness doesn’t matter. The thick line is the median, the band is the middle half, and the shaded strip is the core zone (within 6 dB of the peak).</figcaption></figure>
+    <figure><svg id="zone-register" viewBox="0 0 520 240" role="img" aria-label="Register zone"></svg><figcaption class="micro">How the tonal energy (voice and instruments, percussion removed) spreads across pitch. The shaded strip holds the middle half of it.</figcaption></figure>
+  </div>
+  <div class="zone-bottom">
+    <div><h3>The heart of your zone</h3><p class="micro">The songs closest to the other <span id="zone-others">19</span>, the most typical of the set:</p><ol id="zone-heart" class="heart"></ol></div>
+    <div><h3>Is this what you like?</h3><p class="micro">The zone describes your songs; it is not a brain measurement. Whether it is what calms <em>you</em> is a hypothesis. To check it, play a sketch, then “Hear the other version”: the same notes, matched to the zone or plain, at the same loudness. Rate both, and Still keeps score of these pairs.</p><p class="micro" id="zone-test"></p></div>
+  </div>
+</section>
+
+<section class="panel songmap" id="songmap">
+  <p class="eyebrow">08 · YOUR SONG MAP</p>
+  <div class="heading-row"><h2>Every song as a vector</h2><span class="pill">SIMILARITY SEARCH, NOT HIT PREDICTION</span></div>
+  <p class="muted">Each song becomes a vector built from what Song DNA measures: scale-note use, chord roles, tempo, harmony rhythm, repetition, frequency shape and a little production. Songs that sound alike sit close together. The map flattens those vectors to two dimensions, so it shows only part of the picture.</p>
+  <div class="map-grid">
+    <figure><svg id="map-chart" viewBox="0 0 520 360" role="img" aria-label="Song map"></svg><figcaption class="micro" id="map-caption"></figcaption></figure>
+    <div><h3>How good is it?</h3><p class="micro" id="index-eval"></p><h3>Nearest neighbours</h3><label>Song<select id="nn-song"></select></label><ol id="nn-list" class="heart"></ol></div>
+  </div>
+</section>
+
+<section class="panel compare" id="compare">
+  <p class="eyebrow">09 · COMPARE A SONG</p>
+  <div class="heading-row"><h2>How close is your song?</h2><span class="pill">ANALYSED IN THIS BROWSER</span></div>
+  <p class="muted">Choose a song you own. Still measures the whole track here, in your browser, and compares it with the profile. Nothing is uploaded or stored. A 5-minute song can take up to half a minute.</p>
+  <label class="upload-zone" for="compare-file"><span class="upload-symbol" aria-hidden="true">＋</span><strong>Choose a song</strong><span>MP3, M4A, WAV · up to 60 MB</span></label>
+  <input id="compare-file" class="sr-only" type="file" accept="audio/*">
+  <div id="compare-result" class="compare-result" hidden>
+    <div class="score"><strong id="compare-score">—</strong><span>closeness to the profile</span><small id="compare-context"></small></div>
+    <div><h3 id="compare-title">—</h3><ul class="compare-facts" id="compare-facts"></ul></div>
+    <div class="table-wrap"><table class="feature-table" id="compare-table"></table></div>
+    <div class="timeline-wrap"><h3>Chord timeline of your song</h3><div id="timeline" class="timeline" aria-label="Chord timeline"></div><p class="micro">Automatic triad labels over ~0.4 s windows, shown only for a song you analyse here and never stored. Sevenths, suspended chords and raga phrases are forced onto the nearest major or minor triad. Expert listeners themselves agree on chord roots only about 76–94% of the time.</p></div>
+  </div>
+</section>
+
+<section class="panel sketch" id="sketch">
+  <p class="eyebrow">10 · MAKE A STYLE SKETCH</p>
+  <div class="heading-row"><h2>An original sketch in this style</h2><span class="pill">NO MELODY IS COPIED</span></div>
+  <p class="muted">Pick a progression, key, tempo and feel. It plays at your comfort-profile level for your current state (or your quiet reference if you have no profile), fades in slowly, and the level slider only goes quieter. Still builds a new instrumental from those ingredients, with a melody made from random chord tones. Chord progressions, keys and tempos are shared musical building blocks; no song’s melody or recording is used.</p>
+  <div class="sketch-controls">
+    <label>Progression<select id="sk-progression"></select></label>
+    <label>Key<select id="sk-key"></select></label>
+    <label>Tempo <output id="sk-bpm-value">96 BPM</output><input id="sk-bpm" type="range" min="60" max="140" value="96"></label>
+    <label>Feel<select id="sk-feel"></select></label>
+    <label>Texture<select id="sk-texture"></select></label>
+    <label>Percussion<select id="sk-perc"><option value="soft">Soft</option><option value="off">Off</option></select></label>
+    <label class="check"><input type="checkbox" id="sk-melody" checked> Melody</label>
+    <label class="check"><input type="checkbox" id="sk-match" checked> Match your songs’ sound</label>
+    <label>Level <output id="sk-level-value">Your level</output><input id="sk-level" type="range" min="-30" max="0" value="0" aria-label="Sketch level: your comfort-profile level, or quieter"></label>
+  </div>
+  <div class="button-row sketch-actions"><button id="sk-forme" class="primary" type="button">✦ Make one for me</button><button id="sk-play" class="outline" type="button">▶ Play these settings</button><button id="sk-flip" class="outline" type="button">⇄ Hear the other version</button><button id="sk-new" class="outline" type="button">New melody</button><button id="sk-stop" class="outline" type="button">■ Fade out</button><button id="sk-download" class="text-button" type="button" disabled>Download WAV ↓</button></div>
+  <p class="micro" id="sk-why"></p>
+  <p class="micro" id="sk-chords">—</p>
+  <div class="button-row rate-row"><span class="micro">How did it feel?</span><button class="outline sk-rate" type="button" data-rating="1">Calming</button><button class="outline sk-rate" type="button" data-rating="0">Neutral</button><button class="outline sk-rate" type="button" data-rating="-1">Not for me</button></div>
+  <p class="micro" id="sk-taste"></p>
+</section>
+
+<section class="how panel">
+  <p class="eyebrow">HOW THIS WORKS, AND ITS LIMITS</p>
+  <div class="how-grid">
+    <div><h3>Same analyser everywhere</h3><p class="micro">The profile and your comparisons use the same code (<code>song-dna.js</code>). It was checked on synthetic songs with known keys, chords, tempos and tuning, and cross-checked against librosa on the real recordings.</p></div>
+    <div><h3>What it can’t see</h3><p class="micro">Lyrics, the singer’s voice, memories and the films these songs belong to. Familiar music engages the brain’s reward regions more than liking alone, and nostalgia is likely a big part of why these songs feel peaceful to you. No spectrum can measure that.</p></div>
+    <div><h3>Popular is not the same as typical</h3><p class="micro">These songs are all famous, so the profile shows what they share, not what made them hits. Studies of tens of thousands of songs found audio features predict popularity poorly; film, lyrics, radio play and stardom dominate.</p></div>
+    <div><h3>Your taste decides</h3><p class="micro">Rate sketches as you listen. Over time Still can learn which progressions, tempos and textures calm you, the same way your comfort profile learns which sounds feel gentle.</p></div>
+  </div>
+</section>
+
+<footer><div><a class="brand" href="index.html">≋ still</a><p>A comfort exploration prototype. No accounts. Nothing leaves this browser.</p></div><div><a href="research.html#song-dna-evidence">Song DNA evidence ↗</a><p>Songs belong to their creators. Still stores only derived measurements.</p></div></footer>
+</main>
+<script type="module" src="songs.js"></script>
+</body>
+</html>

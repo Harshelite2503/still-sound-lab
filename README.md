@@ -10,7 +10,7 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 ## Your comfort profile (new)
 
-People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
+People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently from one day to the next. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
 
 1. **Four questions.** Sudden, hissy, rumbling and pulsing sounds. The answers pick a gentle first sound and longer fades. They are not a diagnosis.
 2. **A quiet reference.** You set your device volume against a soft hush. All later levels are relative to it, because a browser cannot measure loudness at your ears.
@@ -19,9 +19,24 @@ People differ. The same sound can be calming to one person and painful to anothe
 5. **Find your comfort sound.** Six-second A/B pairs at matched loudness: "which felt calmer?". A Gaussian-process preference model learns across four dimensions: darkness (spectral tilt), noise versus hum, slow swell, and softness of the top end. Each new pair is chosen where the model expects to learn most.
 6. **Your sound fingerprint.** A plain-language summary and a seamless loop of your comfort sound, with a sleep timer and a "this is making it worse" button.
 
-A state selector (normal day, warning signs, during an attack, recovering) adjusts playback across Still. During an attack the screen dims, only play and fade-to-silence remain, sounds play 14 dB quieter with a softer top end, and binaural sketches are hidden. The offsets are cautious starting points drawn from group studies, not measurements of you.
+A state selector, named by how sensitive to sound you feel (calm, sensitive, very sensitive, recovering), adjusts playback across Still. When you feel very sensitive, the screen dims, only play and fade-to-silence remain, sounds play 14 dB quieter with a softer top end, and binaural sketches are hidden. States are deliberately not named after migraine phases: under FDA's 2026 wellness guidance, features tied to a disease can make an app a medical device. The offsets are cautious starting points drawn from group studies, not measurements of you.
 
 The [research page](dist/research.html#profile-evidence) lists the evidence behind each design choice. [docs/product-strategy.md](docs/product-strategy.md) is the full fact-checked strategy and roadmap, including myths to avoid. Its claims were checked against original sources by an independent review pass.
+
+## Song DNA (new)
+
+Do your favourite songs share something your brain likes? [Song DNA](dist/songs.html) measures full-length songs (key, chords, tempo, tuning, loudness, stereo, repetition) with one analyser that runs in Node and in the browser. It then lets you compare any song you own, or make an original style sketch from the same building blocks.
+
+First profile: 20 full-length Kishore Kumar songs from official label uploads; 18 were checked against a second copy of the same recording ([report](docs/song-dna.md), [evidence](docs/song-dna-research.md)).
+- **No special frequency.** Home notes fall on 9 of the 12 notes. Even the same recording's tuning differs between copies, by up to about 50 cents.
+- **Shared vocabulary.** A 10/10 major/minor split. The ♭VII chord (G with A as home) fills more than 3% of chord time in 13 of 20 songs. The Andalusian walk (Am → G → F → E) on the home chord appears in only 1.
+- **An era's sound.** Moderate tempos around 118 BPM, and mono-like transfers.
+
+- **Your sound zone.** Together the songs keep their energy even from 159 Hz to 2.5 kHz, and half of their tonal energy lies between F♯3 and A4 ([charts](figures/song-dna/)). Style sketches can be matched to this zone, and **Make one for me** learns from your ratings which progressions, textures and feels calm you.
+
+- **Song vector index.** Every song is a 78-dimensional vector you can search by similarity. Given another copy of one of the 20 songs, it ranks that song first 94% of the time, against 83% for matching key and tempo and 5% by chance. Whether its neighbours sound alike to listeners hasn't been tested yet. It does not predict hits.
+
+Only derived numbers and aggregate charts are stored, never audio, melodies, chord timelines or per-song spectrograms.
 
 ## What is a “sweet frequency zone”?
 
@@ -74,6 +89,6 @@ Open [localhost:4173](http://127.0.0.1:4173). Microphone access needs localhost 
 | [analysis/](analysis/) | Scripts that reproduce the measurements and figures |
 | [samples/](samples/) / [data/](data/) | Reference excerpts, measurements, and sampled public comments |
 | [figures/](figures/) | PDF, PNG, SVG, CSV, and JSON exports |
-| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner and claims-linter checks |
+| [tests/](tests/) | Audio, feedback-map, comfort engine, preference learner, Song DNA and claims-linter checks |
 
 See [methods](docs/methods.md) and [prototype details](docs/prototype-notes.md) for research and technical explanations. Comments generate hypotheses, not evidence of effectiveness. Source material belongs to its creators. This prototype explores comfort, not migraine treatment effects.

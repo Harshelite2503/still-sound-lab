@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="index.html">Sound lab</a><a href="library.html">Sound dataset</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
+<header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">≋</span> still<span class="brand-sub">PERSONAL SOUND LAB</span></a><nav><a href="index.html">Sound lab</a><a href="songs.html">Song DNA</a><a href="library.html">Sound dataset</a><a href="research.html">Research</a><button id="dim" class="quiet" aria-pressed="false">Dim screen</button></nav></header>
 <main>
 <section class="intro">
   <div>
@@ -28,23 +28,23 @@
 <div class="care-note"><span aria-hidden="true">◉</span><p>Build your profile on a calmer day, with your device volume low. Every sound fades in, and hold-to-play sounds stop as soon as you let go. Still is for comfort and self-knowledge. It does not diagnose, treat or prevent migraine. Seek care for a new, sudden or different headache.</p></div>
 
 <section class="mode-bar panel" aria-labelledby="mode-heading">
-  <div><p class="eyebrow" id="mode-heading">HOW ARE YOU RIGHT NOW?</p><p class="micro" id="mode-note">Normal day: sounds play at your saved level.</p></div>
+  <div><p class="eyebrow" id="mode-heading">HOW SENSITIVE TO SOUND DO YOU FEEL?</p><p class="micro" id="mode-note">Calm: sounds play at your saved level.</p></div>
   <div class="segmented" role="radiogroup" aria-label="Current state">
-    <label><input type="radio" name="mode" value="normal" checked><span>Normal day</span></label>
-    <label><input type="radio" name="mode" value="warning"><span>Warning signs</span></label>
-    <label><input type="radio" name="mode" value="attack"><span>During an attack</span></label>
+    <label><input type="radio" name="mode" value="calm" checked><span>Calm</span></label>
+    <label><input type="radio" name="mode" value="sensitive"><span>Sensitive</span></label>
+    <label><input type="radio" name="mode" value="very"><span>Very sensitive</span></label>
     <label><input type="radio" name="mode" value="recovering"><span>Recovering</span></label>
   </div>
 </section>
 
 <div id="status" class="status" role="status" aria-live="polite">Start with the questions, or jump to any step. Nothing plays until you press a button.</div>
 
-<section class="attack-panel panel" id="attack-panel" hidden>
+<section class="quiet-panel panel" id="quiet-panel" hidden>
   <p class="eyebrow">QUIET MODE</p>
   <h2>Only what you asked for.</h2>
   <p class="muted">Your comfort sound plays about 14 dB quieter than usual, with a softer top end, almost no swell and a slow fade-in of 6 seconds or more. Silence is always fine.</p>
-  <div class="attack-actions"><button id="attack-play" class="primary big" type="button">▶ Play my comfort sound</button><button id="attack-stop" class="outline big" type="button">■ Fade to silence</button></div>
-  <p class="micro" id="attack-detail"></p>
+  <div class="quiet-actions"><button id="quiet-play" class="primary big" type="button">▶ Play my comfort sound</button><button id="quiet-stop" class="outline big" type="button">■ Fade to silence</button></div>
+  <p class="micro" id="quiet-detail"></p>
 </section>
 
 <div class="profile-steps" id="profile-steps">
@@ -117,7 +117,7 @@
   <div class="how-grid">
     <div><h3>Comparisons, not scores</h3><p class="micro">“Which is calmer?” is easier to answer consistently than “rate this 1–10”. A Gaussian-process preference model (Chu &amp; Ghahramani, 2005) learns from your choices and picks each new pair where it expects to learn the most. A similar approach has tuned hearing aids from 10–20 comparisons.</p></div>
     <div><h3>Four things that differ between people</h3><p class="micro">How dark or bright the sound is (spectral tilt), noise versus a soft hum, how steady it is, and how soft the top end is. Annoyance research ranks loudness and sharpness first, and slow, regular changes are gentler than fast flutter.</p></div>
-    <div><h3>States, not one setting</h3><p class="micro">In lab studies, people with migraine found sound aversive at lower levels than controls, and at lower levels still during attacks. Still keeps one profile and adjusts it for your current state. The offsets are cautious starting points, not measurements of you.</p></div>
+    <div><h3>States, not one setting</h3><p class="micro">Sound tolerance changes from day to day. Still keeps one profile and adjusts it for how sensitive to sound you feel right now: calm, sensitive, very sensitive or recovering. The offsets are cautious starting points, not measurements of you.</p></div>
     <div><h3>What it cannot tell you</h3><p class="micro">Preferring a sound is not the same as it reducing pain. Before-and-after pain changes also reflect time, medication and expectation. Your profile describes comfort, on your device, today. <a href="research.html#profile-evidence">Evidence and sources ↗</a></p></div>
   </div>
 </section>

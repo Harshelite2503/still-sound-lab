@@ -2,3 +2,5 @@ numpy==2.5.4
 matplotlib==3.11.2
 imageio-ffmpeg==0.8.1
 yt-dlp[default]==2026.10.26
+librosa==1.0.0
+scipy==1.18.1

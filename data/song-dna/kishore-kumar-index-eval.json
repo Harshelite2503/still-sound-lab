@@ -1,0 +1,896 @@
+{
+ "method": "Index built from the official-upload set; each song from the independently obtained first set queried by cosine similarity; rank of its twin recorded. Ablations: each block alone and removed in turn.",
+ "songs": 20,
+ "queries": 18,
+ "randomBaseline": {
+  "recallAt1": 0.05,
+  "recallAt3": 0.15,
+  "meanReciprocalRank": 0.1798869828571841
+ },
+ "baselines": {
+  "lookup:key+tempo": {
+   "recallAt1": 0.8333333333333334,
+   "recallAt3": 1,
+   "meanReciprocalRank": 0.8981481481481483,
+   "ranks": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    3,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "lookup:tempo": {
+   "recallAt1": 0.5555555555555556,
+   "recallAt3": 0.8888888888888888,
+   "meanReciprocalRank": 0.7296296296296297,
+   "ranks": [
+    2,
+    4,
+    2,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    20,
+    1,
+    3,
+    1,
+    1,
+    2
+   ]
+  },
+  "lookup:key": {
+   "recallAt1": 0.5555555555555556,
+   "recallAt3": 0.8888888888888888,
+   "meanReciprocalRank": 0.787659200702679,
+   "ranks": [
+    1,
+    1,
+    11,
+    1,
+    1.5,
+    1,
+    1.5,
+    1.5,
+    1.5,
+    1,
+    1.5,
+    1,
+    1.5,
+    11.5,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "scope": "Identification test: every query is the same recording from a different source. It does not test whether neighbours of different songs sound alike to listeners.",
+ "results": {
+  "default": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9523809523809523,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    7,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "only:musical": {
+   "recallAt1": 0.8333333333333334,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.8907407407407406,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    5,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1
+   ]
+  },
+  "only:production": {
+   "recallAt1": 0.1111111111111111,
+   "recallAt3": 0.2777777777777778,
+   "meanReciprocalRank": 0.2658990700657367,
+   "ranks": [
+    7,
+    14,
+    2,
+    2,
+    5,
+    10,
+    14,
+    11,
+    20,
+    1,
+    6,
+    14,
+    20,
+    2,
+    8,
+    1,
+    11,
+    18
+   ]
+  },
+  "only:spectrum": {
+   "recallAt1": 0.6111111111111112,
+   "recallAt3": 0.8333333333333334,
+   "meanReciprocalRank": 0.7334455667789,
+   "ranks": [
+    1,
+    9,
+    1,
+    2,
+    1,
+    2,
+    3,
+    1,
+    1,
+    1,
+    1,
+    2,
+    6,
+    1,
+    1,
+    1,
+    1,
+    11
+   ]
+  },
+  "only:scale": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9472222222222223,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    20,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "only:chords": {
+   "recallAt1": 0.8888888888888888,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9120370370370371,
+   "ranks": [
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    12,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "only:mode": {
+   "recallAt1": 0,
+   "recallAt3": 0,
+   "meanReciprocalRank": 0.1687846203975236,
+   "ranks": [
+    5.5,
+    5.5,
+    15.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5,
+    15.5,
+    5.5,
+    5.5,
+    5.5,
+    5.5
+   ]
+  },
+  "only:scaleShape": {
+   "recallAt1": 0.7222222222222222,
+   "recallAt3": 0.8888888888888888,
+   "meanReciprocalRank": 0.8074074074074074,
+   "ranks": [
+    3,
+    5,
+    1,
+    6,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+   ]
+  },
+  "without:musical": {
+   "recallAt1": 0.8888888888888888,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9217171717171718,
+   "ranks": [
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:production": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9523809523809523,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    7,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:spectrum": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9494949494949496,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:scale": {
+   "recallAt1": 1,
+   "recallAt3": 1,
+   "meanReciprocalRank": 1,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:chords": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9583333333333334,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:mode": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9555555555555555,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    5,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "without:scaleShape": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9494949494949496,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "equalWeights": {
+   "recallAt1": 0.8333333333333334,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.8950617283950617,
+   "ranks": [
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    9,
+    1,
+    1,
+    1,
+    2
+   ]
+  },
+  "musicOnly": {
+   "recallAt1": 0.9444444444444444,
+   "recallAt3": 0.9444444444444444,
+   "meanReciprocalRank": 0.9494949494949496,
+   "ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    11,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "misses": [
+  {
+   "query": "Saagar Kinare",
+   "rank": 7
+  }
+ ],
+ "flaggedQueries": [
+  {
+   "query": "Hamen Tumse Pyar Kitna",
+   "flags": [
+    "excluded-by-pattern"
+   ],
+   "expected": "Hamen Tumse Pyar Kitna",
+   "rank": 3,
+   "top3": [
+    "Chehra Hai Ya Chand Khila Hai 0.57",
+    "Ek Ladki Bheegi Bhagi Si 0.55",
+    "Hamen Tumse Pyar Kitna 0.48"
+   ]
+  },
+  {
+   "query": "Yeh Dosti Hum Nahin (sad version)",
+   "flags": [
+    "short-or-partial"
+   ],
+   "expected": "Yeh Dosti Hum Nahin Todenge",
+   "rank": 6,
+   "top3": [
+    "Choo Kar Mere Man Ko 0.56",
+    "Saagar Kinare 0.50",
+    "Mera Jeevan Kora Kagaz 0.39"
+   ]
+  }
+ ],
+ "neighbours": [
+  {
+   "song": "Hamen Tumse Pyar Kitna",
+   "nearest": [
+    {
+     "name": "Dil Kya Kare Jab Kisi Ko",
+     "similarity": 0.376
+    },
+    {
+     "name": "Ek Ladki Bheegi Bhagi Si",
+     "similarity": 0.314
+    },
+    {
+     "name": "Ek Ajnabee Haseena Se",
+     "similarity": 0.195
+    }
+   ]
+  },
+  {
+   "song": "Aa Chal Ke Tujhe",
+   "nearest": [
+    {
+     "name": "Roop Tera Mastana",
+     "similarity": 0.385
+    },
+    {
+     "name": "Yeh Shaam Mastani",
+     "similarity": 0.375
+    },
+    {
+     "name": "Bachna Ae Haseeno",
+     "similarity": 0.312
+    }
+   ]
+  },
+  {
+   "song": "Chalte Chalte Mere Yeh Geet",
+   "nearest": [
+    {
+     "name": "O Mere Dil Ke Chain",
+     "similarity": 0.421
+    },
+    {
+     "name": "Ek Ladki Bheegi Bhagi Si",
+     "similarity": 0.418
+    },
+    {
+     "name": "Dil Kya Kare Jab Kisi Ko",
+     "similarity": 0.409
+    }
+   ]
+  },
+  {
+   "song": "Chehra Hai Ya Chand Khila Hai",
+   "nearest": [
+    {
+     "name": "Ek Ladki Bheegi Bhagi Si",
+     "similarity": 0.576
+    },
+    {
+     "name": "Chalte Chalte Mere Yeh Geet",
+     "similarity": 0.404
+    },
+    {
+     "name": "O Mere Dil Ke Chain",
+     "similarity": 0.403
+    }
+   ]
+  },
+  {
+   "song": "Choo Kar Mere Man Ko",
+   "nearest": [
+    {
+     "name": "Saagar Kinare",
+     "similarity": 0.398
+    },
+    {
+     "name": "Mera Jeevan Kora Kagaz",
+     "similarity": 0.367
+    },
+    {
+     "name": "Yeh Dosti Hum Nahin Todenge",
+     "similarity": 0.301
+    }
+   ]
+  },
+  {
+   "song": "Dil Kya Kare Jab Kisi Ko",
+   "nearest": [
+    {
+     "name": "Chalte Chalte Mere Yeh Geet",
+     "similarity": 0.409
+    },
+    {
+     "name": "Hamen Tumse Pyar Kitna",
+     "similarity": 0.376
+    },
+    {
+     "name": "Pyar Diwana Hota Hai",
+     "similarity": 0.291
+    }
+   ]
+  },
+  {
+   "song": "Dilbar Mere Kab Tak Mujhe",
+   "nearest": [
+    {
+     "name": "Pyar Diwana Hota Hai",
+     "similarity": 0.596
+    },
+    {
+     "name": "Ek Ajnabee Haseena Se",
+     "similarity": 0.307
+    },
+    {
+     "name": "Mere Sapnon Ki Rani",
+     "similarity": 0.191
+    }
+   ]
+  },
+  {
+   "song": "Dream Girl",
+   "nearest": [
+    {
+     "name": "Bachna Ae Haseeno",
+     "similarity": 0.462
+    },
+    {
+     "name": "Yeh Shaam Mastani",
+     "similarity": 0.411
+    },
+    {
+     "name": "Saagar Kinare",
+     "similarity": 0.394
+    }
+   ]
+  },
+  {
+   "song": "Ek Ajnabee Haseena Se",
+   "nearest": [
+    {
+     "name": "Pyar Diwana Hota Hai",
+     "similarity": 0.53
+    },
+    {
+     "name": "Mere Sapnon Ki Rani",
+     "similarity": 0.504
+    },
+    {
+     "name": "Dilbar Mere Kab Tak Mujhe",
+     "similarity": 0.307
+    }
+   ]
+  },
+  {
+   "song": "Ek Ladki Bheegi Bhagi Si",
+   "nearest": [
+    {
+     "name": "Chehra Hai Ya Chand Khila Hai",
+     "similarity": 0.576
+    },
+    {
+     "name": "Chalte Chalte Mere Yeh Geet",
+     "similarity": 0.418
+    },
+    {
+     "name": "O Mere Dil Ke Chain",
+     "similarity": 0.328
+    }
+   ]
+  },
+  {
+   "song": "Kitne Bhi Tu Karle Sitam",
+   "nearest": [
+    {
+     "name": "Saagar Kinare",
+     "similarity": 0.491
+    },
+    {
+     "name": "Dream Girl",
+     "similarity": 0.329
+    },
+    {
+     "name": "Roop Tera Mastana",
+     "similarity": 0.276
+    }
+   ]
+  },
+  {
+   "song": "Mera Jeevan Kora Kagaz",
+   "nearest": [
+    {
+     "name": "Yeh Dosti Hum Nahin Todenge",
+     "similarity": 0.417
+    },
+    {
+     "name": "Choo Kar Mere Man Ko",
+     "similarity": 0.367
+    },
+    {
+     "name": "Yeh Shaam Mastani",
+     "similarity": 0.303
+    }
+   ]
+  },
+  {
+   "song": "Mere Sapnon Ki Rani",
+   "nearest": [
+    {
+     "name": "Ek Ajnabee Haseena Se",
+     "similarity": 0.504
+    },
+    {
+     "name": "Pyar Diwana Hota Hai",
+     "similarity": 0.405
+    },
+    {
+     "name": "O Mere Dil Ke Chain",
+     "similarity": 0.207
+    }
+   ]
+  },
+  {
+   "song": "O Mere Dil Ke Chain",
+   "nearest": [
+    {
+     "name": "Chalte Chalte Mere Yeh Geet",
+     "similarity": 0.421
+    },
+    {
+     "name": "Chehra Hai Ya Chand Khila Hai",
+     "similarity": 0.403
+    },
+    {
+     "name": "Ek Ladki Bheegi Bhagi Si",
+     "similarity": 0.328
+    }
+   ]
+  },
+  {
+   "song": "Saagar Kinare",
+   "nearest": [
+    {
+     "name": "Kitne Bhi Tu Karle Sitam",
+     "similarity": 0.491
+    },
+    {
+     "name": "Choo Kar Mere Man Ko",
+     "similarity": 0.398
+    },
+    {
+     "name": "Dream Girl",
+     "similarity": 0.394
+    }
+   ]
+  },
+  {
+   "song": "Yeh Dosti Hum Nahin Todenge",
+   "nearest": [
+    {
+     "name": "Mera Jeevan Kora Kagaz",
+     "similarity": 0.417
+    },
+    {
+     "name": "Yeh Shaam Mastani",
+     "similarity": 0.344
+    },
+    {
+     "name": "Choo Kar Mere Man Ko",
+     "similarity": 0.301
+    }
+   ]
+  },
+  {
+   "song": "Yeh Shaam Mastani",
+   "nearest": [
+    {
+     "name": "Dream Girl",
+     "similarity": 0.411
+    },
+    {
+     "name": "Aa Chal Ke Tujhe",
+     "similarity": 0.375
+    },
+    {
+     "name": "Yeh Dosti Hum Nahin Todenge",
+     "similarity": 0.344
+    }
+   ]
+  },
+  {
+   "song": "Roop Tera Mastana",
+   "nearest": [
+    {
+     "name": "Aa Chal Ke Tujhe",
+     "similarity": 0.385
+    },
+    {
+     "name": "Bachna Ae Haseeno",
+     "similarity": 0.325
+    },
+    {
+     "name": "Kitne Bhi Tu Karle Sitam",
+     "similarity": 0.276
+    }
+   ]
+  },
+  {
+   "song": "Bachna Ae Haseeno",
+   "nearest": [
+    {
+     "name": "Dream Girl",
+     "similarity": 0.462
+    },
+    {
+     "name": "Roop Tera Mastana",
+     "similarity": 0.325
+    },
+    {
+     "name": "Aa Chal Ke Tujhe",
+     "similarity": 0.312
+    }
+   ]
+  },
+  {
+   "song": "Pyar Diwana Hota Hai",
+   "nearest": [
+    {
+     "name": "Dilbar Mere Kab Tak Mujhe",
+     "similarity": 0.596
+    },
+    {
+     "name": "Ek Ajnabee Haseena Se",
+     "similarity": 0.53
+    },
+    {
+     "name": "Mere Sapnon Ki Rani",
+     "similarity": 0.405
+    }
+   ]
+  }
+ ],
+ "mapExplained": [
+  0.2796984607248138,
+  0.15713124352923485
+ ],
+ "builtFrom": "2026-11-05T08:56:15.704Z"
+}

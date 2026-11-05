@@ -1,8 +1,9 @@
 import {
   renderComfortLoop, renderBand, renderHuggins, applyFades, describeX, paramsFromX,
-  contourEqDb, contourCeilingDb, createSafetyChain, CONTOUR_BANDS, MODES, clamp,
+  contourEqDb, contourCeilingDb, createSafetyChain, CONTOUR_BANDS, MODES, clamp, modeKey,
 } from './comfort-engine.js';
 import { PreferenceGP, startingPoint } from './preference-model.js';
+import * as levels from './comfort-state.js';
 
 const $ = id => document.getElementById(id);
 const KEY = 'still-profile-v1';
@@ -23,14 +24,14 @@ const LEVEL_MIN_DB = -40, WORSE_STEP_DB = 4;
 const MIN_ROUNDS = 8, SETTLED_STREAK = 4;
 
 /* ---------- Profile storage ---------- */
-// Levels: one base level for a normal day, plus a per-state trim that can only make that state
-// quieter. Output = min(base, contour cap) + state offset + trim, so a hard day is never louder.
+// Levels: one base level for feeling calm, plus a per-state trim that can only make that state
+// quieter. Output = min(base, contour cap) + state offset + trim, so a more sensitive state is never louder.
 function freshProfile() {
   return {
     schema: KEY, answers: {}, device: 'headphones', reference: null, headphones: null, contour: [],
     tuner: { model: null, history: [], vetoes: [] },
-    baseLevelDb: 0, trims: { normal: 0, warning: 0, attack: 0, recovering: 0 },
-    mode: 'normal', events: [],
+    baseLevelDb: 0, trims: { calm: 0, sensitive: 0, very: 0, recovering: 0 },
+    mode: 'calm', events: [],
   };
 }
 
@@ -50,14 +51,15 @@ function sanitize(raw) {
   if (raw.tuner?.model && typeof raw.tuner.model === 'object') p.tuner.model = PreferenceGP.fromJSON(raw.tuner.model).toJSON();
   p.tuner.history = (Array.isArray(raw.tuner?.history) ? raw.tuner.history : [])
     .filter(h => h && typeof h === 'object' && ['a', 'b', 'same', 'neither'].includes(h.choice) && isPoint(h.a) && isPoint(h.b))
-    .map(h => ({ at: String(h.at || ''), mode: MODES[h.mode] ? h.mode : 'normal', a: h.a, b: h.b, choice: h.choice })).slice(-500);
+    .map(h => ({ at: String(h.at || ''), mode: modeKey(h.mode), a: h.a, b: h.b, choice: h.choice })).slice(-500);
   p.tuner.vetoes = (Array.isArray(raw.tuner?.vetoes) ? raw.tuner.vetoes : []).filter(isPoint).slice(-50);
   if (Number.isFinite(raw.baseLevelDb)) p.baseLevelDb = clamp(raw.baseLevelDb, LEVEL_MIN_DB, CONTOUR_CAP_DB);
-  for (const m of Object.keys(MODES)) if (Number.isFinite(raw.trims?.[m])) p.trims[m] = clamp(raw.trims[m], -30, 0);
-  if (MODES[raw.mode]) p.mode = raw.mode;
+  // Earlier versions saved disease-phase keys (normal, warning, attack); map them to sensitivity states.
+  for (const [k, v] of Object.entries(raw.trims || {})) if (Number.isFinite(v)) p.trims[modeKey(k)] = clamp(v, -30, 0);
+  p.mode = modeKey(raw.mode);
   p.events = (Array.isArray(raw.events) ? raw.events : [])
     .filter(e => e && typeof e === 'object' && ['listen', 'worse'].includes(e.type))
-    .map(e => ({ type: e.type, at: String(e.at || ''), mode: MODES[e.mode] ? e.mode : 'normal', x: isPoint(e.x) ? e.x : null, levelDb: Number.isFinite(e.levelDb) ? e.levelDb : null }))
+    .map(e => ({ type: e.type, at: String(e.at || ''), mode: modeKey(e.mode), x: isPoint(e.x) ? e.x : null, levelDb: Number.isFinite(e.levelDb) ? e.levelDb : null }))
     .slice(-200);
   return p;
 }
@@ -163,26 +165,27 @@ function setActiveLevel(levelDb, seconds = .4) {
 }
 
 /* ---------- Levels and modes ---------- */
-const mode = () => MODES[profile.mode] || MODES.normal;
-const capDb = () => Math.min(CONTOUR_CAP_DB, profile.contour.length >= 3 ? contourCeilingDb(profile.contour) : CONTOUR_CAP_DB);
-const baseDb = () => Math.min(profile.baseLevelDb, capDb());
-const outputLevelDb = () => baseDb() + mode().offsetDb + (profile.trims[profile.mode] ?? 0);
-const fadeInSeconds = () => mode().fadeSeconds + .75 * (profile.answers.sudden ?? 0);
+const mode = () => MODES[modeKey(profile.mode)];
+// Level and fade rules live in comfort-state.js so every page plays at the same level.
+const capDb = () => levels.capDb(profile);
+const baseDb = () => levels.baseDb(profile);
+const outputLevelDb = () => levels.outputLevelDb(profile);
+const fadeInSeconds = () => levels.fadeInSeconds(profile);
 const listening = () => active?.kind === 'listen';
 const fmtDb = db => `${db > 0 ? '+' : ''}${db.toFixed(0)} dB`;
 
 function renderMode() {
   for (const input of document.querySelectorAll('[name=mode]')) input.checked = input.value === profile.mode;
   const m = mode();
-  const quiet = profile.mode === 'attack';
+  const quiet = profile.mode === 'very';
   document.body.classList.toggle('quiet-mode', quiet);
-  $('attack-panel').hidden = !quiet;
+  $('quiet-panel').hidden = !quiet;
   if (quiet && !document.body.classList.contains('dim')) toggleDim(true);
-  $('mode-note').textContent = profile.mode === 'normal'
-    ? 'Normal day: sounds play at your saved level.'
-    : `${m.label}: sounds play at least ${Math.abs(m.offsetDb)} dB quieter than on a normal day, with a softer top end${m.swellCapDb < 3 ? ' and almost no swell' : ''}. These are cautious starting points; you can go quieter still.`;
+  $('mode-note').textContent = profile.mode === 'calm'
+    ? 'Calm: sounds play at your saved level.'
+    : `${m.label}: sounds play at least ${Math.abs(m.offsetDb)} dB quieter than when you feel calm, with a softer top end${m.swellCapDb < 3 ? ' and almost no swell' : ''}. These are cautious starting points; you can go quieter still.`;
   const x = championX();
-  $('attack-detail').textContent = x
+  $('quiet-detail').textContent = x
     ? `Plays your ${titleFor(x).toLowerCase()} sound at ${fmtDb(outputLevelDb())} relative to your quiet reference, with a ${fadeInSeconds().toFixed(1)}-second fade-in.`
     : `No comfort sound yet, so a gentle, dark default plays at ${fmtDb(outputLevelDb())} relative to your quiet reference. Silence is always fine.`;
   renderLevel();
@@ -556,18 +559,18 @@ function renderFingerprint() {
 }
 function renderLevel() {
   const cap = capDb(), m = mode();
-  const max = profile.mode === 'normal' ? cap : baseDb() + m.offsetDb;
+  const max = profile.mode === 'calm' ? cap : baseDb() + m.offsetDb;
   $('level').min = String(LEVEL_MIN_DB);
   $('level').max = String(Math.floor(max));
   $('level').value = String(Math.round(outputLevelDb()));
   $('level-value').textContent = fmtDb(outputLevelDb());
-  $('level-note').textContent = profile.mode === 'normal'
+  $('level-note').textContent = profile.mode === 'calm'
     ? `Relative to your quiet reference. Capped at ${fmtDb(cap)}${profile.contour.length >= 3 ? ' from your comfort contour' : ''}.`
-    : `Relative to your quiet reference. In “${m.label.toLowerCase()}” it can only go below your normal-day level minus ${Math.abs(m.offsetDb)} dB.`;
+    : `Relative to your quiet reference. In “${m.label.toLowerCase()}” it can only go below your calm level minus ${Math.abs(m.offsetDb)} dB.`;
 }
 $('level').addEventListener('input', () => {
   const value = Number($('level').value);
-  if (profile.mode === 'normal') profile.baseLevelDb = clamp(value, LEVEL_MIN_DB, capDb());
+  if (profile.mode === 'calm') profile.baseLevelDb = clamp(value, LEVEL_MIN_DB, capDb());
   else profile.trims[profile.mode] = clamp(value - (baseDb() + mode().offsetDb), -30, 0);
   save(); renderLevel(); renderMode();
   if (listening()) setActiveLevel(outputLevelDb());
@@ -595,13 +598,13 @@ async function startListening() {
 function stopListening(message = 'Fading to silence.') { clearTimeout(sleepTimer); stopAll(3); if (message) say(message); }
 $('fp-play').addEventListener('click', startListening);
 $('fp-stop').addEventListener('click', () => stopListening());
-$('attack-play').addEventListener('click', startListening);
-$('attack-stop').addEventListener('click', () => stopListening());
+$('quiet-play').addEventListener('click', startListening);
+$('quiet-stop').addEventListener('click', () => stopListening());
 $('fp-worse').addEventListener('click', () => {
   clearTimeout(sleepTimer); stopAll(1.5);
   const before = outputLevelDb();
   profile.events.push({ type: 'worse', at: now(), mode: profile.mode, x: championX(), levelDb: before });
-  if (profile.mode === 'normal') profile.baseLevelDb = clamp(baseDb() - WORSE_STEP_DB, LEVEL_MIN_DB, CONTOUR_CAP_DB);
+  if (profile.mode === 'calm') profile.baseLevelDb = clamp(baseDb() - WORSE_STEP_DB, LEVEL_MIN_DB, CONTOUR_CAP_DB);
   else profile.trims[profile.mode] = clamp((profile.trims[profile.mode] ?? 0) - WORSE_STEP_DB, -30, 0);
   save(); renderFingerprint(); renderMode();
   const lowered = before - outputLevelDb();

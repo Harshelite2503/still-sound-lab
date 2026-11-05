@@ -23,13 +23,27 @@ export const MAX_LOW_COMPENSATION_DB = 8;
 /** Calibration bands, in Hz. Seven half-octave bands across the speech/music range. */
 export const CONTOUR_BANDS = [125, 250, 500, 1000, 2000, 4000, 8000];
 
-/** Listening states. Offsets are starting points relative to a normal day, not clinical thresholds. */
+/**
+ * Listening states, named by how sensitive to sound the listener feels right now (a wellness
+ * framing, not disease phases). Offsets are cautious starting points relative to feeling calm,
+ * not clinical thresholds.
+ */
 export const MODES = {
-  normal: { label: 'Normal day', offsetDb: 0, shelfDb: 0, swellCapDb: 6, fadeSeconds: 3 },
-  warning: { label: 'Warning signs', offsetDb: -6, shelfDb: -3, swellCapDb: 3, fadeSeconds: 4 },
-  attack: { label: 'During an attack', offsetDb: -14, shelfDb: -6, swellCapDb: 1, fadeSeconds: 6 },
+  calm: { label: 'Calm', offsetDb: 0, shelfDb: 0, swellCapDb: 6, fadeSeconds: 3 },
+  sensitive: { label: 'Sensitive', offsetDb: -6, shelfDb: -3, swellCapDb: 3, fadeSeconds: 4 },
+  very: { label: 'Very sensitive', offsetDb: -14, shelfDb: -6, swellCapDb: 1, fadeSeconds: 6 },
   recovering: { label: 'Recovering', offsetDb: -6, shelfDb: -3, swellCapDb: 3, fadeSeconds: 4 },
 };
+
+/** Keys saved by earlier versions, mapped to the current ones so existing profiles keep working. */
+export const LEGACY_MODE_KEYS = { normal: 'calm', warning: 'sensitive', attack: 'very' };
+
+/** The current state key for any saved or given value; unknown values fall back to calm. */
+export function modeKey(key) {
+  if (key && Object.hasOwn(MODES, key)) return key;
+  if (key && Object.hasOwn(LEGACY_MODE_KEYS, key)) return LEGACY_MODE_KEYS[key];
+  return 'calm';
+}
 
 export function rng(seed = 1) {
   let state = (Math.floor(Number(seed) || 1) >>> 0) || 1;
@@ -139,7 +153,7 @@ function shapeAmplitude(hz, p, opts) {
   const tilt = (hz / 1000) ** (p.tiltDbPerOctave / 6.0206);
   const lowpass = 1 / Math.sqrt(1 + (hz / p.cutoffHz) ** 4);
   const highpass = 1 / Math.sqrt(1 + (40 / hz) ** 4);
-  const mode = MODES[opts.mode] || MODES.normal;
+  const mode = MODES[modeKey(opts.mode)];
   const shelf = mode.shelfDb ? dbToAmp(mode.shelfDb / (1 + (3000 / hz) ** 2)) : 1;
   const eq = opts.contour ? dbToAmp(contourEqDb(hz, opts.contour)) : 1;
   return tilt * lowpass * highpass * shelf * eq;
@@ -177,7 +191,7 @@ export function renderComfortLoop(x, opts = {}) {
   const rate = opts.rate || 44100;
   const n = 2 ** clamp(Math.round(opts.log2Length || 18), 12, 20);
   const p = paramsFromX(x);
-  const mode = MODES[opts.mode] || MODES.normal;
+  const mode = MODES[modeKey(opts.mode)];
   const swellDb = Math.min(p.swellDb, mode.swellCapDb);
   const random = rng(opts.seed ?? 7);
   const toneHz = clamp(Number(opts.toneHz) || 110, 55, 330);
