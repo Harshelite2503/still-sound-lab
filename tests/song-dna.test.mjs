@@ -247,3 +247,36 @@ console.log(`spectral matching ok · harmonium sketch ${matched.match.meanAbsErr
   assert.equal(zoneData.songs, published.songs.filter(s => !s.flags.length).length);
   console.log('zone and matching safety ok · equal loudness, caps hold across passes, empty bands never boosted');
 }
+
+// Song vector index.
+{
+  const idx = await import('../dist/song-index.js');
+  const set = published.songs.filter(s => !s.flags.length);
+  const a = idx.buildIndex(set), b = idx.buildIndex(set);
+  assert.deepEqual(a.items.map(i => i.vector), b.items.map(i => i.vector), 'index must be deterministic');
+  for (const it of a.items) assert.ok(Math.abs(Math.hypot(...it.vector) - 1) < 1e-9, 'unit vectors');
+  for (const s of set) {
+    const hit = idx.search(a, idx.vectorFor(a, s), { k: 1 })[0];
+    assert.equal(hit.name, s.name); assert.ok(hit.similarity > .999999);
+  }
+  // The key-free block is unchanged by any transposition of the scale profile.
+  const prof = set[0].degreeProfile, rotated = prof.map((_, i) => prof[(i + 5) % 12]);
+  idx.scaleShape(prof).forEach((v, i) => assert.ok(Math.abs(v - idx.scaleShape(rotated)[i]) < 1e-12));
+  // Map: projecting an indexed vector lands on its stored coordinates.
+  const p = idx.projectToMap(a, a.items[3].vector);
+  assert.ok(Math.abs(p[0] - a.map.coords[3][0]) < 1e-9 && Math.abs(p[1] - a.map.coords[3][1]) < 1e-9);
+  // Published index and evaluation come from the current profile build, and beat chance by a wide margin.
+  const pubIndex = JSON.parse(fs.readFileSync(new URL('../dist/data/song-dna/kishore-kumar-index.json', import.meta.url)));
+  const ev = JSON.parse(fs.readFileSync(new URL('../data/song-dna/kishore-kumar-index-eval.json', import.meta.url)));
+  assert.equal(pubIndex.builtFrom, published.builtAt, 'index is stale: re-run analysis/eval_song_index.mjs');
+  assert.equal(ev.builtFrom, published.builtAt);
+  assert.deepEqual(pubIndex.weights, idx.DEFAULT_WEIGHTS, 'published index uses the default weights');
+  // The browser rebuilds the index from code; it must match the published vectors the evaluation describes.
+  const rebuilt = idx.buildIndex(set, { weights: pubIndex.weights, name: pubIndex.name });
+  assert.deepEqual(rebuilt.items.map(i => i.name), pubIndex.items.map(i => i.name));
+  rebuilt.items.forEach((it, i) => it.vector.forEach((v, j) => assert.ok(Math.abs(v - pubIndex.items[i].vector[j]) < 2e-4, 'index code changed: re-run analysis/eval_song_index.mjs')));
+  // Each block (except mode) is centred on the set, so its weight measures differences between songs.
+  for (const b of ['spectrum', 'scale', 'scaleShape', 'chords']) { const m = a.items[0].blocks[b].map((_, j) => a.items.reduce((s, it) => s + it.blocks[b][j], 0) / a.items.length); assert.ok(m.every(v => Math.abs(v) < 1e-9), `${b} block centred`); }
+  assert.ok(ev.results.default.recallAt1 >= 5 * ev.randomBaseline.recallAt1, 'index should find same-song copies far above chance');
+  console.log(`song index ok · deterministic, key-free block rotation-invariant, recall@1 ${(ev.results.default.recallAt1 * 100).toFixed(0)}% vs ${(ev.randomBaseline.recallAt1 * 100).toFixed(0)}% chance`);
+}

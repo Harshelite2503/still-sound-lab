@@ -1,6 +1,7 @@
 import { analyzeSong, compareToProfile, songDistance, PROFILE_FEATURES, PITCH_NAMES } from './song-dna.js';
 import { renderSketch, chordName, normaliseShape, FEELS, TEXTURES } from './style-sketch.js';
 import { createSafetyChain, MODES } from './comfort-engine.js';
+import { buildIndex, vectorFor, search, projectToMap, centroid } from './song-index.js';
 import { readComfortProfile, outputLevelDb, fadeInSeconds, modeOf, PROFILE_KEY } from './comfort-state.js';
 import { encodeWav } from './audio-engine.js';
 
@@ -11,7 +12,7 @@ const fmt = (v, d = 0) => (Number.isFinite(v) ? v.toFixed(d) : '—');
 const DEGREE_LABELS = ['1', '♭2', '2', '♭3', '3', '4', '♯4', '5', '♭6', '6', '♭7', '7'];
 const ns = 'http://www.w3.org/2000/svg';
 const RATINGS_KEY = 'still-sketch-ratings-v1';
-let data, core, profile, zone = null;
+let data, core, profile, zone = null, songIndex = null, indexEval = null, mapPoint = null;
 
 function svgEl(svg, name, attrs, text) { const e = document.createElementNS(ns, name); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text !== undefined) e.textContent = text; svg.append(e); return e; }
 function bars(container, rows, { max } = {}) {
@@ -207,7 +208,11 @@ function renderCompare(song, cmp) {
   const an = song.chords.andalusian;
   add(an.fullInKey ? `Contains the Andalusian walk on its home chord (${an.full.find(h => h.inKey).chords}).` : an.partialInKey ? `Contains part of the Andalusian walk on its home chord (${an.partial.find(h => h.inKey).chords}).` : an.full.length + an.partial.length ? `Has the Andalusian shape on other degrees (${(an.full[0] || an.partial[0]).chords}).` : 'No Andalusian walk detected.');
   add(`Scale-note similarity ${pct(Math.max(0, cmp.scaleSimilarity))}, chord-role similarity ${pct(cmp.harmonySimilarity)}.`);
-  add(`Closest profile songs: ${closest.map(c => c.s.name).join(', ')}.`);
+  if (songIndex) {
+    const v = vectorFor(songIndex, song), hits = search(songIndex, v, { k: 3 });
+    add(`Most similar by vector search: ${hits.map(h => `${h.name} (${h.similarity.toFixed(2)})`).join(', ')}.`);
+    mapPoint = { name: song.name, xy: projectToMap(songIndex, v) }; renderMap();
+  } else add(`Closest profile songs: ${closest.map(c => c.s.name).join(', ')}.`);
   const t = $('compare-table'); t.replaceChildren();
   const head = t.insertRow(); ['Measure', 'Your song', 'Profile middle half', ''].forEach(h => { const th = document.createElement('th'); th.textContent = h; head.append(th); });
   for (const r of cmp.rows) {
@@ -318,6 +323,53 @@ function renderZoneTest(ratings = readRatings()) {
   $('zone-test').textContent = !diffs.length
     ? 'No paired comparison yet. Play a sketch, rate it, press “Hear the other version”, and rate that too: same notes, only the zone matching changes.'
     : `${diffs.length} paired comparison${diffs.length === 1 ? '' : 's'}: matched minus plain averages ${mean > 0 ? '+' : ''}${mean.toFixed(2)} (scale −2 to +2). ${diffs.length < 6 ? 'Too few to tell yet.' : Math.abs(mean) < .3 ? 'No clear preference so far.' : mean > 0 ? 'So far you tend to rate the matched version higher.' : 'So far you tend to rate the plain version higher.'} You know which version is playing, so this is a personal check, not a blinded test.`;
+}
+
+/* ---------------- Song map (vector index) ---------------- */
+function renderMap() {
+  if (!songIndex) { $('songmap').hidden = true; return; }
+  const svg = $('map-chart'); svg.replaceChildren();
+  const W = 520, H = 360, P = 28;
+  const pts = songIndex.map.coords.map(c => c.slice());
+  const centre = projectToMap(songIndex, centroid(songIndex.items.map(i => i.vector)));
+  const all = [...pts, centre, ...(mapPoint ? [mapPoint.xy] : [])];
+  const xs = all.map(p => p[0]), ys = all.map(p => p[1]);
+  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  const sx = v => P + (v - x0) / ((x1 - x0) || 1) * (W - 2 * P), sy = v => H - P - (v - y0) / ((y1 - y0) || 1) * (H - 2 * P);
+  svgEl(svg, 'line', { x1: P, x2: W - P, y1: sy(0), y2: sy(0), class: 'axis' });
+  svgEl(svg, 'line', { x1: sx(0), x2: sx(0), y1: P, y2: H - P, class: 'axis' });
+  songIndex.items.forEach((it, i) => {
+    const [x, y] = pts[i], minor = core[i].key.mode === 'minor';
+    const c = svgEl(svg, 'circle', { cx: sx(x), cy: sy(y), r: 5, class: `dot ${minor ? 'minor' : 'major'}` });
+    svgEl(c, 'title', {}, `${it.name} (${it.key}, ${Math.round(it.tempo)} BPM)`);
+    const short = it.name.split(' ').slice(0, 3).join(' '), right = sx(x) > W * .6;
+    svgEl(svg, 'text', { x: right ? sx(x) - 7 : sx(x) + 7, y: sy(y) + 3, 'text-anchor': right ? 'end' : 'start' }, short);
+  });
+  svgEl(svg, 'circle', { cx: sx(centre[0]), cy: sy(centre[1]), r: 9, class: 'centre' });
+  svgEl(svg, 'text', { x: sx(centre[0]) + 11, y: sy(centre[1]) - 8 }, 'average of this set');
+  if (mapPoint) {
+    const px = sx(mapPoint.xy[0]), right = px > W * .6;
+    svgEl(svg, 'circle', { cx: px, cy: sy(mapPoint.xy[1]), r: 8, class: 'you' });
+    svgEl(svg, 'text', { x: right ? px - 10 : px + 10, y: sy(mapPoint.xy[1]) + 14, 'text-anchor': right ? 'end' : 'start' }, `your song: ${mapPoint.name.slice(0, 28)}`);
+  }
+  const ex = songIndex.map.explained;
+  $('map-caption').textContent = `Gold dots are major-key songs, green minor. The dashed ring is the average of this set (ratings are not used yet); a red ring marks a song you compare below. The two map directions capture ${Math.round(ex[0] * 100)}% and ${Math.round(ex[1] * 100)}% of the differences between songs; the search uses all ${songIndex.dims} dimensions.`;
+  svg.setAttribute('aria-label', `Song map of ${songIndex.items.length} songs${mapPoint ? `, with ${mapPoint.name} placed among them` : ''}`);
+  if (indexEval?.results?.default) {
+    const r = indexEval.results.default, rb = indexEval.randomBaseline;
+    const kt = indexEval.results['lookup:key+tempo'];
+    $('index-eval').textContent = `Identification test: we built the index from the official recordings, then searched it with the ${indexEval.queries} songs we also had as separate MP3 copies. The same song came back first ${Math.round(r.recallAt1 * 100)}% of the time${kt ? `, against ${Math.round(kt.recallAt1 * 100)}% for simply matching key and tempo` : ''} and ${Math.round(rb.recallAt1 * 100)}% for random guessing. Loudness and stereo, which change between copies, identify almost nothing (${Math.round(indexEval.results['only:production'].recallAt1 * 100)}% alone). With only ${indexEval.songs} songs from one artist this is an easy test. Whether its neighbours sound alike to listeners has not been tested yet, and it does not predict which songs become hits.`;
+  }
+}
+function setupNeighbours() {
+  if (!songIndex) return;
+  const sel = $('nn-song');
+  sel.replaceChildren(...songIndex.items.map((it, i) => { const o = document.createElement('option'); o.value = i; o.textContent = it.name; return o; }));
+  const show = () => {
+    const it = songIndex.items[Number(sel.value)];
+    $('nn-list').replaceChildren(...search(songIndex, it.vector, { k: 3, exclude: it.name }).map(h => { const li = document.createElement('li'); li.append(h.name + ' '); const sm = document.createElement('small'); sm.textContent = `similarity ${h.similarity.toFixed(2)}`; li.append(sm); return li; }));
+  };
+  sel.addEventListener('change', show); show();
 }
 
 /* ---------------- Your sound zone ---------------- */
@@ -462,6 +514,12 @@ try {
   core = data.songs.filter(s => !s.flags.length); profile = data.profile;
   $('song-count').textContent = String(core.length);
   $('artist-eyebrow').textContent = data.artist.toUpperCase();
-  renderFrequencies(); renderKeys(); renderRomans(); renderDegrees(); renderAndalusian(); renderFeatureTable(); renderSongTable(); setupSketch(); renderZone();
+  try {
+    const stored = await (await fetch('data/song-dna/kishore-kumar-index.json')).json();
+    // Rebuild from the profile songs with the stored weights, so the browser and the published index always agree.
+    if (stored?.schema === 'still-song-index-v1') songIndex = buildIndex(core, { weights: stored.weights, name: stored.name });
+    indexEval = stored.evaluation || null;
+  } catch { songIndex = null; }
+  renderFrequencies(); renderKeys(); renderRomans(); renderDegrees(); renderAndalusian(); renderFeatureTable(); renderSongTable(); setupSketch(); renderZone(); renderMap(); setupNeighbours();
   say(`Profile of ${core.length} full-length ${data.artist} songs. Choose a song below to compare, or make a sketch.`);
 } catch (err) { say('Could not load the Song DNA profile: ' + err.message); }

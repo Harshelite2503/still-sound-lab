@@ -81,8 +81,18 @@
   </div>
 </section>
 
+<section class="panel songmap" id="songmap">
+  <p class="eyebrow">08 · YOUR SONG MAP</p>
+  <div class="heading-row"><h2>Every song as a vector</h2><span class="pill">SIMILARITY SEARCH, NOT HIT PREDICTION</span></div>
+  <p class="muted">Each song becomes a vector built from what Song DNA measures: scale-note use, chord roles, tempo, harmony rhythm, repetition, frequency shape and a little production. Songs that sound alike sit close together. The map flattens those vectors to two dimensions, so it shows only part of the picture.</p>
+  <div class="map-grid">
+    <figure><svg id="map-chart" viewBox="0 0 520 360" role="img" aria-label="Song map"></svg><figcaption class="micro" id="map-caption"></figcaption></figure>
+    <div><h3>How good is it?</h3><p class="micro" id="index-eval"></p><h3>Nearest neighbours</h3><label>Song<select id="nn-song"></select></label><ol id="nn-list" class="heart"></ol></div>
+  </div>
+</section>
+
 <section class="panel compare" id="compare">
-  <p class="eyebrow">08 · COMPARE A SONG</p>
+  <p class="eyebrow">09 · COMPARE A SONG</p>
   <div class="heading-row"><h2>How close is your song?</h2><span class="pill">ANALYSED IN THIS BROWSER</span></div>
   <p class="muted">Choose a song you own. Still measures the whole track here, in your browser, and compares it with the profile. Nothing is uploaded or stored. A 5-minute song can take up to half a minute.</p>
   <label class="upload-zone" for="compare-file"><span class="upload-symbol" aria-hidden="true">＋</span><strong>Choose a song</strong><span>MP3, M4A, WAV · up to 60 MB</span></label>
@@ -96,7 +106,7 @@
 </section>
 
 <section class="panel sketch" id="sketch">
-  <p class="eyebrow">09 · MAKE A STYLE SKETCH</p>
+  <p class="eyebrow">10 · MAKE A STYLE SKETCH</p>
   <div class="heading-row"><h2>An original sketch in this style</h2><span class="pill">NO MELODY IS COPIED</span></div>
   <p class="muted">Pick a progression, key, tempo and feel. It plays at your comfort-profile level for your current state (or your quiet reference if you have no profile), fades in slowly, and the level slider only goes quieter. Still builds a new instrumental from those ingredients, with a melody made from random chord tones. Chord progressions, keys and tempos are shared musical building blocks; no song’s melody or recording is used.</p>
   <div class="sketch-controls">

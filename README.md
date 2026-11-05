@@ -34,6 +34,8 @@ First profile: 20 full-length Kishore Kumar songs from official label uploads; 1
 
 - **Your sound zone.** Together the songs keep their energy even from 159 Hz to 2.5 kHz, and half of their tonal energy lies between F♯3 and A4 ([charts](figures/song-dna/)). Style sketches can be matched to this zone, and **Make one for me** learns from your ratings which progressions, textures and feels calm you.
 
+- **Song vector index.** Every song is a 78-dimensional vector you can search by similarity. Given another copy of one of the 20 songs, it ranks that song first 94% of the time, against 83% for matching key and tempo and 5% by chance. Whether its neighbours sound alike to listeners hasn't been tested yet. It does not predict hits.
+
 Only derived numbers and aggregate charts are stored, never audio, melodies, chord timelines or per-song spectrograms.
 
 ## What is a “sweet frequency zone”?

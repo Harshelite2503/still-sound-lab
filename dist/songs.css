@@ -57,6 +57,18 @@ details summary{cursor:pointer;font-size:12px;margin:6px 0}
 @media(max-width:1000px){.dna-grid{grid-template-columns:1fr}.sketch-controls{grid-template-columns:1fr 1fr}.how-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.compare-result{grid-template-columns:1fr}.sketch-controls{grid-template-columns:1fr}.sketch-controls label:first-child{grid-column:auto}.how-grid{grid-template-columns:1fr}.dna-answer{display:none}.bar-row{grid-template-columns:44px 1fr 60px}}
 .zone{margin-top:18px}
+.songmap{margin-top:18px}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:start}
+.map-grid figure{margin:0}
+.map-grid svg{width:100%;height:auto;display:block;background:var(--soft);border-radius:10px}
+.map-grid svg text{font:9.5px -apple-system,BlinkMacSystemFont,sans-serif;fill:var(--ink)}
+.map-grid svg .dot{fill:var(--green)}
+.map-grid svg .dot.minor{fill:var(--green)}
+.map-grid svg .dot.major{fill:#a98b4a}
+.map-grid svg .you{fill:none;stroke:#b06f6f;stroke-width:2.5}
+.map-grid svg .centre{fill:none;stroke:var(--ink);stroke-dasharray:3 3}
+.map-grid svg .axis{stroke:var(--line)}
+@media(max-width:760px){.map-grid{grid-template-columns:1fr}}
 .zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .zone-grid figure{margin:0}
 .zone-grid svg{width:100%;height:auto;display:block;background:var(--soft);border-radius:10px}

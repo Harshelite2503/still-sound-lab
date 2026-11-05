@@ -133,6 +133,52 @@ Taken one at a time, the songs differ in key, tempo and tuning. Taken together, 
   --zone-out dist/data/song-dna/kishore-kumar-zone.json   # add --skip-private to redraw only the shared charts
 ```
 
+## Song vector index
+
+Every analysed song becomes a 78-dimensional vector ([dist/song-index.js](../dist/song-index.js)), built from measurements Song DNA already validates. The vector has seven blocks, each scaled to unit length and then weighted:
+
+| Block | What it holds | Weight |
+| --- | --- | --- |
+| Musical | Tempo, minor-chord share, chord changes per minute, distinct chords, note events, repetition (robust z-scores) | 1 |
+| Scale | Key-relative 12-note profile | 1 |
+| Scale shape | Fourier magnitudes of the 12-note profile, unchanged by key errors | 1 |
+| Chords | Share of time in each of 24 chord roles (I, i, ♭VII, …) | 1 |
+| Spectrum | Third-octave shape of the zone chart | 0.7 |
+| Production | Tilt, brightness, presence, loudness, loudness range, crest, stereo | 0.5 |
+| Mode | Major or minor | 0.4 |
+
+Profile-like blocks (spectrum, scale, scale shape, chords) are centred on the indexed set before scaling, so each block measures differences between songs. Search is cosine similarity. The page shows a 2-D map (PCA), each song's nearest neighbours, and where an uploaded song lands.
+
+**Does it work? An identification test** ([data/song-dna/kishore-kumar-index-eval.json](../data/song-dna/kishore-kumar-index-eval.json), [analysis/eval_song_index.mjs](../analysis/eval_song_index.mjs))
+
+The index is built from the official recordings and queried with the 18 songs we also had as independently obtained MP3 copies. Ties are ranked fairly, so a tie never counts in a method's favour.
+
+| Method | Same song first (recall@1) | In top 3 | MRR |
+| --- | --- | --- | --- |
+| Random guessing | 5% | 15% | 0.18 |
+| Tempo only | 56% | 89% | 0.73 |
+| Key name only | 56% | 89% | 0.79 |
+| Key name, then nearest tempo | 83% | **100%** | 0.90 |
+| **Vector index, default weights** | **94%** | 94% | **0.95** |
+| Musical block only | 83% | 94% | 0.89 |
+| Scale block only | 94% | 94% | 0.95 |
+| Chords block only | 89% | 94% | 0.91 |
+| Spectrum block only | 61% | 83% | 0.73 |
+| Production block only | 11% | 28% | 0.27 |
+| All blocks weighted equally | 83% | 94% | 0.90 |
+
+What we learn:
+- **On this test the index beats a simple key-and-tempo lookup by one song.** It ranks 17 of 18 first, against 15 for the lookup, though the lookup has every song in its top 3. The richer vector earns its keep only when key labels fail or many songs share a key and tempo, which a bigger catalogue will test.
+- **Production features describe the copy, not the song.** On their own they find almost nothing, matching the test–retest result.
+- **Key errors are the main failure.** The one miss, Saagar Kinare at rank 7, had its key read as A minor in one copy and F major in the other, which shifts the key-relative blocks. The remix (rank 3) and the sad-version excerpt (rank 6) are also different recordings, and their keys were read differently from the originals'.
+
+**Limits, stated plainly.**
+- **This is an identification test.** Every query is the same recording from another source. It does not show that the index's neighbours for *different* songs sound alike to listeners; that needs listener judgements, which haven't been collected.
+- **The figures are in-sample.** The musical-versus-production split and the production down-weight came from the test–retest comparison of these same 18 pairs, and the key-free block was added after the first results. Treat the numbers as optimistic. The ablations also show the index would score higher without the scale block, but the weights are frozen rather than tuned on the very pairs reported here.
+- **Twenty songs from one artist is an easy setting.** The real test adds other artists as distractors, with the weights already fixed.
+
+**What it is for.** Finding songs that sound like the ones a listener finds calming (once listener tests confirm the neighbourhoods), placing new songs or sketches in that space, and later a taste centre weighted by ratings. The map's ring is currently the plain average of the set. It does **not** make a hit deterministic: popularity depends on things outside the audio, such as the film, the star, lyrics, radio play, timing and social contagion (Salganik et al. 2006; Pachet & Roy 2008; Interiano et al. 2018).
+
 ## Product: Song DNA page
 
 [dist/songs.html](../dist/songs.html) does five things:
