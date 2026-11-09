@@ -1,0 +1,98 @@
+{
+ "base": {
+  "steady noise, quiet": {
+   "active_neurons": 0,
+   "summed_rate_hz": 3.5,
+   "giant_fiber_hz": 0.0
+  },
+  "steady noise": {
+   "active_neurons": 22,
+   "summed_rate_hz": 276.6,
+   "giant_fiber_hz": 19.5
+  },
+  "steady noise, loud": {
+   "active_neurons": 105,
+   "summed_rate_hz": 1748.4,
+   "giant_fiber_hz": 54.8
+  },
+  "sudden bang": {
+   "active_neurons": 14,
+   "summed_rate_hz": 124.1,
+   "giant_fiber_hz": 2.2
+  },
+  "pulse song, 36 ms gaps (natural)": {
+   "active_neurons": 34,
+   "summed_rate_hz": 331.6,
+   "giant_fiber_hz": 20.1
+  },
+  "control: 36 ms pulse input, no pattern": {
+   "active_neurons": 31,
+   "summed_rate_hz": 328.6,
+   "giant_fiber_hz": 18.9
+  }
+ },
+ "0.75": {
+  "steady noise, quiet": {
+   "active_neurons": 0,
+   "summed_rate_hz": 3.5,
+   "giant_fiber_hz": 0.0
+  },
+  "steady noise": {
+   "active_neurons": 22,
+   "summed_rate_hz": 292.5,
+   "giant_fiber_hz": 20.6
+  },
+  "steady noise, loud": {
+   "active_neurons": 126,
+   "summed_rate_hz": 2019.2,
+   "giant_fiber_hz": 55.7
+  },
+  "sudden bang": {
+   "active_neurons": 14,
+   "summed_rate_hz": 140.4,
+   "giant_fiber_hz": 2.2
+  },
+  "pulse song, 36 ms gaps (natural)": {
+   "active_neurons": 35,
+   "summed_rate_hz": 356.4,
+   "giant_fiber_hz": 20.8
+  },
+  "control: 36 ms pulse input, no pattern": {
+   "active_neurons": 33,
+   "summed_rate_hz": 358.1,
+   "giant_fiber_hz": 19.2
+  }
+ },
+ "0.5": {
+  "steady noise, quiet": {
+   "active_neurons": 0,
+   "summed_rate_hz": 3.5,
+   "giant_fiber_hz": 0.0
+  },
+  "steady noise": {
+   "active_neurons": 23,
+   "summed_rate_hz": 326.6,
+   "giant_fiber_hz": 21.0
+  },
+  "steady noise, loud": {
+   "active_neurons": 147,
+   "summed_rate_hz": 2555.3,
+   "giant_fiber_hz": 55.2
+  },
+  "sudden bang": {
+   "active_neurons": 16,
+   "summed_rate_hz": 180.1,
+   "giant_fiber_hz": 2.2
+  },
+  "pulse song, 36 ms gaps (natural)": {
+   "active_neurons": 37,
+   "summed_rate_hz": 398.5,
+   "giant_fiber_hz": 21.7
+  },
+  "control: 36 ms pulse input, no pattern": {
+   "active_neurons": 43,
+   "summed_rate_hz": 396.8,
+   "giant_fiber_hz": 20.4
+  }
+ }
+}

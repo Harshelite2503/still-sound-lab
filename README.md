@@ -10,6 +10,16 @@ Still helps you explore comforting sounds and frequency zones. Bring a sound you
 
 **Music popularity research:** [Read the evidence review and analysis of 19,281 charting songs](docs/music-popularity-research.md). Includes tempo and audio-feature graphs, historical prediction checks, source references, and code to reproduce the results. Popularity, viral spread, and personal comfort are measured separately.
 
+## Sounds in a model fly brain (exploratory)
+
+We played sounds into the whole-brain spiking model of a fruit fly (FlyWire connectome, Shiu et al. 2024) through its hearing neurons, and read out all 138,639 neurons. The simulator was validated against the original Brian2 code: firing rates correlate at 0.9992. In this model:
+- the brain never sees what the ear can't sense;
+- loudness acts like a threshold;
+- a sudden bang reaches the escape neuron where the same energy spread out reaches nothing;
+- weaker inhibition (the "central gain" idea behind hyperacusis) makes loud sounds, and only loud sounds, take over 40% more of the brain.
+
+It does not reproduce the fly's own song-rhythm detection, and it cannot be personalised. [docs/fly-sound.md](docs/fly-sound.md) explains how human hearing works, what can and can't transfer from flies, and the personalised human route (a measured tolerance plus open loudness and ear models).
+
 ## Your comfort profile (new)
 
 People differ. The same sound can be calming to one person and painful to another, and the same person reacts differently on a normal day and during an attack. Across 168 simple synthetic sounds in the EmoSynth dataset, listeners' pleasantness ratings had an average standard deviation of 1.2 on a 1–5 scale. The [comfort profile](dist/profile.html) learns each person's own comfort instead of assuming one "healing" sound:
